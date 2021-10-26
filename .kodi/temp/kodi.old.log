@@ -1,0 +1,338 @@
+﻿2021-09-13 19:39:11.849 T:12253    INFO <general>: -----------------------------------------------------------------------
+2021-09-13 19:39:11.849 T:12253    INFO <general>: Starting Kodi (19.1 (19.1.0) Git:20210819-d5db1dc32ce-dirty). Platform: Linux x86 64-bit
+2021-09-13 19:39:11.849 T:12253    INFO <general>: Using Release Kodi x64
+2021-09-13 19:39:11.849 T:12253    INFO <general>: Kodi compiled 2021-08-20 by GCC 11.1.0 for Linux x86 64-bit version 5.12.3 (330755)
+2021-09-13 19:39:11.849 T:12253    INFO <general>: Running on Arch Linux rolling, kernel: Linux x86 64-bit version 5.13.12-arch1-1
+2021-09-13 19:39:11.849 T:12253    INFO <general>: FFmpeg version/source: 4.3.2-Kodi
+2021-09-13 19:39:11.849 T:12253    INFO <general>: Host CPU: Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz, 4 cores available
+2021-09-13 19:39:11.849 T:12253    INFO <general>: special://xbmc/ is mapped to: /usr/share/kodi
+2021-09-13 19:39:11.849 T:12253    INFO <general>: special://xbmcbin/ is mapped to: /usr/lib/kodi
+2021-09-13 19:39:11.849 T:12253    INFO <general>: special://xbmcbinaddons/ is mapped to: /usr/lib/kodi/addons
+2021-09-13 19:39:11.849 T:12253    INFO <general>: special://masterprofile/ is mapped to: /home/kevin/.kodi/userdata
+2021-09-13 19:39:11.849 T:12253    INFO <general>: special://envhome/ is mapped to: /home/kevin
+2021-09-13 19:39:11.849 T:12253    INFO <general>: special://home/ is mapped to: /home/kevin/.kodi
+2021-09-13 19:39:11.849 T:12253    INFO <general>: special://temp/ is mapped to: /home/kevin/.kodi/temp
+2021-09-13 19:39:11.849 T:12253    INFO <general>: special://logpath/ is mapped to: /home/kevin/.kodi/temp
+2021-09-13 19:39:11.849 T:12253    INFO <general>: The executable running is: /usr/lib/kodi/kodi.bin
+2021-09-13 19:39:11.849 T:12253    INFO <general>: Local hostname: archkevin
+2021-09-13 19:39:11.849 T:12253    INFO <general>: Log File is located: /home/kevin/.kodi/temp/kodi.log
+2021-09-13 19:39:11.849 T:12253    INFO <general>: -----------------------------------------------------------------------
+2021-09-13 19:39:11.851 T:12253    INFO <general>: loading settings
+2021-09-13 19:39:11.851 T:12253    INFO <general>: special://profile/ is mapped to: special://masterprofile/
+2021-09-13 19:39:11.858 T:12253    INFO <general>: No settings file to load (special://xbmc/system/advancedsettings.xml)
+2021-09-13 19:39:11.858 T:12253    INFO <general>: No settings file to load (special://masterprofile/advancedsettings.xml)
+2021-09-13 19:39:11.858 T:12253    INFO <general>: Default Video Player: VideoPlayer
+2021-09-13 19:39:11.858 T:12253    INFO <general>: Default Audio Player: paplayer
+2021-09-13 19:39:11.858 T:12253    INFO <general>: Disabled debug logging due to GUI setting. Level 0.
+2021-09-13 19:39:11.858 T:12253    INFO <general>: Log level changed to "INFO"
+2021-09-13 19:39:11.858 T:12253    INFO <general>: CMediaSourceSettings: loading media sources from special://masterprofile/sources.xml
+2021-09-13 19:39:11.860 T:12253    INFO <general>: creating subdirectories
+2021-09-13 19:39:11.860 T:12253    INFO <general>: userdata folder: special://masterprofile/
+2021-09-13 19:39:11.860 T:12253    INFO <general>: recording folder: 
+2021-09-13 19:39:11.860 T:12253    INFO <general>: screenshots folder: 
+2021-09-13 19:39:11.862 T:12253    INFO <general>: Running database version Addons33
+2021-09-13 19:39:11.863 T:12253   ERROR <general>: GetDirectory - Error getting /usr/lib/kodi/addons
+2021-09-13 19:39:11.863 T:12253   ERROR <general>: GetDirectory - Error getting special://xbmcbin/addons
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: audioencoder.kodi.builtin.aac v1.0.2 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: audioencoder.kodi.builtin.wma v1.0.2 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: game.controller.default v1.0.10 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: game.controller.snes v1.0.10 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.global.audioengine v1.1.1 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.global.filesystem v1.1.6 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.global.general v1.0.5 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.global.gui v5.15.0 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.global.main v1.3.0 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.global.network v1.0.4 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.global.tools v1.0.4 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.audiodecoder v3.0.0 installed
+2021-09-13 19:39:11.940 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.audioencoder v2.1.0 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.game v2.1.0 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.imagedecoder v2.1.1 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.inputstream v3.0.1 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.peripheral v2.0.0 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.pvr v7.1.0 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.screensaver v2.1.0 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.vfs v3.0.0 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.videocodec v2.0.2 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.binary.instance.visualization v3.0.0 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: kodi.resource v1.0.0 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.album.universal v3.1.5 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.artists.universal v4.3.4 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.common.allmusic.com v3.2.2 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.common.fanart.tv v3.6.3 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.common.imdb.com v3.2.3 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.common.musicbrainz.org v2.2.4 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.common.theaudiodb.com v2.0.3 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.common.themoviedb.org v3.2.17 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.generic.albums v1.0.14 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.generic.artists v1.0.14 installed
+2021-09-13 19:39:11.941 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.local v1.0.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.themoviedb.org v5.2.6 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.themoviedb.org.python v1.4.0+matrix.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.tvshows.themoviedb.org v3.5.13 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: metadata.tvshows.themoviedb.org.python v1.4.7 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: plugin.audio.arteconcert v2.0.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: plugin.video.ardaktuell v1.0.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: plugin.video.ardmediathek_de v6.0.0 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: plugin.video.artemediathek v2.0.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: plugin.video.arteplussept v1.1.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: plugin.video.cinear v0.0.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: plugin.video.lbry v0.1.4 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: repository.xbmc.org v3.2.5 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: resource.images.weathericons.default v1.1.9 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: resource.language.en_gb v2.0.2 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: resource.language.es_es v9.0.36 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: resource.uisounds.kodi v1.0.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: screensaver.xbmc.builtin.black v1.0.34 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: screensaver.xbmc.builtin.dim v1.0.64 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: script.kelebek v3.5 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.arlo v1.2.50+matrix.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.beautifulsoup4 v4.9.3+matrix.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.certifi v2020.12.05+matrix.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.chardet v4.0.0+matrix.1 installed
+2021-09-13 19:39:11.942 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.idna v2.10.0+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.kodi-six v0.1.3.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.libard v6.0.0 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.libarte v2.0.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.libmediathek4 v1.0.0 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.monotonic v1.5.0+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.pil v5.1.0 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.pycryptodome v3.4.3 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.pysocks v1.7.0+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.pyxbmct v1.3.1+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.requests v2.25.1+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.routing v0.2.3+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.six v1.15.0+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.soupsieve v2.1.0+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.sseclient v0.0.27+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.urllib3 v1.26.4+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.xbmcswift2 v19.0.5 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: script.module.xmltodict v0.12.0+matrix.2 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: service.xbmc.versioncheck v0.5.19+matrix.1 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: skin.estouchy v3.0.6 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: skin.estuary v3.0.5 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: webinterface.default v19.x-2.4.8 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: xbmc.addon v19.1.0 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: xbmc.core v0.1.0 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: xbmc.gui v5.15.0 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: xbmc.json v12.4.0 installed
+2021-09-13 19:39:11.943 T:12253    INFO <general>: CAddonMgr::FindAddons: xbmc.metadata v2.1.0 installed
+2021-09-13 19:39:11.944 T:12253    INFO <general>: CAddonMgr::FindAddons: xbmc.python v3.0.0 installed
+2021-09-13 19:39:11.944 T:12253    INFO <general>: CAddonMgr::FindAddons: xbmc.webinterface v1.0.0 installed
+2021-09-13 19:39:11.949 T:12253    INFO <general>: Selected Logind/UPower as PowerSyscall
+2021-09-13 19:39:11.981 T:12253   ERROR <general>: DBus error: org.freedesktop.DBus.Error.InvalidArgs - No such property “OnLowBattery”
+2021-09-13 19:39:11.987 T:12262 WARNING <general>: Pulseaudio module module-allow-passthrough not loaded - opening PT devices might fail
+2021-09-13 19:39:11.988 T:12262    INFO <general>: Found 1 Lists of Devices
+2021-09-13 19:39:11.988 T:12262    INFO <general>: Enumerated PULSE devices:
+2021-09-13 19:39:11.988 T:12262    INFO <general>:     Device 1
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_deviceName      : Default
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_displayName     : Default
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_displayNameExtra: Default Output Device (PULSEAUDIO)
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_deviceType      : AE_DEVTYPE_PCM
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_channels        : FL, FR
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_sampleRates     : 5512,8000,11025,16000,22050,32000,44100,48000,64000,88200,96000,176400,192000,384000
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_dataFormats     : AE_FMT_U8,AE_FMT_S16NE,AE_FMT_S24NE3,AE_FMT_S24NE4,AE_FMT_S32NE,AE_FMT_FLOAT
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_streamTypes     : No passthrough capabilities
+2021-09-13 19:39:11.988 T:12262    INFO <general>:     Device 2
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_deviceName      : alsa_output.pci-0000_00_1f.3.analog-stereo
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_displayName     : Built-in Audio Analog Stereo
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_displayNameExtra: Speakers (PULSEAUDIO)
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_deviceType      : AE_DEVTYPE_PCM
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_channels        : FL, FR
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_sampleRates     : 5512,8000,11025,16000,22050,32000,44100,48000,64000,88200,96000,176400,192000,384000
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_dataFormats     : AE_FMT_U8,AE_FMT_S16NE,AE_FMT_S24NE3,AE_FMT_S24NE4,AE_FMT_S32NE,AE_FMT_FLOAT
+2021-09-13 19:39:11.988 T:12262    INFO <general>:         m_streamTypes     : No passthrough capabilities
+2021-09-13 19:39:11.988 T:12263    INFO <general>: CActiveAESink::OpenSink - initialize sink
+2021-09-13 19:39:11.994 T:12263    INFO <general>: PulseAudio: Opened device Default in pcm mode with Buffersize 200 ms Periodsize 50 ms
+2021-09-13 19:39:11.998 T:12253    INFO <general>: CKeyboardLayoutManager: loading keyboard layouts from special://xbmc/system/keyboardlayouts...
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Available videomodes (xrandr):
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Output 'eDP1' has 39 modes
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x49 Name:1920x1080 Refresh:59.997421 Width:1920 Height:1080
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1b3 Name:1920x1080 Refresh:59.933880 Width:1920 Height:1080
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1b4 Name:1920x1080 Refresh:47.999660 Width:1920 Height:1080
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1b5 Name:1680x1050 Refresh:59.883251 Width:1680 Height:1050
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.125000
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1b6 Name:1400x1050 Refresh:59.975620 Width:1400 Height:1050
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.350000
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1b7 Name:1600x900 Refresh:59.999619 Width:1600 Height:900
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1b8 Name:1600x900 Refresh:59.946018 Width:1600 Height:900
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1b9 Name:1600x900 Refresh:59.824760 Width:1600 Height:900
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1ba Name:1280x1024 Refresh:60.019741 Width:1280 Height:1024
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.440000
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1bb Name:1400x900 Refresh:59.964130 Width:1400 Height:900
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.157143
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1bc Name:1400x900 Refresh:59.879822 Width:1400 Height:900
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.157143
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1bd Name:1280x960 Refresh:60.000000 Width:1280 Height:960
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.350000
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1be Name:1368x768 Refresh:60.000000 Width:1368 Height:768
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.010526
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1bf Name:1368x768 Refresh:59.882050 Width:1368 Height:768
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.010526
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c0 Name:1368x768 Refresh:59.853199 Width:1368 Height:768
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.010526
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c1 Name:1280x800 Refresh:59.810329 Width:1280 Height:800
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.125000
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c2 Name:1280x800 Refresh:59.909550 Width:1280 Height:800
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.125000
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c3 Name:1280x720 Refresh:59.855129 Width:1280 Height:720
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c4 Name:1280x720 Refresh:59.999481 Width:1280 Height:720
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c5 Name:1280x720 Refresh:59.744709 Width:1280 Height:720
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c6 Name:1024x768 Refresh:60.003841 Width:1024 Height:768
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.350000
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c7 Name:1024x576 Refresh:59.998932 Width:1024 Height:576
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c8 Name:1024x576 Refresh:59.899212 Width:1024 Height:576
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1c9 Name:1024x576 Refresh:59.819519 Width:1024 Height:576
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1ca Name:960x540 Refresh:59.999062 Width:960 Height:540
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1cb Name:960x540 Refresh:59.629028 Width:960 Height:540
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1cc Name:960x540 Refresh:59.818218 Width:960 Height:540
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1cd Name:800x600 Refresh:60.316540 Width:800 Height:600
+2021-09-13 19:39:12.025 T:12253    INFO <general>: Pixel Ratio: 1.350000
+2021-09-13 19:39:12.025 T:12253    INFO <general>: ID:0x1ce Name:800x600 Refresh:56.250000 Width:800 Height:600
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.350000
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1cf Name:864x486 Refresh:59.999779 Width:864 Height:486
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1d0 Name:864x486 Refresh:59.915340 Width:864 Height:486
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1d1 Name:864x486 Refresh:59.570309 Width:864 Height:486
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1d2 Name:640x480 Refresh:59.940479 Width:640 Height:480
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.350000
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1d3 Name:720x405 Refresh:59.506180 Width:720 Height:405
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1d4 Name:720x405 Refresh:60.000000 Width:720 Height:405
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1d5 Name:720x405 Refresh:58.987850 Width:720 Height:405
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1d6 Name:640x360 Refresh:59.840431 Width:640 Height:360
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1d7 Name:640x360 Refresh:59.324871 Width:640 Height:360
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.026 T:12253    INFO <general>: ID:0x1d8 Name:640x360 Refresh:59.997070 Width:640 Height:360
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Pixel Ratio: 1.012500
+2021-09-13 19:39:12.026 T:12253    INFO <general>: CApplication::CreateGUI - using the x11 windowing system
+2021-09-13 19:39:12.026 T:12253    INFO <general>: Checking resolution 16
+2021-09-13 19:39:12.062 T:12253    INFO <general>: RetroPlayer[PROCESS]: Registering process control for X11
+2021-09-13 19:39:12.062 T:12253    INFO <general>: RetroPlayer[RENDER]: Registering renderer factory for OpenGL
+2021-09-13 19:39:12.112 T:12253    INFO <general>: Using visual 0x20
+2021-09-13 19:39:12.135 T:12253    INFO <general>: VAAPI::Close - closing decoder context
+2021-09-13 19:39:12.135 T:12253    INFO <general>: CRenderSystemGL::InitRenderSystem - Version: 4.6 (Core Profile) Mesa 21.2.1, Major: 4, Minor: 6
+2021-09-13 19:39:12.136 T:12253    INFO <general>: GL_VENDOR = Intel
+2021-09-13 19:39:12.136 T:12253    INFO <general>: GL_RENDERER = Mesa Intel(R) HD Graphics 520 (SKL GT2)
+2021-09-13 19:39:12.136 T:12253    INFO <general>: GL_VERSION = 4.6 (Core Profile) Mesa 21.2.1
+2021-09-13 19:39:12.136 T:12253    INFO <general>: GL_SHADING_LANGUAGE_VERSION = 4.60
+2021-09-13 19:39:12.136 T:12253    INFO <general>: GL_EXTENSIONS = GL_3DFX_texture_compression_FXT1 GL_AMD_conservative_depth GL_AMD_depth_clamp_separate GL_AMD_draw_buffers_blend GL_AMD_gpu_shader_int64 GL_AMD_multi_draw_indirect GL_AMD_performance_monitor GL_AMD_pinned_memory GL_AMD_query_buffer_object GL_AMD_seamless_cubemap_per_texture GL_AMD_shader_stencil_export GL_AMD_shader_trinary_minmax GL_AMD_texture_texture4 GL_AMD_vertex_shader_layer GL_AMD_vertex_shader_viewport_index GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5 GL_ARB_ES2_compatibility GL_ARB_ES3_1_compatibility GL_ARB_ES3_2_compatibility GL_ARB_ES3_compatibility GL_ARB_arrays_of_arrays GL_ARB_base_instance GL_ARB_blend_func_extended GL_ARB_buffer_storage GL_ARB_clear_buffer_object GL_ARB_clear_texture GL_ARB_clip_control GL_ARB_compressed_texture_pixel_storage GL_ARB_compute_shader GL_ARB_compute_variable_group_size GL_ARB_conditional_render_inverted GL_ARB_conservative_depth GL_ARB_copy_buffer GL_ARB_copy_image GL_ARB_cull_distance GL_ARB_debug_output GL_ARB_depth_buffer_float GL_ARB_depth_clamp GL_ARB_derivative_control GL_ARB_direct_state_access GL_ARB_draw_buffers GL_ARB_draw_buffers_blend GL_ARB_draw_elements_base_vertex GL_ARB_draw_indirect GL_ARB_draw_instanced GL_ARB_enhanced_layouts GL_ARB_explicit_attrib_location GL_ARB_explicit_uniform_location GL_ARB_fragment_coord_conventions GL_ARB_fragment_layer_viewport GL_ARB_fragment_shader GL_ARB_fragment_shader_interlock GL_ARB_framebuffer_no_attachments GL_ARB_framebuffer_object GL_ARB_framebuffer_sRGB GL_ARB_get_program_binary GL_ARB_get_texture_sub_image GL_ARB_gl_spirv GL_ARB_gpu_shader5 GL_ARB_gpu_shader_fp64 GL_ARB_gpu_shader_int64 GL_ARB_half_float_pixel GL_ARB_half_float_vertex GL_ARB_indirect_parameters GL_ARB_instanced_arrays GL_ARB_internalformat_query GL_ARB_internalformat_query2 GL_ARB_invalidate_subdata GL_ARB_map_buffer_alignment GL_ARB_map_buffer_range GL_ARB_multi_bind GL_ARB_multi_draw_indirect GL_ARB_occlusion_query2 GL_ARB_parallel_shader_compile GL_ARB_pipeline_statistics_query GL_ARB_pixel_buffer_object GL_ARB_point_sprite GL_ARB_polygon_offset_clamp GL_ARB_post_depth_coverage GL_ARB_program_interface_query GL_ARB_provoking_vertex GL_ARB_query_buffer_object GL_ARB_robust_buffer_access_behavior GL_ARB_robustness GL_ARB_sample_shading GL_ARB_sampler_objects GL_ARB_seamless_cube_map GL_ARB_seamless_cubemap_per_texture GL_ARB_separate_shader_objects GL_ARB_shader_atomic_counter_ops GL_ARB_shader_atomic_counters GL_ARB_shader_ballot GL_ARB_shader_bit_encoding GL_ARB_shader_clock GL_ARB_shader_draw_parameters GL_ARB_shader_group_vote GL_ARB_shader_image_load_store GL_ARB_shader_image_size GL_ARB_shader_objects GL_ARB_shader_precision GL_ARB_shader_stencil_export GL_ARB_shader_storage_buffer_object GL_ARB_shader_subroutine GL_ARB_shader_texture_image_samples GL_ARB_shader_texture_lod GL_ARB_shader_viewport_layer_array GL_ARB_shading_language_420pack GL_ARB_shading_language_include GL_ARB_shading_language_packing GL_ARB_spirv_extensions GL_ARB_stencil_texturing GL_ARB_sync GL_ARB_tessellation_shader GL_ARB_texture_barrier GL_ARB_texture_buffer_object GL_ARB_texture_buffer_object_rgb32 GL_ARB_texture_buffer_range GL_ARB_texture_compression_bptc GL_ARB_texture_compression_rgtc GL_ARB_texture_cube_map_array GL_ARB_texture_filter_anisotropic GL_ARB_texture_float GL_ARB_texture_gather GL_ARB_texture_mirror_clamp_to_edge GL_ARB_texture_multisample GL_ARB_texture_non_power_of_two GL_ARB_texture_query_levels GL_ARB_texture_query_lod GL_ARB_texture_rectangle GL_ARB_texture_rg GL_ARB_texture_rgb10_a2ui GL_ARB_texture_stencil8 GL_ARB_texture_storage GL_ARB_texture_storage_multisample GL_ARB_texture_swizzle GL_ARB_texture_view GL_ARB_timer_query GL_ARB_transform_feedback2 GL_ARB_transform_feedback3 GL_ARB_transform_feedback_instanced GL_ARB_transform_feedback_overflow_query GL_ARB_uniform_buffer_object GL_ARB_vertex_array_bgra GL_ARB_vertex_array_object GL_ARB_vertex_attrib_64bit GL_ARB_vertex_attrib_binding GL_ARB_vertex_buffer_object GL_ARB_vertex_shader GL_ARB_vertex_type_10f_11f_11f_rev GL_ARB_vertex_type_2_10_10_10_rev GL_ARB_viewport_array GL_ATI_blend_equation_separate GL_ATI_texture_float GL_EXT_EGL_image_storage GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_demote_to_helper_invocation GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic GL_EXT_texture_integer GL_EXT_texture_sRGB GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_shared_exponent GL_EXT_texture_snorm GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback GL_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_INTEL_conservative_rasterization GL_INTEL_performance_query GL_INTEL_shader_atomic_float_minmax GL_INTEL_shader_integer_functions2 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_signed_rgba GL_NV_compute_shader_derivatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_NV_fragment_shader_interlock GL_NV_packed_depth_stencil GL_NV_texture_barrier GL_OES_EGL_image GL_S3_s3tc 
+2021-09-13 19:39:12.177 T:12253    INFO <general>: GL: Maximum texture width: 16384
+2021-09-13 19:39:12.291 T:12253    INFO <general>: GL: Enabling VSYNC
+2021-09-13 19:39:12.292 T:12253    INFO <general>: load keymapping
+2021-09-13 19:39:12.293 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/appcommand.xml
+2021-09-13 19:39:12.293 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/customcontroller.AppleRemote.xml
+2021-09-13 19:39:12.294 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/customcontroller.Harmony.xml
+2021-09-13 19:39:12.295 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/customcontroller.SiriRemote.xml
+2021-09-13 19:39:12.296 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/gamepad.xml
+2021-09-13 19:39:12.296 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/joystick.xml
+2021-09-13 19:39:12.297 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/keyboard.xml
+2021-09-13 19:39:12.299 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/mouse.xml
+2021-09-13 19:39:12.299 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/remote.xml
+2021-09-13 19:39:12.301 T:12253    INFO <general>: Loading special://xbmc/system/keymaps/touchscreen.xml
+2021-09-13 19:39:12.302 T:12253    INFO <general>: GUI format 1920x1080, Display eDP1: 1920x1080 @ 60.00Hz
+2021-09-13 19:39:12.303 T:12253    INFO <general>: CLangInfo: loading resource.language.es_es language information...
+2021-09-13 19:39:12.306 T:12253    INFO <general>: global locale set to C
+2021-09-13 19:39:12.306 T:12253    INFO <general>: CLangInfo: loading resource.language.es_es language strings...
+2021-09-13 19:39:12.349 T:12270    INFO <general>: Running database version Addons33
+2021-09-13 19:39:12.349 T:12270    INFO <general>: Running database version ViewModes6
+2021-09-13 19:39:12.350 T:12270    INFO <general>: Running database version Textures13
+2021-09-13 19:39:12.352 T:12270    INFO <general>: Running database version MyMusic82
+2021-09-13 19:39:12.354 T:12270    INFO <general>: Running database version MyVideos119
+2021-09-13 19:39:12.355 T:12270    INFO <general>: Running database version TV38
+2021-09-13 19:39:12.355 T:12270    INFO <general>: Running database version Epg13
+2021-09-13 19:39:12.356 T:12253    INFO <general>: start dvd mediatype detection
+2021-09-13 19:39:12.366 T:12253    INFO <general>: Unloaded skin
+2021-09-13 19:39:12.367 T:12253    INFO <general>:   load skin from: /usr/share/kodi/addons/skin.estuary/ (version: 3.0.5)
+2021-09-13 19:39:12.367 T:12253    INFO <general>:   load fonts for skin...
+2021-09-13 19:39:12.368 T:12253    INFO <general>: Loading skin includes from /usr/share/kodi/addons/skin.estuary/xml/Includes.xml
+2021-09-13 19:39:12.389 T:12253    INFO <general>: Loading fonts from /usr/share/kodi/addons/skin.estuary/xml/Font.xml
+2021-09-13 19:39:12.409 T:12253    INFO <general>:   load new skin...
+2021-09-13 19:39:12.409 T:12253    INFO <general>: Loading custom window XMLs from skin path /usr/share/kodi/addons/skin.estuary/xml
+2021-09-13 19:39:12.413 T:12253    INFO <general>:   initialize new skin...
+2021-09-13 19:39:12.413 T:12253    INFO <general>: Loading skin file: Custom_1109_TopBarOverlay.xml, load type: LOAD_ON_GUI_INIT
+2021-09-13 19:39:12.418 T:12253    INFO <general>: Loading skin file: DialogVolumeBar.xml, load type: LOAD_ON_GUI_INIT
+2021-09-13 19:39:12.419 T:12253    INFO <general>: Loading skin file: DialogBusy.xml, load type: LOAD_ON_GUI_INIT
+2021-09-13 19:39:12.420 T:12253    INFO <general>: Loading skin file: Pointer.xml, load type: LOAD_ON_GUI_INIT
+2021-09-13 19:39:12.421 T:12253    INFO <general>: Loading skin file: DialogExtendedProgressBar.xml, load type: LOAD_ON_GUI_INIT
+2021-09-13 19:39:12.421 T:12253    INFO <general>: Loading skin file: DialogSeekBar.xml, load type: LOAD_ON_GUI_INIT
+2021-09-13 19:39:12.427 T:12253    INFO <general>: Loading skin file: DialogNotification.xml, load type: LOAD_ON_GUI_INIT
+2021-09-13 19:39:12.427 T:12253    INFO <general>: Loading skin file: DialogBusy.xml, load type: LOAD_ON_GUI_INIT
+2021-09-13 19:39:12.428 T:12253    INFO <general>: Loading resource://resource.uisounds.kodi/sounds.xml
+2021-09-13 19:39:12.443 T:12253    INFO <general>:   skin loaded...
+2021-09-13 19:39:12.443 T:12253    INFO <general>: Loading skin file: Startup.xml, load type: LOAD_EVERY_TIME
+2021-09-13 19:39:12.443 T:12253    INFO <general>: Loading skin file: Home.xml, load type: KEEP_IN_MEMORY
+2021-09-13 19:39:12.529 T:12253 WARNING <general>: JSONRPC: Could not parse type "Setting.Details.SettingList"
+2021-09-13 19:39:12.529 T:12253    INFO <general>: JSONRPC: Adding type "Setting.Details.SettingList" to list of incomplete definitions (waiting for "Setting.Details.Setting")
+2021-09-13 19:39:12.529 T:12253    INFO <general>: JSONRPC: Resolving incomplete types/methods referencing Setting.Details.Setting
+2021-09-13 19:39:12.539 T:12253    INFO <general>: JSONRPC v12.4.0: Successfully initialized
+2021-09-13 19:39:12.557 T:12253    INFO <general>: Register - new keyboard device registered on application->keyboard: Teclado (0000:0000)
+2021-09-13 19:39:12.559 T:12253    INFO <general>: Register - new mouse device registered on application->mouse: Ratón (0000:0000)
+2021-09-13 19:39:12.559 T:12253    INFO <general>: Loading player core factory settings from special://xbmc/system/playercorefactory.xml.
+2021-09-13 19:39:12.561 T:12253    INFO <general>: Loaded playercorefactory configuration
+2021-09-13 19:39:12.561 T:12253    INFO <general>: Loading player core factory settings from special://masterprofile/playercorefactory.xml.
+2021-09-13 19:39:12.561 T:12253    INFO <general>: special://masterprofile/playercorefactory.xml does not exist. Skipping.
+2021-09-13 19:39:12.561 T:12253    INFO <general>: removing tempfiles
+2021-09-13 19:39:12.563 T:12253    INFO <general>: initialize done
+2021-09-13 19:39:12.563 T:12296    INFO <general>: initializing python engine.
+2021-09-13 19:39:12.563 T:12253    INFO <general>: Running the application...
+2021-09-13 19:39:12.568 T:12253    INFO <general>: CZeroconfAvahi::clientCallback: avahi server not available. But may become later...
+2021-09-13 19:39:12.568 T:12253    INFO <general>: starting zeroconf publishing
+2021-09-13 19:39:12.571 T:12299    INFO <general>: ES: Starting UDP Event server on port 9777
+2021-09-13 19:39:12.571 T:12299    INFO <general>: UDP: Listening on port 9777 (ipv6 : false)
+2021-09-13 19:39:12.572 T:12253    INFO <general>: JSONRPC Server: Successfully initialized
+2021-09-13 19:39:12.847 T:12261    INFO <general>: Loading special://xbmc/system/Lircmap.xml
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'mceusb'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'XboxDVDDongle'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'Microsoft_Xbox'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'PinnacleSysPCTVRemote'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'anysee'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'iMON-PAD'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'Antec_Veris_RM200'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'MCE_via_iMON'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'TwinHanRemote'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'linux-input-layer'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Linking remote mapping for 'linux-input-layer' to 'cx23885_remote'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'mediacenter'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'devinput'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'devinput-32'
+2021-09-13 19:39:12.849 T:12261    INFO <general>: * Adding remote mapping for device 'devinput-64'
+2021-09-13 19:39:17.754 T:12296    INFO <general>: CPythonInvoker(0, /home/kevin/.kodi/addons/service.xbmc.versioncheck/resources/lib/runner.py): script successfully run
+2021-09-13 19:39:17.762 T:12296    INFO <general>: Python interpreter stopped
+2021-09-13 19:40:33.750 T:12253    INFO <general>: Stopping player
+2021-09-13 19:40:33.750 T:12253    INFO <general>: Storing total System Uptime
+2021-09-13 19:40:33.750 T:12253    INFO <general>: Saving settings
+2021-09-13 19:40:33.753 T:12253    INFO <general>: Saving skin settings
+2021-09-13 19:40:33.753 T:12253    INFO <general>: Stopping all
+2021-09-13 19:40:33.753 T:12253    INFO <general>: ES: Stopping event server
+2021-09-13 19:40:33.753 T:12253    INFO <general>: stopping zeroconf publishing
+2021-09-13 19:40:34.652 T:12299    INFO <general>: ES: UDP Event server stopped
+2021-09-13 19:40:34.659 T:12253    INFO <general>: stop dvd detect media
+2021-09-13 19:40:34.660 T:12253    INFO <general>: CServiceAddonManager: failed to stop service.xbmc.versioncheck (may have ended)
+2021-09-13 19:40:35.316 T:12253    INFO <general>: Application stopped
+2021-09-13 19:40:35.516 T:12253    INFO <general>: XBApplicationEx: destroying...
+2021-09-13 19:40:35.585 T:12253    INFO <general>: unload skin
+2021-09-13 19:40:35.593 T:12253    INFO <general>: Unloaded skin
+2021-09-13 19:40:35.594 T:12253    INFO <general>: unload sections
+2021-09-13 19:40:35.611 T:12253    INFO <general>: XRANDR: /usr/lib/kodi/kodi-xrandr --screen 0 --output eDP1 --mode 0x49
+2021-09-13 19:40:35.630 T:12253    INFO <general>: XBApplicationEx: application stopped!

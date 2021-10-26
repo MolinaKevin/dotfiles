@@ -1,0 +1,24 @@
+2021/10/26-14:29:02.021 154d Reusing MANIFEST /home/kevin/.config/Rambox/Partitions/whatsapp_9/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/10/26-14:29:02.021 154d Recovering log #328
+2021/10/26-14:29:02.285 154d Reusing old log /home/kevin/.config/Rambox/Partitions/whatsapp_9/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000328.log 
+2021/10/26-14:33:30.644 1440 Level-0 table #339: started
+2021/10/26-14:33:30.718 1440 Level-0 table #339: 1312412 bytes OK
+2021/10/26-14:33:30.740 1440 Delete type=0 #328
+2021/10/26-14:42:34.799 13f8 Compacting 1@1 + 7@2 files
+2021/10/26-14:42:34.891 13f8 Generated table #340@1: 36266 keys, 2246255 bytes
+2021/10/26-14:42:34.949 13f8 Generated table #341@1: 31476 keys, 2271182 bytes
+2021/10/26-14:42:35.007 13f8 Generated table #342@1: 31552 keys, 2277950 bytes
+2021/10/26-14:42:35.083 13f8 Generated table #343@1: 32559 keys, 2258939 bytes
+2021/10/26-14:42:35.150 13f8 Generated table #344@1: 75024 keys, 2255952 bytes
+2021/10/26-14:42:35.222 13f8 Generated table #345@1: 66047 keys, 2362681 bytes
+2021/10/26-14:42:35.233 13f8 Generated table #346@1: 2158 keys, 378820 bytes
+2021/10/26-14:42:35.233 13f8 Compacted 1@1 + 7@2 files => 14051779 bytes
+2021/10/26-14:42:35.243 13f8 compacted to: files[ 0 0 7 0 0 0 0 ]
+2021/10/26-14:42:35.244 13f8 Delete type=2 #332
+2021/10/26-14:42:35.244 13f8 Delete type=2 #336
+2021/10/26-14:42:35.244 13f8 Delete type=2 #331
+2021/10/26-14:42:35.244 13f8 Delete type=2 #339
+2021/10/26-14:42:35.244 13f8 Delete type=2 #334
+2021/10/26-14:42:35.244 13f8 Delete type=2 #330
+2021/10/26-14:42:35.244 13f8 Delete type=2 #335
+2021/10/26-14:42:35.244 13f8 Delete type=2 #333

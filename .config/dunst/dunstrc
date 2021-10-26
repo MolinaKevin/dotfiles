@@ -1,0 +1,102 @@
+#########################################
+#    __                   __             
+#.--|  .--.--.-----.-----|  |_.----.----.
+#|  _  |  |  |     |__ --|   _|   _|  __|
+#|_____|_____|__|__|_____|____|__| |____|
+#########################################                                        
+
+[colors]
+    foreground = "#d8caac"
+
+[global]
+    ### Display ###
+
+    monitor = 0
+    follow = keyboard
+
+    geometry = "380x3+770-46"
+    #geometry = "262x3-14+46"
+    #geometry = "384x3-14+50"    
+    indicate_hidden = yes
+    shrink = false
+    transparency = 0
+    notification_height = 3
+    separator_height = 1
+    padding = 24
+    horizontal_padding = 24
+    frame_width = 1
+    outer_frame_width = 5
+    corner_radius = 0
+
+    outer_frame_color = "#323d43"
+    separator_color = auto
+    sort = yes
+    idle_threshold = 120
+
+    ### Text ###
+    font = spectrum berry, tewii, waffle, Cozette, Zpix, Gulim, Dotum, Batang, Headline  8
+    line_height = 1
+
+    markup = full
+
+    # The format of the message.  Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    #   %p  progress value if set ([  0%] to [100%]) or nothing
+    #   %n  progress value if set without any extra characters
+    #   %%  Literal %
+    # Markup is allowed
+    format = "%s\n%a\n%b"
+    alignment = center
+    show_age_threshold = 60
+    word_wrap = true
+    ellipsize = middle
+    ignore_newline = false
+    stack_duplicates = true
+    hide_duplicate_count = true
+    show_indicators = true
+
+    ### Icons ###
+    icon_position = left
+    max_icon_size = 80
+    #icon_path = /usr/share/icons/PineCone/24x24/status/:/usr/share/icons/PineCone/24x24/apps/:/usr/share/icons/PineCone/24x24/devices/
+    icon_path = /usr/share/icons/Papirus/24x24/status/:/usr/share/icons/Papirus/24x24/devices/:/usr/share/icons/Papirus/24x24/apps/:/usr/share/icons/Papirus/24x24/actions/:/usr/share/icons/Papirus/24x24/panel/
+
+
+    ### History ###
+    sticky_history = yes
+    history_length = 20
+
+    ### Misc/Advanced ###
+    dmenu = /usr/bin/termite -e fzf:
+    browser = linkhandler
+    always_run_script = false
+    title = Dunst
+    class = Dunst
+#    startup_notification = false
+    force_xinerama = false
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    background = "#323d43"
+    #foreground = "#89beba"
+    frame_color = "#89beba"
+    timeout = 3
+
+[urgency_normal]
+    background = "#323d43"
+    frame_color = "#a7c080"
+    timeout = 5
+
+[urgency_critical]
+    background = "#323d43"
+    #foreground = "#e68183"
+    frame_color = "#e68183"
+    timeout = 0
+
+# vim: ft=conf

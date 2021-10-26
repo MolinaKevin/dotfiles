@@ -1,0 +1,6 @@
+2021/10/26-14:29:03.975 1419 Reusing MANIFEST /home/kevin/.config/Rambox/Partitions/rocketchat_7/IndexedDB/https_chat.gwdg.de_0.indexeddb.leveldb/MANIFEST-000001
+2021/10/26-14:29:03.975 1419 Recovering log #49
+2021/10/26-14:29:04.003 1419 Reusing old log /home/kevin/.config/Rambox/Partitions/rocketchat_7/IndexedDB/https_chat.gwdg.de_0.indexeddb.leveldb/000049.log 
+2021/10/26-14:39:27.563 13f8 Level-0 table #55: started
+2021/10/26-14:39:27.587 13f8 Level-0 table #55: 1288553 bytes OK
+2021/10/26-14:39:27.595 13f8 Delete type=0 #49

@@ -1,0 +1,7 @@
+{
+	"$schema": "https://joplinapp.org/schema/settings.json",
+	"locale": "en_US",
+	"api.token": "521234540d80e19a2e9b9dfafea51618fafc5a19aef745e5e8d0b3676bdcda7438b2de799f82e0c8088b20aab57c0ec1819d2e158635797d710b69185e85f1ad",
+	"markdown.plugin.softbreaks": false,
+	"markdown.plugin.typographer": false
+}

@@ -1,0 +1,65 @@
+# Usar formato personalizado
+format = "$all"
+
+# Espera 10 milisegundos para que starship revise los archivos del directorio actual.
+scan_timeout = 10
+
+# Deshabilita la línea en blanco al inicio del prompt
+add_newline = true
+
+# Reemplazar caracteres 
+[character]
+success_symbol = "[➜](bold green)"     
+vicmd_symbol = "[V](bold green)"
+error_symbol = "[✗](bold red) "
+
+# Mostrar duracion comando y notificacion
+[cmd_duration]
+show_notifications = true
+min_time_to_notify = 30_000
+min_time = 500
+format = "took [$duration](bold yellow)"
+
+# Opciones de muestreo de directorios
+[directory]
+truncation_symbol = "…/"
+
+# Mostrar Hostname
+[hostname]
+ssh_only = false
+format =  "on [$hostname](bold red) "
+disabled = false
+
+# Uso de memoria
+[memory_usage]
+disabled = true 
+threshold = 75
+symbol = "🐏"
+style = "bold dimmed green"
+
+# Paquetes
+[package]
+format = "via [🎁 $version](208 bold) "
+
+# Indicador de shell
+[shell]
+fish_indicator = ""
+powershell_indicator = "_"
+unknown_indicator = "mystery shell"
+disabled = false
+
+# Hora fuera de trabajo
+[time]
+disabled = false
+format = '🕙[\[ $time \]]($style) '
+time_format = "%T"
+utc_time_offset = "+2"
+time_range = "13:00:00-23:59:59"
+
+# Mostar usuario
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true

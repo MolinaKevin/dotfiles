@@ -1,0 +1,6 @@
+2021/10/26-16:17:08.240 6ed Reusing MANIFEST /home/kevin/.config/Rambox/Partitions/gmail_1/IndexedDB/https_mail.google.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/10/26-16:17:08.240 6ed Recovering log #63
+2021/10/26-16:17:08.258 6ed Reusing old log /home/kevin/.config/Rambox/Partitions/gmail_1/IndexedDB/https_mail.google.com_0.indexeddb.leveldb/000063.log 
+2021/10/26-16:17:34.871 6ec Level-0 table #69: started
+2021/10/26-16:17:34.915 6ec Level-0 table #69: 1666462 bytes OK
+2021/10/26-16:17:34.924 6ec Delete type=0 #63

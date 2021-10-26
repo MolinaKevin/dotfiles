@@ -1,0 +1,38 @@
+{
+	"$schema": "https://joplinapp.org/schema/settings.json",
+	"locale": "es_ES",
+	"api.token": "fda88722f159bb54776d15b0ba67de02057877fc0be36d3428ae645e941ebe3784be96566c2e510e29c5a403edcf17cb8ae12b5b87d7c7701a4ed5f7cee860f7",
+	"markdown.plugin.softbreaks": false,
+	"markdown.plugin.typographer": false,
+	"spellChecker.language": "es-AR",
+	"ui.layout": {
+		"key": "root",
+		"children": [
+			{
+				"key": "sideBar",
+				"width": 250,
+				"visible": true
+			},
+			{
+				"key": "noteList",
+				"width": 250,
+				"visible": true
+			},
+			{
+				"key": "editor",
+				"visible": true
+			}
+		],
+		"visible": true
+	},
+	"noteVisiblePanes": [
+		"editor",
+		"viewer"
+	],
+	"sync.target": 2,
+	"sync.2.path": "/home/kevin/Extras/Joplin",
+	"theme": 6,
+	"style.editor.fontFamily": "Hurmit Nerd Font",
+	"style.editor.monospaceFontFamily": "Monofur Nerd Font",
+	"clipperServer.autoStart": false
+}
