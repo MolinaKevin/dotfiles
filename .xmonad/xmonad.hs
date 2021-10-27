@@ -84,58 +84,58 @@ import Control.Monad (liftM, join)
 -- Palenight
 
 background :: String
-background = "#140f0e"
+background = "#060D18"
 
 foreground :: String
-foreground = "#e0e1e6"
+foreground = "#afbdc2"
 
 color0 :: String
-color0 = "#140f0e"
+color0 = "#060D18"
 
 color1 :: String
-color1 = "#8F847A"
+color1 = "#133761"
 
 color2 :: String
-color2 = "#777B84"
+color2 = "#354651"
 
 color3 :: String
-color3 = "#7A858A"
+color3 = "#315363"
 
 color4 :: String
-color4 = "#8D8C90"
+color4 = "#515E64"
 
 color5 :: String
-color5 = "#A5A5AB"
+color5 = "#899072"
 
 color6 :: String
-color6 = "#B9BAC5"
+color6 = "#5A7585"
 
 color7 :: String
-color7 = "#e0e1e6"
+color7 = "#afbdc2"
 
 color8 :: String
-color8 = "#9c9da1"
+color8 = "#7a8487"
 
 color9 :: String
-color9 = "#8F847A"
+color9 = "#133761"
 
 color10 :: String
-color10 = "#777B84"
+color10 = "#354651"
 
 color11 :: String
-color11 = "#7A858A"
+color11 = "#315363"
 
 color12 :: String
-color12 = "#8D8C90"
+color12 = "#515E64"
 
 color13 :: String
-color13 = "#A5A5AB"
+color13 = "#899072"
 
 color14 :: String
-color14 = "#B9BAC5"
+color14 = "#5A7585"
 
 color15 :: String
-color15 = "#e0e1e6"
+color15 = "#afbdc2"
 
 -------------------------------------------------
 -- Mi Configuración
