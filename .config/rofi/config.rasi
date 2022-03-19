@@ -1,4 +1,4 @@
 configuration {
     modi: "window,run,ssh,drun";
-    theme: "~/.config/rofi/themes/km-center.rasi";
-}
+    }
+@theme "~/.config/rofi/themes/km-center.rasi";

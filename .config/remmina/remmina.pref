@@ -6,7 +6,6 @@ screenshot_path=/home/kevin
 screenshot_name=remmina_%p_%h_%Y%m%d-%H%M%S
 deny_screenshot_clipboard=true
 save_view_mode=true
-use_master_password=false
 unlock_timeout=0
 unlock_password=
 trust_all=false
@@ -74,6 +73,11 @@ grab_color_switch=false
 vte_allow_bold_text=true
 vte_lines=512
 recent_RDP=mi0073.UMG.BE-MRZ.MED.UNI-GOETTINGEN.DE,mi0063.UMG.BE-MRZ.MED.UNI-GOETTINGEN.DE,mi0075.UMG.BE-MRZ.MED.UNI-GOETTINGEN.DE,mi0071.UMG.BE-MRZ.MED.UNI-GOETTINGEN.DE
+use_primary_password=false
+lock_connect=false
+lock_edit=false
+enc_mode=1
+audit=false
 
 [ssh_colors]
 background=#d5ccba

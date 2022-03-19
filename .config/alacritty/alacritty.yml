@@ -17,9 +17,37 @@ font:
 
   size: 9
 
+window:
+  opacity: 0.8
+
 key_bindings:
   - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
-background_opacity: 0.8
+# Colors (Gruvbox dark)
+colors:
+  primary:
+    background:        "#140f0e"
+    foreground:        "#e0e1e6"
+  cursor:
+    text:   CellForeground
+    cursor: "#e5dbd0"
+  bright:
+    black:   "#140f0e"
+    red:     "#8F847A"
+    green:   "#777B84"
+    yellow:  "#7A858A"
+    blue:    "#8D8C90"
+    magenta: "#A5A5AB"
+    cyan:    "#B9BAC5"
+    white:   "#e0e1e6"
+  normal:
+    black:   "#9c9da1"
+    red:     "#8F847A"
+    green:   "#777B84"
+    yellow:  "#7A858A"
+    blue:    "#8D8C90"
+    magenta: "#A5A5AB"
+    cyan:    "#B9BAC5"
+    white:   "#e0e1e6"

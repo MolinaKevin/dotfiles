@@ -84,58 +84,58 @@ import Control.Monad (liftM, join)
 -- Palenight
 
 background :: String
-background = "#060D18"
+background = "#140f0e"
 
 foreground :: String
-foreground = "#afbdc2"
+foreground = "#e0e1e6"
 
 color0 :: String
-color0 = "#060D18"
+color0 = "#140f0e"
 
 color1 :: String
-color1 = "#133761"
+color1 = "#8F847A"
 
 color2 :: String
-color2 = "#354651"
+color2 = "#777B84"
 
 color3 :: String
-color3 = "#315363"
+color3 = "#7A858A"
 
 color4 :: String
-color4 = "#515E64"
+color4 = "#8D8C90"
 
 color5 :: String
-color5 = "#899072"
+color5 = "#A5A5AB"
 
 color6 :: String
-color6 = "#5A7585"
+color6 = "#B9BAC5"
 
 color7 :: String
-color7 = "#afbdc2"
+color7 = "#e0e1e6"
 
 color8 :: String
-color8 = "#7a8487"
+color8 = "#9c9da1"
 
 color9 :: String
-color9 = "#133761"
+color9 = "#8F847A"
 
 color10 :: String
-color10 = "#354651"
+color10 = "#777B84"
 
 color11 :: String
-color11 = "#315363"
+color11 = "#7A858A"
 
 color12 :: String
-color12 = "#515E64"
+color12 = "#8D8C90"
 
 color13 :: String
-color13 = "#899072"
+color13 = "#A5A5AB"
 
 color14 :: String
-color14 = "#5A7585"
+color14 = "#B9BAC5"
 
 color15 :: String
-color15 = "#afbdc2"
+color15 = "#e0e1e6"
 
 -------------------------------------------------
 -- Mi Configuración
@@ -301,6 +301,7 @@ myManageHook = composeAll
     , className             =? "toolbar"                    --> doFloat
     , className             =? "Conky"                      --> doFloat
     , className             =? "Yad"                        --> doCenterFloat 
+    , className             =? "jetbrains-idea"          --> doCenterFloat 
     , className             =? "steam_app*"                 --> doCenterFloat 
     , (className =? "firefox" <&&> resource =? "Dialog")    --> doFloat
     , title                 =? "Mozilla Firefox"            --> doShift ( myWorkspaces !! 1 ) 
@@ -308,6 +309,7 @@ myManageHook = composeAll
     , className             =? "qutebrowser"                --> doShift ( myWorkspaces !! 1 ) 
     , className             =? "Kodi"                       --> doShift ( myWorkspaces !! 3 ) 
     , className             =? "Rambox"                     --> doShift ( myWorkspaces !! 4 ) 
+    , className             =? "Ramboxpro"                  --> doShift ( myWorkspaces !! 4 ) 
     , className             =? "mpv"                        --> doShift ( myWorkspaces !! 5 ) 
     , className             =? "Bitwarden"                  --> doShift ( myWorkspaces !! 6 ) 
     , className             =? "Joplin"                     --> doShift ( myWorkspaces !! 7 ) 
@@ -333,10 +335,10 @@ toggleFadeOut w s   | w `S.member` s    = S.delete w s
 myLogHook :: Handle -> X ()
 myLogHook x = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
     { ppOutput                      = hPutStrLn x
-    , ppCurrent                     = xmobarColor color1 "" . wrap ("<box type=Bottom width=5 color="++ color1 ++">") "</box>" .getIconColor
+    , ppCurrent                     = xmobarColor color6 "" . wrap ("<box type=Bottom width=5 color="++ color6 ++">") "</box>" .getIconColor
     , ppVisible                     = xmobarColor color2 "" . wrap ("<box type=Bottom width=5 color="++ color2 ++">") "</box>" . clickableColor
-    , ppHidden                      = xmobarColor color6 "" . wrap ("<box type=Bottom width=5 color="++ color6 ++">") "</box>" . clickable
-    , ppHiddenNoWindows             = xmobarColor color8 "" . wrap ("<box type=Bottom width=5 color="++ color8 ++">") "</box>" .clickable
+    , ppHidden                      = xmobarColor color8 "" . wrap ("<box type=Bottom width=5 color="++ color8 ++">") "</box>" . clickable
+    , ppHiddenNoWindows             = xmobarColor color1 "" . wrap ("<box type=Bottom width=5 color="++ color1 ++">") "</box>" .clickable
     , ppUrgent                      = xmobarColor color15 "" . wrap "!" "!" . clickable
     , ppTitle                       = xmobarColor color15 "" . shorten 60 
     , ppSep                         = "<fc="++ color7 ++"> <fn=1>|</fn> </fc>" 
@@ -498,7 +500,7 @@ myKeys toggleFadeSet =
 
 
     -- KEY_GROUP dmenu
-    , ("M-S-<Return>", spawn "rofi -show run -theme ~/.config/rofi/themes/km-dmenu.rasi -display-run \"Run: \"")                           -- Mostrar DMenu
+    , ("M-S-<Return>", spawn "rofi -show run -config ~/.config/rofi/themes/km-dmenu.rasi -display-run Run: ")                           -- Mostrar DMenu
 
     -- KEY_GROUP Kills
     , ("M-S-c", kill1)                                                              -- Kill Ventana
@@ -567,7 +569,7 @@ myKeys toggleFadeSet =
     , ("<XF86AudioRaiseVolume>", spawn "amixer -D pulse sset Master 5%+ unmute")    -- Subir Volumen
     , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")                         -- Subir Brillo
     , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")                       -- Bajar Brillo
-    , ("<XF86Search>", spawn "rofi -show drun -theme km-icons.rasi -display-drun \"Run: \"")             -- Rofi buscador
+    , ("<XF86Search>", spawn "rofi -show drun -config km-icons.rasi -display-drun Run: ")             -- Rofi buscador
     ]
 
 -------------------------------------------------

@@ -1,0 +1,21 @@
+[2022-03-09 12:51:13.071] [info]  search indexing: 0.3262802ms
+[2022-03-09 12:51:13.797] [info]  search indexing: 3.5483671ms
+[2022-03-09 12:51:23.600] [info]  search indexing: 4.9242261ms
+[2022-03-12 18:59:05.265] [info]  search indexing: 4.0543466ms
+[2022-03-13 15:03:31.042] [info]  search indexing: 4.9057423ms
+[2022-03-13 15:03:34.245] [info]  search indexing: 2.7829281ms
+[2022-03-14 15:36:14.875] [info]  search indexing: 4.0948167ms
+[2022-03-14 21:41:09.956] [info]  search indexing: 3.4617808ms
+[2022-03-16 21:14:54.337] [info]  search indexing: 4.676378ms
+[2022-03-17 13:06:03.547] [error] TypeError: Failed to fetch
+    at file:///usr/lib/bitwarden/app.asar/app/vendor.js:145754:40
+    at proto.<computed> (file:///usr/lib/bitwarden/app.asar/app/vendor.js:145246:28)
+    at api_service_ApiService.nativeFetch (file:///usr/lib/bitwarden/app.asar/app/main.js:24460:16)
+    at api_service_ApiService.fetch (file:///usr/lib/bitwarden/app.asar/app/main.js:24457:21)
+    at api_service_ApiService.<anonymous> (file:///usr/lib/bitwarden/app.asar/app/main.js:24563:41)
+    at Generator.next (<anonymous>)
+    at fulfilled (file:///usr/lib/bitwarden/app.asar/app/main.js:23036:58)
+    at ZoneDelegate.invoke (file:///usr/lib/bitwarden/app.asar/app/vendor.js:144631:30)
+    at Object.onInvoke (file:///usr/lib/bitwarden/app.asar/app/vendor.js:59599:37)
+    at ZoneDelegate.invoke (file:///usr/lib/bitwarden/app.asar/app/vendor.js:144630:56)
+[2022-03-17 13:08:51.889] [info]  search indexing: 6.6679027ms

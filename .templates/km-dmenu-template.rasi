@@ -1,0 +1,94 @@
+/**
+ * ROFI Color theme
+ * User: Qball
+ * Copyright: Dave Davenport
+ */
+
+* {
+    font:                   "SauceCodePro Nerd Form Mono 12";
+    border:                 0px;
+    padding:                0px;
+    margin:                 0px;
+    height:                 35px; 
+	back: 					BACKGROUND;
+	fore: 					FOREGROUND;
+	color0:					COLOR0;
+	color1:					COLOR1;
+	color2:					COLOR2;
+	color3:					COLOR3;
+	color4:					COLOR4;
+	color5:					COLOR5;
+	color6:					COLOR6;
+	color7:					COLOR7;
+	color8:					COLOR8;
+	color9:					COLOR9;
+	color10:				COLOR10;
+	color11:				COLOR11;
+	color12:				COLOR12;
+	color13:				COLOR13;
+	color14:				COLOR14;
+	color15:				COLOR15;
+    background-color:       @back;
+    border-color:           @back;
+    text-color:             @fore;
+}
+
+window {
+    anchor:                 north;
+    location:               north;
+    width:                  100%;
+    padding:                0px;
+    children:               [ horibox ];
+    border-color:           @color3;
+    border:                 0px 0px 1px 0px;
+}
+
+horibox {
+    orientation:            horizontal;
+    children:               [ prompt, entry, listview ];
+}
+
+prompt {
+	padding: 				6px 4px 0px 4px;
+    text-color:             @color0;
+    background-color:       @color3;
+}
+
+entry {
+	padding: 				6px 0px 0px 4px;
+    expand:                 false;
+    width:                  10em;
+    text-color:             @color3;
+}
+
+listview {
+    layout:                 horizontal;
+    spacing:                0px;
+    lines:                  100;
+    border:                 0px;
+	padding: 				6px 0px 0px 0px;
+}
+
+element {
+    padding:                0px 8px;
+}
+
+element normal.normal {
+	text-color: 	        @color0;
+	background-color:       @color6;
+}
+
+element alternate.normal {
+    text-color: 		    @color6;
+    background-color: 	    @color0;
+}
+
+element.selected.normal {
+    text-color:             @color6;
+    background-color:       @color2;
+}
+
+element-text, element-icon {
+  background-color: inherit;
+  text-color: inherit;
+}
