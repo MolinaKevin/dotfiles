@@ -1,0 +1,53 @@
+font:
+  normal:
+    family: SauceCodePro Nerd Font Mono 
+    style: Regular
+
+  bold:
+    family: SauceCodePro Nerd Font Mono 
+    style: Bold
+
+  italic:
+    family: SauceCodePro Nerd Font Mono 
+    style: Italic
+
+  bold_italic:
+    family: SauceCodePro Nerd Font Mono 
+    style: Bold Italic
+
+  size: 9
+
+window:
+  opacity: 0.8
+
+key_bindings:
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+# Colors (Gruvbox dark)
+colors:
+  primary:
+    background:        "BACKGROUND"
+    foreground:        "FOREGROUND"
+  cursor:
+    text:   CellForeground
+    cursor: "CURSOR"
+  bright:
+    black:   "COLOR0"
+    red:     "COLOR1"
+    green:   "COLOR2"
+    yellow:  "COLOR3"
+    blue:    "COLOR4"
+    magenta: "COLOR5"
+    cyan:    "COLOR6"
+    white:   "COLOR7"
+  normal:
+    black:   "COLOR8"
+    red:     "COLOR9"
+    green:   "COLOR10"
+    yellow:  "COLOR11"
+    blue:    "COLOR12"
+    magenta: "COLOR13"
+    cyan:    "COLOR14"
+    white:   "COLOR15"
