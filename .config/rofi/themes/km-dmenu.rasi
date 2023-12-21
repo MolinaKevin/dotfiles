@@ -1,0 +1,88 @@
+* {
+    font:                   "SauceCodePro Nerd Form Mono 12";
+    border:                 0px;
+    padding:                0px;
+    margin:                 0px;
+    height:                 35px; 
+	back: 					#161212;
+	fore: 					#d1dbe7;
+	color0:					#161212;
+	color1:					#5B728F;
+	color2:					#6C8BA6;
+	color3:					#769ACD;
+	color4:					#99A0A7;
+	color5:					#D7C8A2;
+	color6:					#9EB5D6;
+	color7:					#d1dbe7;
+	color8:					#9299a1;
+	color9:					#5B728F;
+	color10:				#6C8BA6;
+	color11:				#769ACD;
+	color12:				#99A0A7;
+	color13:				#D7C8A2;
+	color14:				#9EB5D6;
+	color15:				#d1dbe7;
+    background-color:       @back;
+    border-color:           @back;
+    text-color:             @fore;
+}
+
+window {
+    anchor:                 north;
+    location:               north;
+    width:                  100%;
+    padding:                0px;
+    children:               [ horibox ];
+    border-color:           @color3;
+    border:                 0px 0px 1px 0px;
+}
+
+horibox {
+    orientation:            horizontal;
+    children:               [ prompt, entry, listview ];
+}
+
+prompt {
+	padding: 				6px 4px 0px 4px;
+    text-color:             @color0;
+    background-color:       @color3;
+}
+
+entry {
+	padding: 				6px 0px 0px 4px;
+    expand:                 false;
+    width:                  10em;
+    text-color:             @color3;
+}
+
+listview {
+    layout:                 horizontal;
+    spacing:                0px;
+    lines:                  100;
+    border:                 0px;
+	padding: 				6px 0px 0px 0px;
+}
+
+element {
+    padding:                0px 8px;
+}
+
+element normal.normal {
+	text-color: 	        @color0;
+	background-color:       @color6;
+}
+
+element alternate.normal {
+    text-color: 		    @color6;
+    background-color: 	    @color0;
+}
+
+element.selected.normal {
+    text-color:             @color6;
+    background-color:       @color2;
+}
+
+element-text, element-icon {
+  background-color: inherit;
+  text-color: inherit;
+}
