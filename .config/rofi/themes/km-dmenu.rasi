@@ -1,27 +1,33 @@
+/**
+ * ROFI Color theme
+ * User: Qball
+ * Copyright: Dave Davenport
+ */
+
 * {
     font:                   "SauceCodePro Nerd Form Mono 12";
     border:                 0px;
     padding:                0px;
     margin:                 0px;
     height:                 35px; 
-	back: 					#161212;
-	fore: 					#d1dbe7;
-	color0:					#161212;
-	color1:					#5B728F;
-	color2:					#6C8BA6;
-	color3:					#769ACD;
-	color4:					#99A0A7;
-	color5:					#D7C8A2;
-	color6:					#9EB5D6;
-	color7:					#d1dbe7;
-	color8:					#9299a1;
-	color9:					#5B728F;
-	color10:				#6C8BA6;
-	color11:				#769ACD;
-	color12:				#99A0A7;
-	color13:				#D7C8A2;
-	color14:				#9EB5D6;
-	color15:				#d1dbe7;
+	back: 					"#151213";
+	fore: 					"#f6f4e0";
+	color0:					"#151213";
+	color1:					"#EEA137";
+	color2:					"#EBA058";
+	color3:					"#E9BB65";
+	color4:					"#786E8C";
+	color5:					"#D1AA93";
+	color6:					"#FBE29B";
+	color7:					"#f6f4e0";
+	color8:					"#acaa9c";
+	color9:					"#EEA137";
+	color10:				"#EBA058";
+	color11:				"#E9BB65";
+	color12:				"#786E8C";
+	color13:				"#D1AA93";
+	color14:				"#FBE29B";
+	color15:				"#f6f4e0";
     background-color:       @back;
     border-color:           @back;
     text-color:             @fore;

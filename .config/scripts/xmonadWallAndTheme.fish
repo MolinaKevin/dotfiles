@@ -1,6 +1,6 @@
 #!/bin/fish
 
-set wall (random choice /home/kevin/Imagenes/Wallpapers/* )
+set wall (random choice /home/kevin/Pictures/Wallpapers/* )
 
 wal -i $wall -R
 wal -i $wall
@@ -67,7 +67,7 @@ sed -e "s/BACKGROUND/$background/g" \
     -e "s/COLOR7/$color7/g" \
     -e "s/COLOR8/$color8/g" \
     -e "s/COLOR9/$color9/g" \
-   /home/kevin/.templates/xmonad-template.hs > /home/kevin/.xmonad/xmonad.hs
+   /home/kevin/.config/templates/xmonad-template.hs > /home/kevin/.config/xmonad/xmonad.hs
 
 sed -e "s/BACKGROUND/$background/g" \
     -e "s/FOREGROUND/$foreground/g" \
@@ -87,7 +87,7 @@ sed -e "s/BACKGROUND/$background/g" \
     -e "s/COLOR7/$color7/g" \
     -e "s/COLOR8/$color8/g" \
     -e "s/COLOR9/$color9/g" \
-   /home/kevin/.templates/xmobarrc-template > /home/kevin/.config/xmobar/xmobarrc
+   /home/kevin/.config/templates/xmobarrc-template > /home/kevin/.config/xmobar/xmobarrc
 
 sed -e "s/BACKGROUND/$background/g" \
     -e "s/FOREGROUND/$foreground/g" \
@@ -107,7 +107,7 @@ sed -e "s/BACKGROUND/$background/g" \
     -e "s/COLOR7/$color7/g" \
     -e "s/COLOR8/$color8/g" \
     -e "s/COLOR9/$color9/g" \
-   /home/kevin/.templates/conky-template.conf > /home/kevin/.config/conky/hybrid/hybrid.conf
+   /home/kevin/.config/templates/conky-template.conf > /home/kevin/.config/conky/hybrid/hybrid.conf
 
 sed -e "s/BACKGROUND/$background/g" \
     -e "s/FOREGROUND/$foreground/g" \
@@ -127,7 +127,7 @@ sed -e "s/BACKGROUND/$background/g" \
     -e "s/COLOR7/$colorConky7/g" \
     -e "s/COLOR8/$colorConky8/g" \
     -e "s/COLOR9/$colorConky9/g" \
-   /home/kevin/.templates/rings-template.lua > /home/kevin/.config/conky/hybrid/lua/hybrid-rings.lua
+   /home/kevin/.config/templates/rings-template.lua > /home/kevin/.config/conky/hybrid/lua/hybrid-rings.lua
 
 sed -e "s/BACKGROUND/$background/g" \
     -e "s/FOREGROUND/$foreground/g" \
@@ -147,7 +147,7 @@ sed -e "s/BACKGROUND/$background/g" \
     -e "s/COLOR7/$color7/g" \
     -e "s/COLOR8/$color8/g" \
     -e "s/COLOR9/$color9/g" \
-   /home/kevin/.templates/km-dmenu-template.rasi > /home/kevin/.config/rofi/themes/km-dmenu.rasi
+   /home/kevin/.config/templates/km-dmenu-template.rasi > /home/kevin/.config/rofi/themes/km-dmenu.rasi
 
 sed -e "s/BACKGROUND/$background/g" \
     -e "s/FOREGROUND/$foreground/g" \
@@ -168,7 +168,7 @@ sed -e "s/BACKGROUND/$background/g" \
     -e "s/COLOR8/$color8/g" \
     -e "s/COLOR9/$color9/g" \
     -e "s/CURSOR/$cursor/g" \
-   /home/kevin/.templates/alacritty-template.yml > /home/kevin/.config/alacritty/alacritty.yml
+   /home/kevin/.config/templates/alacritty-template.yml > /home/kevin/.config/alacritty/alacritty.yml
 
 killall conky
 conky -c $HOME/.config/conky/hybrid/hybrid.conf
