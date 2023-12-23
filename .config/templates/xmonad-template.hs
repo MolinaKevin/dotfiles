@@ -33,6 +33,7 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.StatusBar.PP (filterOutWsPP)
 
 -- Actions
 
@@ -180,18 +181,17 @@ myColorizer = colorRangeFromClassName
     (0x28,0x2c,0x24)    -- inactivo fg
     (0x28,0x2c,0x24)    -- activo fg
 
-myConfig toggleFadeSet xmproc   = ewmh defaultConfig
+myConfig toggleFadeSet xmproc = ewmh def
     { manageHook                = myManageHook <+> manageDocks
-    , handleEventHook           = docksEventHook 
     , modMask                   = myModMask
-    , terminal                  = myTerminal 
-    , startupHook               = myStartupHook 
-    , layoutHook                = showWName' myShowWNameTheme $ myLayoutHook 
-    , workspaces                = myWorkspaces 
-    , borderWidth               = myBorderWidth 
-    , normalBorderColor         = color3 
-    , focusedBorderColor        = color7 
-    , logHook                   = myFadeHook toggleFadeSet <+> myLogHook xmproc 
+    , terminal                  = myTerminal
+    , startupHook               = myStartupHook
+    , layoutHook                = showWName' myShowWNameTheme $ myLayoutHook
+    , workspaces                = myWorkspaces
+    , borderWidth               = myBorderWidth
+    , normalBorderColor         = color3
+    , focusedBorderColor        = color7
+    , logHook                   = myFadeHook toggleFadeSet <+> myLogHook xmproc
     } `additionalKeysP` myKeys toggleFadeSet
 
 
@@ -333,7 +333,7 @@ toggleFadeOut w s   | w `S.member` s    = S.delete w s
                     | otherwise         = S.insert w s
 
 myLogHook :: Handle -> X ()
-myLogHook x = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
+myLogHook x = dynamicLogWithPP $ filterOutWsPP [scratchpadWorkspaceTag] $ xmobarPP
     { ppOutput                      = hPutStrLn x
     , ppCurrent                     = xmobarColor color6 "" . wrap ("<box type=Bottom width=5 color="++ color6 ++">") "</box>" .getIconColor
     , ppVisible                     = xmobarColor color2 "" . wrap ("<box type=Bottom width=5 color="++ color2 ++">") "</box>" . clickableColor
