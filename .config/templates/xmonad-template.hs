@@ -214,11 +214,11 @@ extractIndex s = spliteado !! 0
     where spliteado = split ':' s
 
 getIcon :: String -> String
-getIcon ws = "<icon=\"" ++ myIconDir ++ name ++  ".xpm\" />"
+getIcon ws = "<icon=" ++ myIconDir ++ name ++  ".xpm/>"
     where name = extractName ws
 
 getIconColor :: String -> String
-getIconColor ws = "<icon=\"" ++ myIconDir ++ name ++ "-color.xpm\" />"
+getIconColor ws = "<icon=" ++ myIconDir ++ name ++ "-color.xpm/>"
     where name = extractName ws
 
 clickable :: String -> String
