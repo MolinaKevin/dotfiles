@@ -28,26 +28,26 @@ mouse_bindings:
 # Colors (Gruvbox dark)
 colors:
   primary:
-    background:        "BACKGROUND"
-    foreground:        "FOREGROUND"
+    background:        BACKGROUND
+    foreground:        FOREGROUND
   cursor:
     text:   CellForeground
-    cursor: "CURSOR"
+    cursor: CURSOR
   bright:
-    black:   "COLOR0"
-    red:     "COLOR1"
-    green:   "COLOR2"
-    yellow:  "COLOR3"
-    blue:    "COLOR4"
-    magenta: "COLOR5"
-    cyan:    "COLOR6"
-    white:   "COLOR7"
+    black:   COLOR0
+    red:     COLOR1
+    green:   COLOR2
+    yellow:  COLOR3
+    blue:    COLOR4
+    magenta: COLOR5
+    cyan:    COLOR6
+    white:   COLOR7
   normal:
-    black:   "COLOR8"
-    red:     "COLOR9"
-    green:   "COLOR10"
-    yellow:  "COLOR11"
-    blue:    "COLOR12"
-    magenta: "COLOR13"
-    cyan:    "COLOR14"
-    white:   "COLOR15"
+    black:   COLOR8
+    red:     COLOR9
+    green:   COLOR10
+    yellow:  COLOR11
+    blue:    COLOR12
+    magenta: COLOR13
+    cyan:    COLOR14
+    white:   COLOR15

@@ -83,7 +83,7 @@ alias clear='/bin/clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolca
 alias j='/usr/bin/joplin ; /usr/bin/joplin sync'
 
 # Config Dotfiles
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 function configput
     config add $argv

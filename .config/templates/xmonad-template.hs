@@ -85,58 +85,58 @@ import Control.Monad (liftM, join)
 -- Palenight
 
 background :: String
-background = "BACKGROUND"
+background = BACKGROUND
 
 foreground :: String
-foreground = "FOREGROUND"
+foreground = FOREGROUND
 
 color0 :: String
-color0 = "COLOR0"
+color0 = COLOR0
 
 color1 :: String
-color1 = "COLOR1"
+color1 = COLOR1
 
 color2 :: String
-color2 = "COLOR2"
+color2 = COLOR2
 
 color3 :: String
-color3 = "COLOR3"
+color3 = COLOR3
 
 color4 :: String
-color4 = "COLOR4"
+color4 = COLOR4
 
 color5 :: String
-color5 = "COLOR5"
+color5 = COLOR5
 
 color6 :: String
-color6 = "COLOR6"
+color6 = COLOR6
 
 color7 :: String
-color7 = "COLOR7"
+color7 = COLOR7
 
 color8 :: String
-color8 = "COLOR8"
+color8 = COLOR8
 
 color9 :: String
-color9 = "COLOR9"
+color9 = COLOR9
 
 color10 :: String
-color10 = "COLOR10"
+color10 = COLOR10
 
 color11 :: String
-color11 = "COLOR11"
+color11 = COLOR11
 
 color12 :: String
-color12 = "COLOR12"
+color12 = COLOR12
 
 color13 :: String
-color13 = "COLOR13"
+color13 = COLOR13
 
 color14 :: String
-color14 = "COLOR14"
+color14 = COLOR14
 
 color15 :: String
-color15 = "COLOR15"
+color15 = COLOR15
 
 -------------------------------------------------
 -- Mi Configuración

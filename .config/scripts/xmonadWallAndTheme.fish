@@ -6,6 +6,7 @@ wal -i $wall -R
 wal -i $wall
 
 set input "/home/kevin/.cache/wal/colors.yml"
+set input (string replace -r '"' '' $input)
 
 set background (yq .special.background $input )
 set foreground (yq .special.foreground $input )
@@ -91,22 +92,22 @@ sed -e "s/BACKGROUND/$background/g" \
 
 sed -e "s/BACKGROUND/$background/g" \
     -e "s/FOREGROUND/$foreground/g" \
-    -e "s/COLOR10/$color10/g" \
-    -e "s/COLOR11/$color11/g" \
-    -e "s/COLOR12/$color12/g" \
-    -e "s/COLOR13/$color13/g" \
-    -e "s/COLOR14/$color14/g" \
-    -e "s/COLOR15/$color15/g" \
-    -e "s/COLOR0/$color0/g" \
-    -e "s/COLOR1/$color1/g" \
-    -e "s/COLOR2/$color2/g" \
-    -e "s/COLOR3/$color3/g" \
-    -e "s/COLOR4/$color4/g" \
-    -e "s/COLOR5/$color5/g" \
-    -e "s/COLOR6/$color6/g" \
-    -e "s/COLOR7/$color7/g" \
-    -e "s/COLOR8/$color8/g" \
-    -e "s/COLOR9/$color9/g" \
+    -e "s/COLOR10/$colorConky10/g" \
+    -e "s/COLOR11/$colorConky11/g" \
+    -e "s/COLOR12/$colorConky12/g" \
+    -e "s/COLOR13/$colorConky13/g" \
+    -e "s/COLOR14/$colorConky14/g" \
+    -e "s/COLOR15/$colorConky15/g" \
+    -e "s/COLOR0/$colorConky0/g" \
+    -e "s/COLOR1/$colorConky1/g" \
+    -e "s/COLOR2/$colorConky2/g" \
+    -e "s/COLOR3/$colorConky3/g" \
+    -e "s/COLOR4/$colorConky4/g" \
+    -e "s/COLOR5/$colorConky5/g" \
+    -e "s/COLOR6/$colorConky6/g" \
+    -e "s/COLOR7/$colorConky7/g" \
+    -e "s/COLOR8/$colorConky8/g" \
+    -e "s/COLOR9/$colorConky9/g" \
    /home/kevin/.config/templates/conky-template.conf > /home/kevin/.config/conky/hybrid/hybrid.conf
 
 sed -e "s/BACKGROUND/$background/g" \

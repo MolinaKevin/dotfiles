@@ -3,11 +3,11 @@ Config {
 	font 			= "xft:Hack Nerd Font:pixelsize=14:antialias=true:hinting=true"
 	, additionalFonts 	= [ "xft:Font Awesome 5 Free Solid:pixelsize=16"
 				]
-	, bgColor 		= "BACKGROUND"
-	, fgColor 		= "FOREGROUND"
+	, bgColor 		= BACKGROUND
+	, fgColor 		= FOREGROUND
 	, position 		= Static { xpos = 0, ypos = 0, width = 1920, height = 35 } 
 	, border 		= BottomB
-	, borderColor		= "COLOR3"
+	, borderColor		= COLOR3
 
 	-- layout
 	, sepChar =  "%"   -- delineator between plugin names and straight text
