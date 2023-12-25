@@ -67,6 +67,7 @@ funcion_4() {
 
 	mkdir $HOME/.config/xmobar
 	stack init
+	sed -i 's/flags: {}/flags:\n  xmobar:\n    all_extensions: true/' $HOME/.config/xmobar/stack.yaml
 	stack install
 	
 	echo "Instalando conky"
