@@ -56,7 +56,7 @@ funcion_4() {
 	sudo pacman -Sy xorg --needed --noconfirm
 
 	echo "Instalando dependencias que uso para xmonad"
-	sudo pacman -S git lxsession picom python-pywal yq xdotool --noconfirm --needed
+	sudo pacman -S git pamixer lxsession picom python-pywal yq xdotool --noconfirm --needed
 
 	echo "Instalando stack y ghc"
 	curl -sSL https://get.haskellstack.org/ | sh
@@ -89,8 +89,11 @@ function_5() {
 	echo "Instalando greeter webkit2"
 	sudo pacman -S lightdm-webkit2-greeter --noconfirm --needed
 	sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
+
+	echo "Instalando arch theme, default"
+	sudo git clone https://github.com/shosca/lightdm-webkit-archlinux-theme.git /usr/share/lightdm-webkit/themes/arch
+	sudo sed -i 's/antergos/arch/' /etc/lightdm/lightdm-webkit2-greeter.conf
 	
-	sudo systemctl start lightdm
 	sudo systemctl enable lightdm
 	
 }
