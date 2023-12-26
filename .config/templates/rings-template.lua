@@ -3,6 +3,7 @@ Ring Meters by londonali1010 (2009)
 Modified by La-Manoue (2016)
 Automation template by popi (2017)
 Modified by dirn (2020)
+Dinamyc color settings by MolinaKevin (2023) 
 
 This script draws percentage meters as rings. It is fully customisable all options are described in the script.
 
