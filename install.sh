@@ -56,7 +56,8 @@ funcion_4() {
 	sudo pacman -Sy xorg --needed --noconfirm
 
 	echo "Instalando dependencias que uso para xmonad"
-	sudo pacman -S git pamixer lxsession picom python-pywal yq xdotool --noconfirm --needed
+	sudo pacman -S git wireplumber lxsession picom python-pywal yq xdotool --noconfirm --needed
+	systemctl --user --now enable wireplumber
 
 	echo "Instalando stack y ghc"
 	curl -sSL https://get.haskellstack.org/ | sh
@@ -95,7 +96,6 @@ function_5() {
 	sudo sed -i 's/antergos/arch/' /etc/lightdm/lightdm-webkit2-greeter.conf
 	
 	sudo systemctl enable lightdm
-	
 }
 
 # Loop principal del menú
