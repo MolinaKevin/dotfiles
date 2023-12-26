@@ -564,11 +564,11 @@ myKeys toggleFadeSet =
     , ("M-C-<Right>", onGroup W.focusDown')                                         -- Moverse a la Tab derecha
     
     -- KEY_GROUP Multimedia Keys (fn)
-    , ("<XF86AudioMute>", spawn "amixer -D pulse sset Master toggle")               -- Mutear Audio
-    , ("<XF86AudioLowerVolume>", spawn "amixer -D pulse sset Master 5%- unmute")    -- Bajar Volumen
-    , ("<XF86AudioRaiseVolume>", spawn "amixer -D pulse sset Master 5%+ unmute")    -- Subir Volumen
-    , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")                         -- Subir Brillo
-    , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")                       -- Bajar Brillo
+    , ("<XF86AudioMute>", spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")       -- Mutear Audio
+    , ("<XF86AudioLowerVolume>", spawn "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-")    -- Bajar Volumen
+    , ("<XF86AudioRaiseVolume>", spawn "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+")    -- Subir Volumen
+    , ("<XF86MonBrightnessUp>", spawn "brightnessctl set 10%+")                         -- Subir Brillo
+    , ("<XF86MonBrightnessDown>", spawn "brightnessctl set 10%-")                       -- Bajar Brillo
     , ("<XF86Search>", spawn "rofi -show drun -config km-icons.rasi -display-drun Run: ")             -- Rofi buscador
     ]
 

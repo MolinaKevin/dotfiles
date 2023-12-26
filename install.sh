@@ -56,7 +56,7 @@ funcion_4() {
 	sudo pacman -Sy xorg --needed --noconfirm
 
 	echo "Instalando dependencias que uso para xmonad"
-	sudo pacman -S git wireplumber lxsession picom python-pywal yq xdotool --noconfirm --needed
+	sudo pacman -S git wireplumber lxsession picom python-pywal yq xdotool brightnessctl --noconfirm --needed
 	systemctl --user --now enable wireplumber
 
 	echo "Instalando stack y ghc"
