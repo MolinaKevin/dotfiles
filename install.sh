@@ -9,7 +9,8 @@ mostrar_menu() {
 	echo "3. Paru (Necesario para instalar xmonad)"
 	echo "4. Instalar xmonad + xmobar y agregados"
 	echo "5. Instalar Lightdm, greeters y tema"
-	echo "6. Salir"
+	echo "6. Instalar rambox-pro y bitwarden-desktop"
+	echo "7. Salir"
 	echo
 }
 
@@ -56,7 +57,7 @@ funcion_4() {
 	sudo pacman -Sy xorg --needed --noconfirm
 
 	echo "Instalando dependencias que uso para xmonad"
-	sudo pacman -S git wireplumber lxsession picom python-pywal yq xdotool brightnessctl --noconfirm --needed
+	sudo pacman -S git wireplumber lxsession picom dunst python-pywal yq xdotool brightnessctl bluez bluez-utils --noconfirm --needed
 	systemctl --user --now enable wireplumber
 
 	echo "Instalando stack y ghc"
@@ -98,6 +99,14 @@ function_5() {
 	sudo systemctl enable lightdm
 }
 
+function_6() {
+	echo "Instalando Rambox"
+	paru -Sy rambox-pro-bin
+
+	echo "Instalando bitwarden"
+	paru -S bitwarden
+}
+
 # Loop principal del menú
 while true; do
 	mostrar_menu
@@ -108,7 +117,8 @@ while true; do
 		3) funcion_3 ;;
 		4) funcion_4 ;;
 		5) funcion_5 ;;
-		6) echo "Saliendo..." ; exit ;;
+		6) funcion_6 ;;
+		7) echo "Saliendo..." ; exit ;;
 		*) echo "Opción inválida. Introduce una opción válida." ;;
 	esac
 	read -p "Presiona Enter para continuar..."
