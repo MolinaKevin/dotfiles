@@ -58,6 +58,7 @@ funcion_4() {
 
 	echo "Instalando dependencias que uso para xmonad"
 	sudo pacman -S git wireplumber lxsession picom dunst python-pywal yq xdotool brightnessctl bluez bluez-utils --noconfirm --needed
+	paru -S flameshot-git yad --noconfirm --needed
 	systemctl --user --now enable wireplumber
 
 	echo "Instalando stack y ghc"

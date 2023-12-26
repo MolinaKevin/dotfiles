@@ -270,7 +270,8 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
 
 myAppGrid =     [ ("Qutebrowser", "qutebrowser")
                 , ("OBS", "obs")
-                , ("Telegram", "telegram-desktop")
+                , ("Keys", "$HOME/.config/scripts/xmonad-keys.sh")
+                , ("Aliases", "$HOME/.config/scripts/aliases.sh")
                 , ("Spotify", myTerminal ++ " -t Spotify -e spt")
                 , ("Joplin", "joplin-desktop")
                 , ("Openshot", "openshot-qt")
@@ -487,14 +488,14 @@ myKeys toggleFadeSet =
     [ ("M-C-r", spawn "xmonad --recompile")                                         -- Recompilar XMonad
     , ("M-S-r", spawn "xmonad --restart")                                           -- Resetear XMonad
     , ("M-S-q", io exitSuccess)                                                     -- Salir de XMonad
-    , ("M-S-h", spawn "$HOME/.xmonad/xmonad-keys.sh")                               -- Mostrar Ayuda 
-    , ("M-S-a", spawn "$HOME/.xmonad/aliases.sh")                                   -- Mostrar Ayuda 
+    , ("M-S-h", spawn "$HOME/.config/xmonad/xmonad-keys.sh")                               -- Mostrar Ayuda 
+    , ("M-S-a", spawn "$HOME/.config/xmonad/aliases.sh")                                   -- Mostrar Ayuda 
 
     -- KEY_GROUP Utils
     , ("M-<Return>", spawn (myTerminal))                                            -- Abrir Terminal
     , ("M-b", spawn (myBrowser))                                                    -- Abrir Browser
     , ("M-M1-h", spawn (myTerminal ++ " -e htop"))                                  -- Abrir HTOP
-    , ("M-<F1>", spawn "~/scripts/xmonadWallAndTheme.fish")                -- Cambiar Wallpaper
+    , ("M-<F1>", spawn "~/.config/scripts/xmonadWallAndTheme.fish")                -- Cambiar Wallpaper
     , ("M-S-f", withFocused $ io . modifyIORef toggleFadeSet . toggleFadeOut)       -- Toggle transparencia
     , ("<Print>", spawn "flameshot gui")                                            -- Toggle transparencia
 
