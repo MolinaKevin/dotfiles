@@ -40,7 +40,7 @@ settings_table = {
     -- hwmon path /sys/bus/platform/devices/coretemp.0/hwmon/
     {
         name='platform',
-        arg='coretemp.0/hwmon/hwmon5 temp 2',
+        arg='SENSOR_PATH temp 2',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.5,
@@ -55,7 +55,7 @@ settings_table = {
     },
     {
         name='platform',
-        arg='coretemp.0/hwmon/hwmon5 temp 3',
+        arg='SENSOR_PATH temp 3',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.3,
@@ -68,6 +68,66 @@ settings_table = {
         end_angle=450,
         text_id=2
     },
+    {
+        name='platform',
+        arg='SENSOR_PATH temp 4',
+        max=110,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.5,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=140,
+        radius=100,
+        thickness=4,
+        start_angle=0,
+        end_angle=270,
+        text_id=3
+    },
+    {
+        name='platform',
+        arg='SENSOR_PATH temp 5',
+        max=110,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.5,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=370,
+        radius=91,
+        thickness=4,
+        start_angle=180,
+        end_angle=450,
+        text_id=4
+    },
+    {
+        name='platform',
+        arg='SENSOR_PATH temp 6',
+        max=110,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.3,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=370,
+        radius=85,
+        thickness=4,
+        start_angle=180,
+        end_angle=450,
+        text_id=5
+    },
+    {
+        name='platform',
+        arg='SENSOR_PATH temp 7',
+        max=110,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.5,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=370,
+        radius=100,
+        thickness=4,
+        start_angle=0,
+        end_angle=270,
+        text_id=6
+    },
     -- ram usage
     {
         name='memperc',
@@ -77,7 +137,7 @@ settings_table = {
         bg_alpha=0.5,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=91,
         thickness=4,
         start_angle=180,
@@ -88,7 +148,7 @@ settings_table = {
     -- cpu temp, gpu temp, battery % and swap
     {
         name='platform',
-        arg='coretemp.0/hwmon/hwmon5 temp 1',
+        arg='SENSOR_PATH temp 1',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.3,
@@ -109,7 +169,7 @@ settings_table = {
         bg_alpha=0.5,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=100,
         thickness=4,
         start_angle=0,
@@ -124,7 +184,7 @@ settings_table = {
         bg_alpha=0.3,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=106,
         thickness=4,
         start_angle=0,
@@ -141,7 +201,7 @@ settings_table = {
         bg_alpha=0.5,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=66,
         thickness=15.0,
         start_angle=0,
@@ -156,7 +216,7 @@ settings_table = {
         bg_alpha=0.5,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=66,
         thickness=15.0,
         start_angle=135.5,
@@ -171,7 +231,7 @@ settings_table = {
         bg_alpha=0.4,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=50,
         thickness=14.5,
         start_angle=0,
@@ -186,7 +246,7 @@ settings_table = {
         bg_alpha=0.4,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=50,
         thickness=14.5,
         start_angle=135.5,
@@ -203,7 +263,7 @@ settings_table = {
         bg_alpha=0.1,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=20.0,
         thickness=4,
         start_angle=0,
@@ -218,7 +278,7 @@ settings_table = {
         bg_alpha=0.2,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=24.5,
         thickness=3,
         start_angle=0,
@@ -233,7 +293,7 @@ settings_table = {
         bg_alpha=0.3,
         fg_colour=0xCOLOR15,
         fg_alpha=1.0,
-        x=140, y=370,
+        x=140, y=600,
         radius=28.5,
         thickness=2,
         start_angle=0,
@@ -286,6 +346,143 @@ settings_table = {
         start_angle=0,
         end_angle=90,
         text_id=21
+    },
+    {
+        name='cpu',
+        arg='cpu4',
+        max=100,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.3,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=140,
+        radius=34.5,
+        thickness=14,
+        start_angle=180,
+        end_angle=270,
+        text_id=22
+    },
+    {
+        name='cpu',
+        arg='cpu5',
+        max=100,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.4,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=140,
+        radius=50,
+        thickness=14.5,
+        start_angle=180,
+        end_angle=270,
+        text_id=23
+    },
+    {
+        name='cpu',
+        arg='cpu6',
+        max=100,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.5,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=140,
+        radius=66,
+        thickness=15,
+        start_angle=180,
+        end_angle=270,
+        text_id=24
+    },
+    
+    {
+        name='cpu',
+        arg='cpu7',
+        max=100,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.5,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=370,
+        radius=66,
+        thickness=15,
+        start_angle=0,
+        end_angle=90,
+        text_id=25
+    },
+    {
+        name='cpu',
+        arg='cpu8',
+        max=100,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.4,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=370,
+        radius=50,
+        thickness=14.5,
+        start_angle=0,
+        end_angle=90,
+        text_id=26
+    },
+    {
+        name='cpu',
+        arg='cpu9',
+        max=100,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.3,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=370,
+        radius=34.5,
+        thickness=14,
+        start_angle=0,
+        end_angle=90,
+        text_id=27
+    },
+
+    {
+        name='cpu',
+        arg='cpu10',
+        max=100,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.3,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=370,
+        radius=34.5,
+        thickness=14,
+        start_angle=180,
+        end_angle=270,
+        text_id=28
+    },
+    {
+        name='cpu',
+        arg='cpu11',
+        max=100,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.4,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=370,
+        radius=50,
+        thickness=14.5,
+        start_angle=180,
+        end_angle=270,
+        text_id=29
+    },
+    {
+        name='cpu',
+        arg='cpu12',
+        max=100,
+        bg_colour=0xCOLOR7,
+        bg_alpha=0.5,
+        fg_colour=0xCOLOR15,
+        fg_alpha=1.0,
+        x=140, y=370,
+        radius=66,
+        thickness=15,
+        start_angle=180,
+        end_angle=270,
+        text_id=30
     }
 
 }
@@ -499,7 +696,7 @@ function conky_ring_stats(cr)
     end
 
 
-	local function setup_rings(cr, pt)
+    local function setup_rings(cr, pt)
 		local str = ''
 		local value = 0
 
@@ -530,13 +727,13 @@ function conky_ring_stats(cr)
     end
 
 
-	local updates=conky_parse('${updates}')
-	update_num = tonumber(updates)
+    local updates=conky_parse('${updates}')
+    update_num = tonumber(updates)
 
-	if update_num > update_num_min then
-	    for i in pairs(settings_table) do
-            setup_rings(cr, settings_table[i])
-	    end
+    if update_num > update_num_min then
+        for i in pairs(settings_table) do
+	    setup_rings(cr, settings_table[i])
+        end
     end
 end
 
@@ -546,29 +743,29 @@ text_settings = {
     -- cpu core
     { text = 'C01', show = true, x = 30, y = 40, ind_id = 1 },
     { text = 'C02', show = true, x = 30, y = 56, ind_id = 2 },
-    { text = 'VOL', show = true, x = 230, y = 234, ind_id = 3 },
+    { text = 'C03', show = true, x = 230, y = 234, ind_id = 3 },
     { text = 'C04', show = true, x = 30, y = 270, ind_id = 4 },
     { text = 'C05', show = true, x = 30, y = 286, ind_id = 5 },
     { text = 'C06', show = true, x = 230, y = 464, ind_id = 6 },
 
     -- ram
-    { text = 'RAM', show = true, x = 30, y = 270, ind_id = 7 },
+    { text = 'RAM', show = true, x = 30, y = 500, ind_id = 7 },
 
     -- cpu, gpu, bat and swap
     { text = 'CPU', show = true, x = 230, y = 250, ind_id = 8 },
     { text = 'GPU', show = true, x = 230, y = 480, ind_id = 9 },
-    { text = 'SWP', show = true, x = 230, y = 464, ind_id = 10 },
-    { text = 'BAT', show = true, x = 230, y = 480, ind_id = 11 },
+    { text = 'SWP', show = true, x = 230, y = 694, ind_id = 10 },
+    { text = 'BAT', show = true, x = 230, y = 710, ind_id = 11 },
 
     -- disk storage
-    { text = '/', show = true, text_radius = 62, x = 140, y = 370, s_angle = 5, e_angle = 30, l_position = 0 },
-    { text = '/opt', show = true, text_radius = 62, x = 140, y = 370, s_angle = 140, e_angle = 195, l_position = 0 },
-    { text = '/usr', show = true, text_radius = 46, x = 140, y = 370, s_angle = 5, e_angle = 70, l_position = 0 },
-    { text = '/home', show = true, text_radius = 46, x = 140, y = 370, s_angle = 140, e_angle = 230, l_position = 0 },
+    { text = '/', show = true, text_radius = 62, x = 140, y = 600, s_angle = 5, e_angle = 30, l_position = 0 },
+    { text = '/opt', show = true, text_radius = 62, x = 140, y = 600, s_angle = 140, e_angle = 195, l_position = 0 },
+    { text = '/usr', show = true, text_radius = 46, x = 140, y = 600, s_angle = 5, e_angle = 70, l_position = 0 },
+    { text = '/home', show = true, text_radius = 46, x = 140, y = 600, s_angle = 140, e_angle = 230, l_position = 0 },
 
     -- clock
-    { text = 'HH', show = true, x = 126, y = 374 },
-    { text = 'MM', show = true, x = 142, y = 374 },
+    { text = 'HH', show = true, x = 126, y = 604 },
+    { text = 'MM', show = true, x = 142, y = 604 },
     { text = 'SS', show = false, x = 152, y = 604 },
 
     -- cpu threads
@@ -588,23 +785,24 @@ text_settings = {
     { text = '11', show = true, x = 125, y = 424 },
     { text = '12', show = true, x = 125, y = 440 },
 }
+    
 
 
 text_indicator = {
     { x1 = 75, y1 = 35, x2 = 115, y2 = 35, x3 = 128, y3 = 48, alpha = 0.9 },        -- c1
     { x1 = 75, y1 = 51, x2 = 85, y2 = 51, x3 = 97, y3 = 64, alpha = 0.9 },          -- c2
-    --{ x1 = 204, y1 = 219, x2 = 216, y2 = 231, x3 = 226, y3 = 231, alpha = 0.9 },    -- c3
+    { x1 = 204, y1 = 219, x2 = 216, y2 = 231, x3 = 226, y3 = 231, alpha = 0.9 },    -- c3
     
     { x1 = 75, y1 = 265, x2 = 115, y2 = 265, x3 = 128, y3 = 278, alpha = 0.9 },     -- c4
-    --{ x1 = 75, y1 = 281, x2 = 85, y2 = 281, x3 = 97, y3 = 294, alpha = 0.9 },       -- c5
+    { x1 = 75, y1 = 281, x2 = 85, y2 = 281, x3 = 97, y3 = 294, alpha = 0.9 },       -- c5
     { x1 = 204, y1 = 449, x2 = 216, y2 = 461, x3 = 226, y3 = 461, alpha = 0.9 },    -- c6
     
-    --{ x1 = 80, y1 = 495, x2 = 115, y2 = 495, x3 = 128, y3 = 508, alpha = 0.9 },     -- ram
+    { x1 = 80, y1 = 495, x2 = 115, y2 = 495, x3 = 128, y3 = 508, alpha = 0.9 },     -- ram
 
     { x1 = 182, y1 = 239, x2 = 190, y2 = 247, x3 = 226, y3 = 247, alpha = 0.9 },    -- cpu
-    { x1 = 182, y1 = 469, x2 = 190, y2 = 477, x3 = 226, y3 = 477, alpha = 0.9 },    -- gpu
-    --{ x1 = 204, y1 = 679, x2 = 216, y2 = 691, x3 = 226, y3 = 691, alpha = 0.9 },    -- swap
-    --{ x1 = 182, y1 = 699, x2 = 190, y2 = 707, x3 = 226, y3 = 707, alpha = 0.9 }     -- bat
+    -- { x1 = 182, y1 = 469, x2 = 190, y2 = 477, x3 = 226, y3 = 477, alpha = 0.9 },    -- gpu
+    { x1 = 204, y1 = 679, x2 = 216, y2 = 691, x3 = 226, y3 = 691, alpha = 0.9 },    -- swap
+    { x1 = 182, y1 = 699, x2 = 190, y2 = 707, x3 = 226, y3 = 707, alpha = 0.9 }     -- bat
 }
 
 
@@ -621,7 +819,7 @@ line_settings = {
     { x1 = 0, y1 = 250, x2 = 270, y2 = 250 },
     { x1 = 0, y1 = 260, x2 = 270, y2 = 260 },
     -- { x1 = 0, y1 = 370, x2 = 270, y2 = 370 },
-    { x1 = 0, y1 = 480, x2 = 270, y2 = 480 },
+    -- { x1 = 0, y1 = 480, x2 = 270, y2 = 480 },
     { x1 = 0, y1 = 490, x2 = 270, y2 = 490 },
     { x1 = 0, y1 = 600, x2 = 270, y2 = 600 },
     { x1 = 0, y1 = 710, x2 = 270, y2 = 710 },
@@ -648,7 +846,7 @@ circle_settings = {
 
     { x = 140, y = 140, radius = 75.0, start_angle = 0.0, end_angle = 360.0 },
     { x = 140, y = 370, radius = 75.0, start_angle = 0.0, end_angle = 360.0 },
-    { x = 140, y = 370, radius = 75.0, start_angle = 0.0, end_angle = 360.0 },
+    { x = 140, y = 600, radius = 75.0, start_angle = 0.0, end_angle = 360.0 },
 
     -- { x = 140, y = 140, radius = 25.0, start_angle = 0.0, end_angle = 360.0 },
     -- { x = 140, y = 370, radius = 25.0, start_angle = 0.0, end_angle = 360.0 },

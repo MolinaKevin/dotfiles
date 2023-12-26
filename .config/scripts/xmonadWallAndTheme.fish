@@ -110,7 +110,14 @@ sed -e "s/BACKGROUND/$background/g" \
     -e "s/COLOR9/$colorConky9/g" \
    /home/kevin/.config/templates/conky-template.conf > /home/kevin/.config/conky/hybrid/hybrid.conf
 
-sed -e "s/BACKGROUND/$background/g" \
+set sensor_path (fish $HOME/.config/scripts/find-hwmon.fish)
+set sensor_path (string replace "/sys/bus/platform/devices/" "" -- $sensor_path)
+set sensor_path (echo $sensor_path | sed 's|/[^/]*$||')
+
+echo $sensor_path
+
+sed -e "s|SENSOR_PATH|$sensor_path|g" \
+    -e "s/BACKGROUND/$background/g" \
     -e "s/FOREGROUND/$foreground/g" \
     -e "s/COLOR10/$colorConky10/g" \
     -e "s/COLOR11/$colorConky11/g" \
@@ -129,6 +136,8 @@ sed -e "s/BACKGROUND/$background/g" \
     -e "s/COLOR8/$colorConky8/g" \
     -e "s/COLOR9/$colorConky9/g" \
    /home/kevin/.config/templates/rings-template.lua > /home/kevin/.config/conky/hybrid/lua/hybrid-rings.lua
+
+echo $sensor_path
 
 sed -e "s/BACKGROUND/$background/g" \
     -e "s/FOREGROUND/$foreground/g" \
