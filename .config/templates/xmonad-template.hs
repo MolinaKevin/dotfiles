@@ -8,6 +8,7 @@ import XMonad
 import System.Exit
 import Data.Monoid
 import System.IO
+import System.Random (randomRIO)
 
 -- Qualifieds (Tienen Alias)
 
@@ -138,6 +139,14 @@ color14 = COLOR14
 color15 :: String
 color15 = COLOR15
 
+colorList :: [String]
+colorList = [color0, color1, color2, 
+             color3, color4, color5, 
+             color6, color7, color8,
+             color9, color10, color11,
+             color12, color13, color14,
+             color15, foreground, background]
+
 -------------------------------------------------
 -- Mi Configuración
 -------------------------------------------------
@@ -180,6 +189,16 @@ myColorizer = colorRangeFromClassName
     (0x28,0x2c,0x24)    -- activo bg
     (0x28,0x2c,0x24)    -- inactivo fg
     (0x28,0x2c,0x24)    -- activo fg
+
+myColorizer' :: a -> Bool -> X (String, String)
+myColorizer' _ isFg = do
+    randomIndex <- io $ randomRIO (0, length colorList - 1)
+    randomIndex2 <- io $ randomRIO (0, length colorList - 1)
+    let chosenColor = colorList !! randomIndex
+    let chosenColor2 = colorList !! randomIndex2
+    if isFg 
+	    then return (chosenColor, background) -- Color activo
+	    else return (chosenColor2, background) -- Color inactivo
 
 myConfig toggleFadeSet xmproc = ewmh def
     { manageHook                = myManageHook <+> manageDocks
@@ -239,7 +258,7 @@ myStartupHook = do
     spawnOnce "picom --config $HOME/.config/picom/picom.conf &"
     spawnOnce "thunderbird &"
     spawnOnce "conky -c $HOME/.config/conky/hybrid/hybrid.conf &"
-    spawnOnce "$HOME/scripts/xmonadWallAndTheme.fish &"
+    spawnOnce "$HOME/.config/scripts/xmonadWallAndTheme.fish &"
     setWMName "Kevin"  
 
 
@@ -257,31 +276,30 @@ myGridConfig colorizer = (buildDefaultGSConfig myColorizer)
     , gs_font           = myFont 
     }
 
+myGSConfig :: HasColorizer a => GSConfig a
+myGSConfig = (buildDefaultGSConfig myColorizer')
+    { gs_cellheight   = 40
+    , gs_cellwidth    = 200
+    , gs_cellpadding  = 6
+    , gs_originFractX = 0.5
+    , gs_originFractY = 0.5
+    , gs_font         = myFont
+    }
+
+
 spawnSelected' :: [(String,String)] -> X ()
-spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
-    where conf = def
-            { gs_cellheight     = 40
-            , gs_cellwidth      = 200
-            , gs_cellpadding    = 6
-            , gs_originFractX   = 0.5
-            , gs_originFractY   = 0.5
-            , gs_font           = myFont 
-            }
+spawnSelected' lst = gridselect myGSConfig lst >>= flip whenJust spawn
 
 myAppGrid =     [ ("Qutebrowser", "qutebrowser")
                 , ("OBS", "obs")
                 , ("Keys", "$HOME/.config/scripts/xmonad-keys.sh")
                 , ("Aliases", "$HOME/.config/scripts/aliases.sh")
-                , ("Spotify", myTerminal ++ " -t Spotify -e spt")
                 , ("Joplin", "joplin-desktop")
-                , ("Openshot", "openshot-qt")
+                , ("Rambox", "rambox")
                 , ("Bitwarden", "bitwarden-desktop")
                 , ("Firefox", "firefox")
                 , ("HTop", myTerminal ++ " -t HTop -e htop")
-                , ("Nitrogen", "nitrogen")
                 , ("Steam", "steam")
-                , ("Remmina", "remmina")
-                , ("Blueman", "blueman-manager")
                 ]
 
 
@@ -495,9 +513,9 @@ myKeys toggleFadeSet =
     , ("M-<Return>", spawn (myTerminal))                                            -- Abrir Terminal
     , ("M-b", spawn (myBrowser))                                                    -- Abrir Browser
     , ("M-M1-h", spawn (myTerminal ++ " -e htop"))                                  -- Abrir HTOP
-    , ("M-<F1>", spawn "~/.config/scripts/xmonadWallAndTheme.fish")                -- Cambiar Wallpaper
+    , ("M-<F1>", spawn "~/.config/scripts/xmonadWallAndTheme.fish")                 -- Cambiar Wallpaper
     , ("M-S-f", withFocused $ io . modifyIORef toggleFadeSet . toggleFadeOut)       -- Toggle transparencia
-    , ("<Print>", spawn "flameshot gui")                                            -- Toggle transparencia
+    , ("<Print>", spawn "flameshot gui")                                            -- Screenshot
 
 
     -- KEY_GROUP dmenu
