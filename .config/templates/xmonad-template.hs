@@ -172,6 +172,12 @@ myBorderWidth = 2
 myIconDir :: String
 myIconDir = "/home/kevin/.config/xmonad/icons/"
 
+myConfigPath :: String
+myConfigPath = "$HOME/.config/"
+
+myScriptPath :: String
+myScriptPath = myConfigPath ++ "scripts/"
+
 myTabTheme = def
     { fontName              = myFont
     , activeColor           = color15 
@@ -583,12 +589,17 @@ myKeys toggleFadeSet =
     , ("M-C-<Right>", onGroup W.focusDown')                                         -- Moverse a la Tab derecha
     
     -- KEY_GROUP Multimedia Keys (fn)
-    , ("<XF86AudioMute>", spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")       -- Mutear Audio
-    , ("<XF86AudioLowerVolume>", spawn "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-")    -- Bajar Volumen
-    , ("<XF86AudioRaiseVolume>", spawn "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+")    -- Subir Volumen
-    , ("<XF86MonBrightnessUp>", spawn "brightnessctl set 10%+")                         -- Subir Brillo
-    , ("<XF86MonBrightnessDown>", spawn "brightnessctl set 10%-")                       -- Bajar Brillo
+    , ("<XF86AudioMute>", spawn (myScriptPath ++ "volume-brightness.sh volume_mute"))       -- Mutear Audio
+    , ("<XF86AudioLowerVolume>", spawn (myScriptPath ++ "volume-brightness.sh volume_down"))    -- Bajar Volumen
+    , ("<XF86AudioRaiseVolume>", spawn (myScriptPath ++ "volume-brightness.sh volume_up"))    -- Subir Volumen
+    , ("<XF86MonBrightnessUp>", spawn (myScriptPath ++ "volume-brightness.sh brightness_up"))                         -- Subir Brillo
+    , ("<XF86MonBrightnessDown>", spawn (myScriptPath ++ "volume-brightness.sh brightness_down"))                       -- Bajar Brillo
     , ("<XF86Search>", spawn "rofi -show drun -config km-icons.rasi -display-drun Run: ")             -- Rofi buscador
+
+    -- KEY_GROUP Extras
+    , ("M-<End>", spawn (myScriptPath ++ "volume-brightness.sh next_track"))             -- Cancion siguiente
+    , ("M-<Home>", spawn (myScriptPath ++ "volume-brightness.sh prev_track"))             -- Cancion siguiente
+    , ("M-C-<Space>", spawn (myScriptPath ++ "volume-brightness.sh play_pause"))             -- Cancion siguiente
     ]
 
 -------------------------------------------------

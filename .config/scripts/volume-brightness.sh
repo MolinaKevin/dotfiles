@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # See README.md for usage instructions
-volume_step=1
+volume_step=3
 brightness_step=5
 max_volume=100
-notification_timeout=1000
+notification_timeout=1500
 download_album_art=true
 show_album_art=true
 show_music_in_volume_indicator=true
@@ -17,19 +17,20 @@ function get_volume {
 
 # Uses regex to get mute status from pactl
 function get_mute {
-    pactl get-sink-mute @DEFAULT_SINK@ | grep -Po '(?<=Mute: )(yes|no)'
+    wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -Po '(MUTED)'
 }
 
 # Uses regex to get brightness from xbacklight
 function get_brightness {
-    sudo light | grep -Po '[0-9]{1,3}' | head -n 1
+    brightnessctl i | awk -F '[()%]' '/Current brightness/ {print $2}'
+
 }
 
 # Returns a mute icon, a volume-low icon, or a volume-high icon, depending on the volume
 function get_volume_icon {
     volume=$(get_volume)
     mute=$(get_mute)
-    if [ "$volume" -eq 0 ] || [ "$mute" == "yes" ] ; then
+    if [ "$volume" -eq 0 ] || [ "$mute" == "MUTED" ] ; then
         volume_icon=""
     elif [ "$volume" -lt 50 ]; then
         volume_icon=""
@@ -88,6 +89,10 @@ function show_volume_notif {
     else
         notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon $volume%"
     fi
+
+    echo "tests"
+	echo $volume
+	
 }
 
 # Displays a music notification
@@ -115,37 +120,37 @@ function show_brightness_notif {
 case $1 in
     volume_up)
     # Unmutes and increases volume, then displays the notification
-    pactl set-sink-mute @DEFAULT_SINK@ 0
+    #pactl set-sink-mute @DEFAULT_SINK@ 0
     volume=$(get_volume)
     if [ $(( "$volume" + "$volume_step" )) -gt $max_volume ]; then
-        pactl set-sink-volume @DEFAULT_SINK@ $max_volume%
+	wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 100%
     else
-        pactl set-sink-volume @DEFAULT_SINK@ +$volume_step%
+	wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ $volume_step%+
     fi
     show_volume_notif
     ;;
 
     volume_down)
     # Raises volume and displays the notification
-    pactl set-sink-volume @DEFAULT_SINK@ -$volume_step%
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ $volume_step%-
     show_volume_notif
     ;;
 
     volume_mute)
     # Toggles mute and displays the notification
-    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     show_volume_notif
     ;;
 
     brightness_up)
     # Increases brightness and displays the notification
-    sudo light -A $brightness_step 
+    brightnessctl set $brightness_step%+
     show_brightness_notif
     ;;
 
     brightness_down)
     # Decreases brightness and displays the notification
-    sudo light -U $brightness_step
+    brightnessctl set $brightness_step%-
     show_brightness_notif
     ;;
 
