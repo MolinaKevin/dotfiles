@@ -188,14 +188,6 @@ myTabTheme = def
     , inactiveTextColor     = color10 
     }
 
-myColorizer :: Window -> Bool -> X (String,String)
-myColorizer = colorRangeFromClassName
-    (0x28,0x2c,0x24)    -- inactivo mas bajo bg
-    (0x28,0x2c,0x24)    -- inactivo mas alto bg
-    (0x28,0x2c,0x24)    -- activo bg
-    (0x28,0x2c,0x24)    -- inactivo fg
-    (0x28,0x2c,0x24)    -- activo fg
-
 myColorizer' :: a -> Bool -> X (String, String)
 myColorizer' _ isFg = do
     randomIndex <- io $ randomRIO (0, length colorList - 1)
@@ -273,7 +265,7 @@ myStartupHook = do
 -------------------------------------------------
 
 myGridConfig :: p -> GSConfig Window
-myGridConfig colorizer = (buildDefaultGSConfig myColorizer)
+myGridConfig colorizer = (buildDefaultGSConfig myColorizer')
     { gs_cellheight     = 40
     , gs_cellwidth      = 200
     , gs_cellpadding    = 6
@@ -548,8 +540,8 @@ myKeys toggleFadeSet =
 
     -- KEY_GROUP Grid
     , ("C-g g", spawnSelected' myAppGrid)                                           -- Mostrar Grid de Apps
-    , ("C-g t", goToSelected $ myGridConfig myColorizer)                            -- Mostrar Apps e ir
-    , ("C-g b", bringSelected $ myGridConfig myColorizer)                           -- Mostrar Apps y traer
+    , ("C-g t", goToSelected $ myGridConfig myColorizer')                            -- Mostrar Apps e ir
+    , ("C-g b", bringSelected $ myGridConfig myColorizer')                           -- Mostrar Apps y traer
 
     -- KEY_GROUP ScratchPads
     , ("C-s t", namedScratchpadAction myScratchPads "terminal")                     -- Scratchpad Terminal
