@@ -188,8 +188,8 @@ myTabTheme = def
     , inactiveTextColor     = color10 
     }
 
-myColorizer' :: a -> Bool -> X (String, String)
-myColorizer' _ isFg = do
+myColorizer :: a -> Bool -> X (String, String)
+myColorizer _ isFg = do
     randomIndex <- io $ randomRIO (0, length colorList - 1)
     randomIndex2 <- io $ randomRIO (0, length colorList - 1)
     let chosenColor = colorList !! randomIndex
@@ -265,7 +265,7 @@ myStartupHook = do
 -------------------------------------------------
 
 myGridConfig :: p -> GSConfig Window
-myGridConfig colorizer = (buildDefaultGSConfig myColorizer')
+myGridConfig colorizer = (buildDefaultGSConfig myColorizer)
     { gs_cellheight     = 40
     , gs_cellwidth      = 200
     , gs_cellpadding    = 6
@@ -275,7 +275,7 @@ myGridConfig colorizer = (buildDefaultGSConfig myColorizer')
     }
 
 myGSConfig :: HasColorizer a => GSConfig a
-myGSConfig = (buildDefaultGSConfig myColorizer')
+myGSConfig = (buildDefaultGSConfig myColorizer)
     { gs_cellheight   = 40
     , gs_cellwidth    = 200
     , gs_cellpadding  = 6
@@ -540,8 +540,8 @@ myKeys toggleFadeSet =
 
     -- KEY_GROUP Grid
     , ("C-g g", spawnSelected' myAppGrid)                                           -- Mostrar Grid de Apps
-    , ("C-g t", goToSelected $ myGridConfig myColorizer')                            -- Mostrar Apps e ir
-    , ("C-g b", bringSelected $ myGridConfig myColorizer')                           -- Mostrar Apps y traer
+    , ("C-g t", goToSelected $ myGridConfig myColorizer)                            -- Mostrar Apps e ir
+    , ("C-g b", bringSelected $ myGridConfig myColorizer)                           -- Mostrar Apps y traer
 
     -- KEY_GROUP ScratchPads
     , ("C-s t", namedScratchpadAction myScratchPads "terminal")                     -- Scratchpad Terminal
