@@ -58,14 +58,17 @@ end
 
 ### XDG STANDARS ###
 
-set XDG_DATA_HOME "$HOME/.local/share"
-set XDG_CONFIG_HOME "$HOME/.config"
-set XDG_STATE_HOME "$HOME/.local/state"
-set XDG_CACHE_HOME "$HOME/.cache"
+set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -gx XDG_STATE_HOME "$HOME/.local/state"
+set -gx XDG_CACHE_HOME "$HOME/.cache"
 
-set HISTFILE "$XDG_STATE_HOME"/bash/history
-set CARGO_HOME "$XDG_DATA_HOME"/cargo
-set STACK_ROOT "$XDG_DATA_HOME"/stack
+set -gx HISTFILE "$XDG_CONFIG_HOME"/bash/history
+set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
+set -gx GNUPGHOME "$XDG_DATA_HOME/gnupg"
+set -gx GTK2_RC_FILES "$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+set -gx STACK_ROOT "$XDG_DATA_HOME/stack"
+set -gx XINITRC "$XDG_CONFIG_HOME/X11/xinitrc"
 
 ### END OF XDG ###
 
@@ -73,6 +76,15 @@ if type rg &> /dev/null;
   set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
   set -gx FZF_DEFAULT_OPTS '-m --height 50% --border'
 end
+
+### VIM ###
+
+set -gx MYVIMRC "$XDG_CONFIG_HOME/vim/vimrc"
+set -gx VIMINIT 'let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+set -gx GVIMINIT 'let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source $MYGVIMRC'
+set -gx VIMINFO "$XDG_STATE_HOME/vim/viminfo"
+
+### END VIM ### 
 
 ### CONFIG INIT ###
 fish_vi_key_bindings

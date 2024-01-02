@@ -1,4 +1,0 @@
-set number 
-set relativenumber
-
-

@@ -178,7 +178,7 @@ sed -e "s/BACKGROUND/$background/g" \
     -e "s/COLOR8/$color8/g" \
     -e "s/COLOR9/$color9/g" \
     -e "s/CURSOR/$cursor/g" \
-   /home/kevin/.config/templates/alacritty-template.yml > /home/kevin/.config/alacritty/alacritty.yml
+   /home/kevin/.config/templates/alacritty-template.toml > /home/kevin/.config/alacritty/alacritty.toml
 
 killall conky
 conky -c $HOME/.config/conky/hybrid/hybrid.conf

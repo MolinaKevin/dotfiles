@@ -9,11 +9,18 @@ download_album_art=true
 show_album_art=true
 show_music_in_volume_indicator=true
 
-# Uses regex to get volume from pactl
 function get_volume {
-    vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/Volume: //')
-    echo "$vol * 100" | bc | sed 's/.00//'
+    vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -Po '(?<=Volume: )\d+')
+
+    # Verifica si vol es un número
+    if ! [[ $vol =~ ^[0-9]+$ ]]; then
+        echo 0
+        return 1  
+    fi
+
+    echo "$vol"
 }
+
 
 # Uses regex to get mute status from pactl
 function get_mute {
@@ -29,8 +36,10 @@ function get_brightness {
 # Returns a mute icon, a volume-low icon, or a volume-high icon, depending on the volume
 function get_volume_icon {
     volume=$(get_volume)
+	echo $volume
+echo $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -Po '(?<=Volume: )\d+')
     mute=$(get_mute)
-    if [ "$volume" -eq 0 ] || [ "$mute" == "MUTED" ] ; then
+    if [ -z "$volume" ] || [ "$volume" -eq 0 ] || [ "$mute" == "MUTED" ]; then
         volume_icon=""
     elif [ "$volume" -lt 50 ]; then
         volume_icon=""
@@ -84,15 +93,10 @@ function show_volume_notif {
         if [[ $show_album_art == "true" ]]; then
             get_album_art
         fi
-
         notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon $volume%" "$current_song"
     else
         notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon $volume%"
     fi
-
-    echo "tests"
-	echo $volume
-	
 }
 
 # Displays a music notification
@@ -119,16 +123,20 @@ function show_brightness_notif {
 # Main function - Takes user input, "volume_up", "volume_down", "brightness_up", or "brightness_down"
 case $1 in
     volume_up)
-    # Unmutes and increases volume, then displays the notification
-    #pactl set-sink-mute @DEFAULT_SINK@ 0
     volume=$(get_volume)
-    if [ $(( "$volume" + "$volume_step" )) -gt $max_volume ]; then
-	wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 100%
+    if [ $? -ne 0 ]; then
+        echo "No se pudo obtener el volumen."
+        exit 1
+    fi
+
+    if [ $((volume + volume_step)) -gt $max_volume ]; then
+        wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 100%
     else
-	wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ $volume_step%+
+        wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ $volume_step%+
     fi
     show_volume_notif
     ;;
+    
 
     volume_down)
     # Raises volume and displays the notification

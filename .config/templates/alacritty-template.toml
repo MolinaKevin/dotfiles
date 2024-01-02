@@ -1,0 +1,64 @@
+# Configuración de la fuente
+[font]
+size = 9
+
+[font.normal]
+family = "SauceCodePro Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "SauceCodePro Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "SauceCodePro Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "SauceCodePro Nerd Font Mono"
+style = "Bold Italic"
+
+# Configuración de la ventana
+[window]
+opacity = 0.8
+
+# Configuración de los colores
+[colors.primary]
+background = BACKGROUND
+foreground = FOREGROUND
+
+[colors.cursor]
+cursor = CURSOR
+text = "CellForeground"
+
+[colors.normal]
+black = COLOR8
+red = COLOR9
+green = COLOR10
+yellow = COLOR11
+blue = COLOR12
+magenta = COLOR13
+cyan = COLOR14
+white = COLOR15
+
+[colors.bright]
+black = COLOR0
+red = COLOR1
+green = COLOR2
+yellow = COLOR3
+blue = COLOR4
+magenta = COLOR5
+cyan = COLOR6
+white = COLOR7
+
+# Configuración de los atajos de teclado
+[[keyboard.bindings]]
+key = "Return"
+mods = "Control|Shift"
+action = "SpawnNewInstance"
+
+# Configuración de los atajos del mouse
+[[mouse.bindings]]
+mouse = "Middle"
+action = "PasteSelection"
+
