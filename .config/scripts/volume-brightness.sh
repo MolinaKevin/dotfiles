@@ -10,15 +10,17 @@ show_album_art=true
 show_music_in_volume_indicator=true
 
 function get_volume {
-    vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -Po '(?<=Volume: )\d+')
+    vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -Po '(?<=Volume: )\d+\.\d+')
 
-    # Verifica si vol es un número
-    if ! [[ $vol =~ ^[0-9]+$ ]]; then
+    vol=$(echo "$vol * 100" | bc | sed 's/.00//')
+
+    if [[ "$vol" -eq 0 ]]; then
         echo 0
         return 1  
     fi
 
-    echo "$vol"
+    echo $vol
+
 }
 
 
@@ -36,11 +38,9 @@ function get_brightness {
 # Returns a mute icon, a volume-low icon, or a volume-high icon, depending on the volume
 function get_volume_icon {
     volume=$(get_volume)
-	echo $volume
-echo $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -Po '(?<=Volume: )\d+')
     mute=$(get_mute)
     if [ -z "$volume" ] || [ "$volume" -eq 0 ] || [ "$mute" == "MUTED" ]; then
-        volume_icon=""
+        volume_icon="󰝟"
     elif [ "$volume" -lt 50 ]; then
         volume_icon=""
     else
@@ -53,7 +53,7 @@ function get_brightness_icon {
     brightness_icon=""
 }
 
-function get_album_art {
+    function get_album_art {
     url=$(playerctl -f "{{mpris:artUrl}}" metadata)
     if [[ $url == "file://"* ]]; then
         album_art="${url/file:\/\//}"
@@ -84,7 +84,7 @@ function get_album_art {
 
 # Displays a volume notification
 function show_volume_notif {
-    volume=$(get_mute)
+    muted="$(get_mute)"
     get_volume_icon
 
     if [[ $show_music_in_volume_indicator == "true" ]]; then
@@ -93,7 +93,11 @@ function show_volume_notif {
         if [[ $show_album_art == "true" ]]; then
             get_album_art
         fi
-        notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon $volume%" "$current_song"
+        if [[ "$muted" == "MUTED" ]]; then 
+            notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon MUTED" "$current_song"
+        else
+            notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume -i "$album_art" "$volume_icon $volume%" "$current_song"
+        fi 
     else
         notify-send -t $notification_timeout -h string:x-dunst-stack-tag:volume_notif -h int:value:$volume "$volume_icon $volume%"
     fi
@@ -124,6 +128,7 @@ function show_brightness_notif {
 case $1 in
     volume_up)
     volume=$(get_volume)
+    echo $volume
     if [ $? -ne 0 ]; then
         echo "No se pudo obtener el volumen."
         exit 1
