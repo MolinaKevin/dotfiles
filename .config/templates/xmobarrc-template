@@ -58,7 +58,7 @@ Config {
         -- volume status
         --, Run ComX "pamixer" [("--get-volume-human")] "N/A" "volume" 10  
 	--, Run Volume "default" "Master" [] 10 
-    , Run Com "/home/kevin/.config/scripts/get-volume.sh" [] "myvolume" 1
+    , Run Com "sh" ["-c", "$HOME/.config/scripts/get-volume.sh"] "myvolume" 1
 
         -- memory usage monitor
 		, Run Memory         [ "--template" ,"<fn=2>\xf233 </fn> (<usedratio>%)"

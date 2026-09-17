@@ -59,7 +59,7 @@ alias ps='procs'
 alias vi='vim'
 
 # Config Dotfiles
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
 
 function configput
     config add $argv

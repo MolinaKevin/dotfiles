@@ -9,6 +9,8 @@ import System.Exit
 import Data.Monoid
 import System.IO
 import System.Random (randomRIO)
+import System.Directory (getHomeDirectory)
+import System.IO.Unsafe (unsafePerformIO)
 
 -- Qualifieds (Tienen Alias)
 
@@ -169,8 +171,12 @@ myModMask = mod4Mask
 myBorderWidth :: Dimension
 myBorderWidth = 2
 
+myHomeDir :: FilePath
+myHomeDir = unsafePerformIO getHomeDirectory
+{-# NOINLINE myHomeDir #-}
+
 myIconDir :: String
-myIconDir = "/home/kevin/.config/xmonad/icons/"
+myIconDir = myHomeDir ++ "/.config/xmonad/icons/"
 
 myConfigPath :: String
 myConfigPath = "$HOME/.config/"
@@ -498,8 +504,8 @@ myKeys toggleFadeSet =
     
     -- KEY_GROUP Float Window
     , ("M-f", sendMessage (T.Toggle "floats"))                                      -- Convertir a Float 
-    , ("M-t", withFocused $ windows . W.sink)                                       -- No se Aun 
-    , ("M-S-t", sinkAll)                                                            -- No se Aun
+    , ("M-t", withFocused $ windows . W.sink)                                       -- Reintegrar ventana flotante al layout
+    , ("M-S-t", sinkAll)                                                            -- Reintegrar todas las ventanas flotantes
 
     -- KEY_GROUP Increase/Decrease spacing
     , ("C-M1-j", decWindowSpacing 4)                                                -- Reducir margen intraventana
@@ -531,8 +537,8 @@ myKeys toggleFadeSet =
     -- KEY_GROUP Windows Resizing
     , ("M-h", sendMessage Shrink)                                                   -- Achicar Master
     , ("M-l", sendMessage Expand)                                                   -- Expandir Master
-    , ("M-M1-j", sendMessage MirrorShrink)                                          -- Achicar Vertical (Not work?)
-    , ("M-M1-k", sendMessage MirrorExpand)                                          -- Expandir Vertical (Not work?)
+    , ("M-M1-j", sendMessage MirrorShrink)                                          -- Reducir altura de ventanas secundarias
+    , ("M-M1-k", sendMessage MirrorExpand)                                          -- Aumentar altura de ventanas secundarias
 
     -- KEY_GROUP Layout
     , ("M-<Tab>", sendMessage NextLayout)                                           -- Cambiar Layout
