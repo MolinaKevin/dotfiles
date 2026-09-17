@@ -66,3 +66,8 @@ function configput
     config commit -m "Add file $argv"
     config push 
 end
+
+# NordVPN bajo demanda
+alias vpn-on='nmcli connection up "de1474.nordvpn.com.udp_2.6" ifname wlp111s0'
+alias vpn-off='nmcli connection down "de1474.nordvpn.com.udp_2.6"'
+alias vpn-status='nmcli -f NAME,TYPE,DEVICE connection show --active'
