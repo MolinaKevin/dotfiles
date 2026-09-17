@@ -485,6 +485,7 @@ myKeys toggleFadeSet =
     , ("M-<Return>", spawn (myTerminal))                                                            -- Abrir Terminal
     , ("M-b", spawn (myBrowser))                                                                    -- Abrir Browser
     , ("M-M1-h", spawn (myTerminal ++ " -e htop"))                                                  -- Abrir HTOP
+    , ("M-<F1>", spawn "$HOME/.config/scripts/xmonadWallAndTheme.fish")                           -- Cambiar wallpaper y tema
     , ("M-<F5>", spawn "~/.config/scripts/apply-display-profile.sh")                                -- Reconfigurar monitores
     , ("M-<F9>", spawn "~/.config/scripts/reset-usb-device.sh reset-keyboard")                      -- Resetear teclado USB
     , ("M-S-f", withFocused $ io . modifyIORef toggleFadeSet . toggleFadeOut)                       -- Toggle transparencia

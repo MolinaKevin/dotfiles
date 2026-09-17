@@ -88,58 +88,58 @@ import Control.Monad (liftM, join)
 -- Palenight
 
 background :: String
-background = "#090e06"
+background = "#23120f"
 
 foreground :: String
-foreground = "#c1c2c0"
+foreground = "#c8c3c3"
 
 color0 :: String
-color0 = "#090e06"
+color0 = "#23120f"
 
 color1 :: String
-color1 = "#3B5242"
+color1 = "#2E518D"
 
 color2 :: String
-color2 = "#5B6951"
+color2 = "#5F699F"
 
 color3 :: String
-color3 = "#6A8F5F"
+color3 = "#A87394"
 
 color4 :: String
-color4 = "#8B9772"
+color4 = "#7486BB"
 
 color5 :: String
-color5 = "#7A9383"
+color5 = "#A791A6"
 
 color6 :: String
-color6 = "#9FAC99"
+color6 = "#DEA7A8"
 
 color7 :: String
-color7 = "#c1c2c0"
+color7 = "#c8c3c3"
 
 color8 :: String
-color8 = "#5d6955"
+color8 = "#74605e"
 
 color9 :: String
-color9 = "#3B5242"
+color9 = "#2E518D"
 
 color10 :: String
-color10 = "#5B6951"
+color10 = "#5F699F"
 
 color11 :: String
-color11 = "#6A8F5F"
+color11 = "#A87394"
 
 color12 :: String
-color12 = "#8B9772"
+color12 = "#7486BB"
 
 color13 :: String
-color13 = "#7A9383"
+color13 = "#A791A6"
 
 color14 :: String
-color14 = "#9FAC99"
+color14 = "#DEA7A8"
 
 color15 :: String
-color15 = "#c1c2c0"
+color15 = "#c8c3c3"
 
 colorList :: [String]
 colorList = [color0, color1, color2, 
@@ -485,6 +485,7 @@ myKeys toggleFadeSet =
     , ("M-<Return>", spawn (myTerminal))                                                            -- Abrir Terminal
     , ("M-b", spawn (myBrowser))                                                                    -- Abrir Browser
     , ("M-M1-h", spawn (myTerminal ++ " -e htop"))                                                  -- Abrir HTOP
+    , ("M-<F1>", spawn "$HOME/.config/scripts/xmonadWallAndTheme.fish")                           -- Cambiar wallpaper y tema
     , ("M-<F5>", spawn "~/.config/scripts/apply-display-profile.sh")                                -- Reconfigurar monitores
     , ("M-<F9>", spawn "~/.config/scripts/reset-usb-device.sh reset-keyboard")                      -- Resetear teclado USB
     , ("M-S-f", withFocused $ io . modifyIORef toggleFadeSet . toggleFadeOut)                       -- Toggle transparencia

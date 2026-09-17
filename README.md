@@ -23,9 +23,10 @@ alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
 
 ## Escritorio
 
-La configuración activa utiliza XMonad, Xmobar, Rofi, Alacritty, Fish, Dunst,
-Picom y pywal. Las dependencias del sistema se gestionan externamente; este
-repositorio no instala paquetes ni activa servicios.
+La configuración versionada utiliza XMonad, Xmobar, Rofi, Alacritty, Fish,
+Conky y pywal. Dunst, Picom, las dependencias del sistema y los servicios se
+gestionan externamente mediante Nix/Home Manager; este repositorio no los
+instala ni los activa.
 
 Cambiar fondo y paleta:
 
@@ -34,8 +35,13 @@ Cambiar fondo y paleta:
 ```
 
 Los fondos se leen desde `~/Pictures/Wallpapers`. El script genera las
-configuraciones de XMonad, Xmobar, Rofi y Alacritty, recompila XMonad y solo lo
-reinicia cuando la compilación termina correctamente.
+configuraciones activas de XMonad, Xmobar, Rofi, Alacritty y Conky a partir de
+las plantillas versionadas. Después recompila XMonad y solo lo reinicia cuando
+la compilación termina correctamente. Los archivos activos de Conky no se
+versionan porque se regeneran automáticamente.
+
+El autostart de Bitwarden usa el ejecutable disponible en `PATH`, de modo que
+no queda ligado a una versión concreta del paquete en `/nix/store`.
 
 Reconfigurar monitores:
 

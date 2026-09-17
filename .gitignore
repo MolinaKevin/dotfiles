@@ -1,1 +1,20 @@
+# Datos privados, cachés y estado local de aplicaciones.
+.config/Bitwarden/
+.config/mozilla/
+.config/thunderbird/
+.config/.thunderbird/
+.config/pulse/
+
+# Archivos locales de la máquina o gestionados por otras herramientas.
+.bashrc
+.config/mimeapps.list
+.config/environment.d/
+.config/fontconfig/
+.config/systemd/
+
+# Configuraciones activas generadas desde plantillas por pywal.
+.config/conky/hybrid/hybrid.conf
+.config/conky/hybrid/lua/hybrid-rings.lua
+
+# Configuración antigua de Alacritty, reemplazada por TOML.
 .config/alacritty/alacritty.yml

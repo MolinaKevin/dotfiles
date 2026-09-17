@@ -24,32 +24,32 @@ opacity = 0.8
 
 # Configuración de los colores
 [colors.primary]
-background = "#090e06"
-foreground = "#c1c2c0"
+background = "#23120f"
+foreground = "#c8c3c3"
 
 [colors.cursor]
-cursor = "#c1c2c0"
+cursor = "#c8c3c3"
 text = "CellForeground"
 
 [colors.normal]
-black = "#5d6955"
-red = "#3B5242"
-green = "#5B6951"
-yellow = "#6A8F5F"
-blue = "#8B9772"
-magenta = "#7A9383"
-cyan = "#9FAC99"
-white = "#c1c2c0"
+black = "#74605e"
+red = "#2E518D"
+green = "#5F699F"
+yellow = "#A87394"
+blue = "#7486BB"
+magenta = "#A791A6"
+cyan = "#DEA7A8"
+white = "#c8c3c3"
 
 [colors.bright]
-black = "#090e06"
-red = "#3B5242"
-green = "#5B6951"
-yellow = "#6A8F5F"
-blue = "#8B9772"
-magenta = "#7A9383"
-cyan = "#9FAC99"
-white = "#c1c2c0"
+black = "#23120f"
+red = "#2E518D"
+green = "#5F699F"
+yellow = "#A87394"
+blue = "#7486BB"
+magenta = "#A791A6"
+cyan = "#DEA7A8"
+white = "#c8c3c3"
 
 # Configuración de los atajos de teclado
 [[keyboard.bindings]]
