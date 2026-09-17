@@ -86,58 +86,58 @@ import Control.Monad (liftM, join)
 -- Palenight
 
 background :: String
-background = BACKGROUND
+background = "BACKGROUND"
 
 foreground :: String
-foreground = FOREGROUND
+foreground = "FOREGROUND"
 
 color0 :: String
-color0 = COLOR0
+color0 = "COLOR0"
 
 color1 :: String
-color1 = COLOR1
+color1 = "COLOR1"
 
 color2 :: String
-color2 = COLOR2
+color2 = "COLOR2"
 
 color3 :: String
-color3 = COLOR3
+color3 = "COLOR3"
 
 color4 :: String
-color4 = COLOR4
+color4 = "COLOR4"
 
 color5 :: String
-color5 = COLOR5
+color5 = "COLOR5"
 
 color6 :: String
-color6 = COLOR6
+color6 = "COLOR6"
 
 color7 :: String
-color7 = COLOR7
+color7 = "COLOR7"
 
 color8 :: String
-color8 = COLOR8
+color8 = "COLOR8"
 
 color9 :: String
-color9 = COLOR9
+color9 = "COLOR9"
 
 color10 :: String
-color10 = COLOR10
+color10 = "COLOR10"
 
 color11 :: String
-color11 = COLOR11
+color11 = "COLOR11"
 
 color12 :: String
-color12 = COLOR12
+color12 = "COLOR12"
 
 color13 :: String
-color13 = COLOR13
+color13 = "COLOR13"
 
 color14 :: String
-color14 = COLOR14
+color14 = "COLOR14"
 
 color15 :: String
-color15 = COLOR15
+color15 = "COLOR15"
 
 colorList :: [String]
 colorList = [color0, color1, color2, 
@@ -155,7 +155,7 @@ myTerminal :: String
 myTerminal = "alacritty"
 
 myBrowser :: String
-myBrowser = "thorium-browser"
+myBrowser = "firefox"
 
 mySearchEngine :: String
 mySearchEngine = "https://search.brave.com"
@@ -239,11 +239,11 @@ getIconColor ws = "<icon=" ++ myIconDir ++ name ++ "-color.xpm/>"
     where name = extractName ws
 
 clickable :: String -> String
-clickable ws = "<action=xdotool key \"Super+" ++ show(index) ++ "\">" ++ getIcon ws ++ "</action>" 
+clickable ws = "<action=xdotool key \"Super+" ++ index ++ "\">" ++ getIcon ws ++ "</action>"
     where index = extractIndex ws 
 
 clickableColor :: String -> String
-clickableColor ws = "<action=xdotool key \"Super+" ++ show(index) ++ "\">" ++ getIconColor ws ++ "</action>" 
+clickableColor ws = "<action=xdotool key \"Super+" ++ index ++ "\">" ++ getIconColor ws ++ "</action>"
     where index = extractIndex ws 
 
 -------------------------------------------------
@@ -253,10 +253,9 @@ clickableColor ws = "<action=xdotool key \"Super+" ++ show(index) ++ "\">" ++ ge
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
-    spawnOnce "picom --config $HOME/.config/picom/picom.conf &"
+    spawnOnce "picom &"
+    spawnOnce "dunst &"
     spawnOnce "thunderbird &"
-    spawnOnce "conky -c $HOME/.config/conky/hybrid/hybrid.conf &"
-    spawnOnce "$HOME/.config/scripts/xmonadWallAndTheme.fish &"
     setWMName "Kevin"  
 
 
@@ -288,18 +287,12 @@ myGSConfig = (buildDefaultGSConfig myColorizer)
 spawnSelected' :: [(String,String)] -> X ()
 spawnSelected' lst = gridselect myGSConfig lst >>= flip whenJust spawn
 
-myAppGrid =     [ ("OBS", "obs")
+myAppGrid =     [ ("Firefox", "firefox")
+                , ("Thunderbird", "thunderbird")
+                , ("OBS", "obs")
                 , ("Keys", "$HOME/.config/scripts/xmonad-keys.sh")
                 , ("Aliases", "$HOME/.config/scripts/aliases.sh")
-                , ("Rambox", "rambox")
-                , ("Bitwarden", "bitwarden-desktop")
-                , ("Thorium", "thorium-browser")
-                , ("Dolphin", "dolphin")
-                , ("KDE Connect", "kdeconnect-app")
-                , ("Kanri", "kanri")
-                , ("Android Studio", "astd")
                 , ("HTop", myTerminal ++ " -t HTop -e htop")
-                , ("Steam", "steam")
                 ]
 
 -------------------------------------------------
@@ -317,29 +310,20 @@ myManageHook = composeAll
     , className             =? "notification"               --> doFloat
     , className             =? "splash"                     --> doFloat
     , className             =? "toolbar"                    --> doFloat
-    , className             =? "Conky"                      --> doFloat
     , className             =? "Yad"                        --> doCenterFloat 
     , className             =? "jetbrains-idea"          --> doCenterFloat 
     , className             =? "steam_app*"                 --> doCenterFloat 
-    , className             =? "thorium-browser"            --> doShift ( myWorkspaces !! 1 )
-    , className             =? "Thorium-browser"            --> doShift ( myWorkspaces !! 1 )
-    , className             =? "dolphin"                    --> doShift ( myWorkspaces !! 0 )
-    , className             =? "org.kde.dolphin"            --> doShift ( myWorkspaces !! 0 )
-    , className             =? "kdeconnect-app"             --> doShift ( myWorkspaces !! 4 )
-    , className             =? "org.kde.kdeconnect.app"     --> doShift ( myWorkspaces !! 4 )
-    , className             =? "Rambox"                     --> doShift ( myWorkspaces !! 4 ) 
-    , className             =? "Ramboxpro"                  --> doShift ( myWorkspaces !! 4 ) 
+    , className             =? "firefox"                    --> doShift ( myWorkspaces !! 1 )
     , className             =? "mpv"                        --> doShift ( myWorkspaces !! 5 ) 
     , className             =? "Bitwarden"                  --> doShift ( myWorkspaces !! 6 ) 
     , className =? "org.mozilla.Thunderbird" --> doShift ( myWorkspaces !! 7 )
     , className             =? "obs"                        --> doShift ( myWorkspaces !! 8 ) 
-    , className             =? "openshot-qt"                --> doShift ( myWorkspaces !! 8 ) 
     , isFullscreen                                          --> doFullFloat
     ] <+> namedScratchpadManageHook myScratchPads
         where unfloat = ask >>= doF . W.sink
 
 myFadeHook toogleFadeSet = fadeOutLogHook $ fadeIf (fadeCondition toogleFadeSet) 0.8
-noFadeWindows = className =? "obs" <||> className =? "Rofi" <||> className =? "bitwarden" <||> className =? "alacritty" <||> className =? "qutebrowser"
+noFadeWindows = className =? "obs" <||> className =? "Rofi" <||> className =? "bitwarden" <||> className =? "alacritty"
  
 fadeCondition :: IORef (S.Set Window) -> Query Bool
 fadeCondition floats =
@@ -390,30 +374,12 @@ myShowWNameTheme    = def
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
-                , NS "spt" spawnSpt findSpt manageSpt 
-                , NS "telegram" spawnTelegram findTelegram manageTelegram 
                 , NS "htop" spawnHtop findHtop manageHtop 
                 ]
     where
         spawnTerm                   = myTerminal ++ " -t scratchpad"
         findTerm                    = title =? "scratchpad"
         manageTerm                  = customFloating $ W.RationalRect l t w h
-            where
-                h = 0.9
-                w = 0.9
-                t = 0.95 -h
-                l = 0.95 -w
-        spawnSpt                    = myTerminal ++ " -t Spotify -e spt"
-        findSpt                     = title =? "Spotify"
-        manageSpt                   = customFloating $ W.RationalRect l t w h
-            where
-                h = 0.9
-                w = 0.9
-                t = 0.95 -h
-                l = 0.95 -w
-        spawnTelegram               = "telegram-desktop"
-        findTelegram                = title =? "Telegram"
-        manageTelegram              = customFloating $ W.RationalRect l t w h
             where
                 h = 0.9
                 w = 0.9
@@ -505,14 +471,13 @@ myKeys toggleFadeSet =
     [ ("M-C-r", spawn "xmonad --recompile")                                         -- Recompilar XMonad
     , ("M-S-r", spawn "xmonad --restart")                                           -- Resetear XMonad
     , ("M-S-q", io exitSuccess)                                                     -- Salir de XMonad
-    , ("M-S-h", spawn "$HOME/.config/xmonad/xmonad-keys.sh")                               -- Mostrar Ayuda 
-    , ("M-S-a", spawn "$HOME/.config/xmonad/aliases.sh")                                   -- Mostrar Ayuda 
+    , ("M-S-h", spawn "$HOME/.config/scripts/xmonad-keys.sh")                              -- Mostrar ayuda de XMonad
+    , ("M-S-a", spawn "$HOME/.config/scripts/aliases.sh")                                  -- Mostrar aliases
 
     -- KEY_GROUP Utils
     , ("M-<Return>", spawn (myTerminal))                                                            -- Abrir Terminal
     , ("M-b", spawn (myBrowser))                                                                    -- Abrir Browser
     , ("M-M1-h", spawn (myTerminal ++ " -e htop"))                                                  -- Abrir HTOP
-    , ("M-<F1>", spawn "~/.config/scripts/xmonadWallAndTheme.fish")                                 -- Cambiar Wallpaper
     , ("M-<F5>", spawn "~/.config/scripts/apply-display-profile.sh")                                -- Reconfigurar monitores
     , ("M-<F9>", spawn "~/.config/scripts/reset-usb-device.sh reset-keyboard")                      -- Resetear teclado USB
     , ("M-S-f", withFocused $ io . modifyIORef toggleFadeSet . toggleFadeOut)                       -- Toggle transparencia
@@ -549,8 +514,6 @@ myKeys toggleFadeSet =
 
     -- KEY_GROUP ScratchPads
     , ("C-s t", namedScratchpadAction myScratchPads "terminal")                     -- Scratchpad Terminal
-    , ("C-s m", namedScratchpadAction myScratchPads "spt")                          -- Scratchpad Spotify
-    , ("C-s h", namedScratchpadAction myScratchPads "telegram")                     -- Scratchpad Telegram
     , ("C-s n", namedScratchpadAction myScratchPads "htop")                         -- Scratchpad HTop 
     , ("C-s b", spawn (myScriptPath ++ "bluetooth.sh"))
 

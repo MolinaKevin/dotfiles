@@ -48,41 +48,15 @@ alias .3='cd ../..'
 alias .4='cd ../../..'
 alias .5='cd ../../../..'
 
-# Packages
-alias remove='paru -Rs'
-alias upgrade='paru -Syu'
-alias add='paru -S'
-alias clean='paru -Sc'
-alias deepclean='paru -Scc'
-alias nouse='pacman -Qqdt'
-
-function list
-    pacman -Qei (pacman -Qu|cut -d" " -f 1)|awk 'BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print ("\t ", $2)}' | column -ts (printf '\t') -o ":" -N " Nombre,   Descripcion"
-end
-
-
 # Rust commands
 alias ls='exa -1la --icons'
 alias cat='bat'
 alias grep='rg'
 alias find='fd'
 alias ps='procs'
-alias top='btop'
-alias diff='difft'
 
 # Vim
 alias vi='vim'
-
-# Xrandr
-alias xtrab='xrandr --auto; xrandr --output DVI-I-2-2 --right-of eDP1; xrandr --output DVI-I-1-1 --right-of DVI-I-2-2'
-alias xsoph='xrandr --auto; xrandr --output HDMI1 --right-of eDP1'
-alias xcasa='xrandr --auto; xrandr --output HDMI1 --left-of eDP1'
-
-# Spark aliases
-alias clear='/bin/clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo; echo'
-
-# Joplin
-alias j='/usr/bin/joplin ; /usr/bin/joplin sync'
 
 # Config Dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

@@ -1,0 +1,26 @@
+# Artefactos locales generados al compilar XMonad.
+xmonad/*.hi
+xmonad/*.o
+
+# Checkouts antiguos conservados localmente, pero no gestionados como submódulos.
+xmonad/xmonad/
+xmonad/xmonad-contrib/
+xmobar/xmobar/
+
+# Perfiles y datos privados de aplicaciones.
+mozilla/
+thunderbird/
+.thunderbird/
+pulse/
+
+# Respaldo temporal de la migración.
+pre-dotfiles-backup-*/
+
+# Archivos gestionados mediante enlaces por Home Manager.
+environment.d/
+fontconfig/
+systemd/
+
+# Estado universal y enlaces de plugins generados por Fish/OMF.
+fish/fish_variables
+fish/functions/fish_prompt.fish

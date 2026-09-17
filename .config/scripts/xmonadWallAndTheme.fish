@@ -1,186 +1,117 @@
-#!/bin/fish
+#!/usr/bin/env fish
 
-set wall (random choice /home/kevin/Pictures/Wallpapers/* )
+set -l config_home (set -q XDG_CONFIG_HOME; and echo $XDG_CONFIG_HOME; or echo "$HOME/.config")
+set -l cache_home (set -q XDG_CACHE_HOME; and echo $XDG_CACHE_HOME; or echo "$HOME/.cache")
+set -l wallpaper_dir "$HOME/Pictures/Wallpapers"
+set -l colors_file "$cache_home/wal/colors.yml"
 
-wal -i $wall -R
-wal -i $wall
+function fail
+    echo "ERROR: $argv" >&2
+    return 1
+end
 
-set input "/home/kevin/.cache/wal/colors.yml"
-set input (string replace -r '"' '' $input)
+function require_command
+    command -q $argv[1]
+    or fail "No se encuentra el comando '$argv[1]'."
+end
 
-set background (yq .special.background $input )
-set foreground (yq .special.foreground $input )
+function render_template --argument-names template output background foreground cursor
+    if not test -f "$template"
+        fail "No existe la plantilla $template"
+        return 1
+    end
 
-set cursor (yq .special.cursor $input )
+    # Leer hasta EOF conserva el archivo como un solo valor multilinea.
+    read -z content < "$template"
 
-set color0 (yq .colors.color0 $input )
-set color1 (yq .colors.color1 $input )
-set color2 (yq .colors.color2 $input )
-set color3 (yq .colors.color3 $input )
-set color4 (yq .colors.color4 $input )
-set color5 (yq .colors.color5 $input )
-set color6 (yq .colors.color6 $input )
-set color7 (yq .colors.color7 $input )
-set color8 (yq .colors.color8 $input )
-set color9 (yq .colors.color9 $input )
-set color10 (yq .colors.color10 $input )
-set color11 (yq .colors.color11 $input )
-set color12 (yq .colors.color12 $input )
-set color13 (yq .colors.color13 $input )
-set color14 (yq .colors.color14 $input )
-set color15 (yq .colors.color15 $input )
+    # Reemplazar primero COLOR15..COLOR0 evita que COLOR1 altere COLOR10.
+    for index in (seq 15 -1 0)
+        set -l array_index (math $index + 1)
+        set content "$(string replace -a "COLOR$index" "$theme_colors[$array_index]" -- $content)"
+    end
 
+    set content "$(string replace -a BACKGROUND "$background" -- $content)"
+    set content "$(string replace -a FOREGROUND "$foreground" -- $content)"
+    set content "$(string replace -a CURSOR "$cursor" -- $content)"
 
-set colorConky0 ( string replace -a '#' '' ( string lower (echo $color0 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky1 ( string replace -a '#' '' ( string lower (echo $color1 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky2 ( string replace -a '#' '' ( string lower (echo $color2 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky3 ( string replace -a '#' '' ( string lower (echo $color3 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky4 ( string replace -a '#' '' ( string lower (echo $color4 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky5 ( string replace -a '#' '' ( string lower (echo $color5 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky6 ( string replace -a '#' '' ( string lower (echo $color6 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky7 ( string replace -a '#' '' ( string lower (echo $color7 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky8 ( string replace -a '#' '' ( string lower (echo $color8 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky9 ( string replace -a '#' '' ( string lower (echo $color9 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky10 ( string replace -a '#' '' ( string lower (echo $color10 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky11 ( string replace -a '#' '' ( string lower (echo $color11 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky12 ( string replace -a '#' '' ( string lower (echo $color12 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky13 ( string replace -a '#' '' ( string lower (echo $color13 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky14 ( string replace -a '#' '' ( string lower (echo $color14 | xargs | tr '[a-z]' '[A-Z]' ) ) )
-set colorConky15 ( string replace -a '#' '' ( string lower (echo $color15 | xargs | tr '[a-z]' '[A-Z]' ) ) )
+    command mkdir -p (path dirname "$output")
+    set -l temporary (command mktemp (path dirname "$output")/.theme.XXXXXX)
+    or return 1
 
-echo $colorConky0
+    printf '%s\n' "$content" > "$temporary"
+    and command mv -f "$temporary" "$output"
+end
 
-sed -e "s/BACKGROUND/$background/g" \
-    -e "s/FOREGROUND/$foreground/g" \
-    -e "s/COLOR10/$color10/g" \
-    -e "s/COLOR11/$color11/g" \
-    -e "s/COLOR12/$color12/g" \
-    -e "s/COLOR13/$color13/g" \
-    -e "s/COLOR14/$color14/g" \
-    -e "s/COLOR15/$color15/g" \
-    -e "s/COLOR0/$color0/g" \
-    -e "s/COLOR1/$color1/g" \
-    -e "s/COLOR2/$color2/g" \
-    -e "s/COLOR3/$color3/g" \
-    -e "s/COLOR4/$color4/g" \
-    -e "s/COLOR5/$color5/g" \
-    -e "s/COLOR6/$color6/g" \
-    -e "s/COLOR7/$color7/g" \
-    -e "s/COLOR8/$color8/g" \
-    -e "s/COLOR9/$color9/g" \
-   /home/kevin/.config/templates/xmonad-template.hs > /home/kevin/.config/xmonad/xmonad.hs
+for dependency in wal yq xmonad xmobar mktemp
+    require_command $dependency
+    or exit 1
+end
 
-sed -e "s/BACKGROUND/$background/g" \
-    -e "s/FOREGROUND/$foreground/g" \
-    -e "s/COLOR10/$color10/g" \
-    -e "s/COLOR11/$color11/g" \
-    -e "s/COLOR12/$color12/g" \
-    -e "s/COLOR13/$color13/g" \
-    -e "s/COLOR14/$color14/g" \
-    -e "s/COLOR15/$color15/g" \
-    -e "s/COLOR0/$color0/g" \
-    -e "s/COLOR1/$color1/g" \
-    -e "s/COLOR2/$color2/g" \
-    -e "s/COLOR3/$color3/g" \
-    -e "s/COLOR4/$color4/g" \
-    -e "s/COLOR5/$color5/g" \
-    -e "s/COLOR6/$color6/g" \
-    -e "s/COLOR7/$color7/g" \
-    -e "s/COLOR8/$color8/g" \
-    -e "s/COLOR9/$color9/g" \
-   /home/kevin/.config/templates/xmobarrc-template > /home/kevin/.config/xmobar/xmobarrc
+if not test -d "$wallpaper_dir"
+    fail "No existe el directorio de fondos $wallpaper_dir"
+    exit 1
+end
 
-sed -e "s/BACKGROUND/$background/g" \
-    -e "s/FOREGROUND/$foreground/g" \
-    -e "s/COLOR10/$colorConky10/g" \
-    -e "s/COLOR11/$colorConky11/g" \
-    -e "s/COLOR12/$colorConky12/g" \
-    -e "s/COLOR13/$colorConky13/g" \
-    -e "s/COLOR14/$colorConky14/g" \
-    -e "s/COLOR15/$colorConky15/g" \
-    -e "s/COLOR0/$colorConky0/g" \
-    -e "s/COLOR1/$colorConky1/g" \
-    -e "s/COLOR2/$colorConky2/g" \
-    -e "s/COLOR3/$colorConky3/g" \
-    -e "s/COLOR4/$colorConky4/g" \
-    -e "s/COLOR5/$colorConky5/g" \
-    -e "s/COLOR6/$colorConky6/g" \
-    -e "s/COLOR7/$colorConky7/g" \
-    -e "s/COLOR8/$colorConky8/g" \
-    -e "s/COLOR9/$colorConky9/g" \
-   /home/kevin/.config/templates/conky-template.conf > /home/kevin/.config/conky/hybrid/hybrid.conf
+set -l wallpapers
+for candidate in "$wallpaper_dir"/*
+    test -f "$candidate"
+    and set -a wallpapers "$candidate"
+end
 
-set sensor_path (fish $HOME/.config/scripts/find-hwmon.fish)
-set sensor_path (string replace "/sys/bus/platform/devices/" "" -- $sensor_path)
-set sensor_path (echo $sensor_path | sed 's|/[^/]*$||')
+if test (count $wallpapers) -eq 0
+    fail "No hay fondos en $wallpaper_dir"
+    exit 1
+end
 
-echo $sensor_path
+set -l wallpaper (random choice $wallpapers)
+wal -i "$wallpaper"
+or exit 1
 
-sed -e "s|SENSOR_PATH|$sensor_path|g" \
-    -e "s/BACKGROUND/$background/g" \
-    -e "s/FOREGROUND/$foreground/g" \
-    -e "s/COLOR10/$colorConky10/g" \
-    -e "s/COLOR11/$colorConky11/g" \
-    -e "s/COLOR12/$colorConky12/g" \
-    -e "s/COLOR13/$colorConky13/g" \
-    -e "s/COLOR14/$colorConky14/g" \
-    -e "s/COLOR15/$colorConky15/g" \
-    -e "s/COLOR0/$colorConky0/g" \
-    -e "s/COLOR1/$colorConky1/g" \
-    -e "s/COLOR2/$colorConky2/g" \
-    -e "s/COLOR3/$colorConky3/g" \
-    -e "s/COLOR4/$colorConky4/g" \
-    -e "s/COLOR5/$colorConky5/g" \
-    -e "s/COLOR6/$colorConky6/g" \
-    -e "s/COLOR7/$colorConky7/g" \
-    -e "s/COLOR8/$colorConky8/g" \
-    -e "s/COLOR9/$colorConky9/g" \
-   /home/kevin/.config/templates/rings-template.lua > /home/kevin/.config/conky/hybrid/lua/hybrid-rings.lua
+if not test -f "$colors_file"
+    fail "wal no generó $colors_file"
+    exit 1
+end
 
-echo $sensor_path
+set -l background (yq '.special.background' "$colors_file")
+set -l foreground (yq '.special.foreground' "$colors_file")
+set -l cursor (yq '.special.cursor' "$colors_file")
+set -g theme_colors
 
-sed -e "s/BACKGROUND/$background/g" \
-    -e "s/FOREGROUND/$foreground/g" \
-    -e "s/COLOR10/$color10/g" \
-    -e "s/COLOR11/$color11/g" \
-    -e "s/COLOR12/$color12/g" \
-    -e "s/COLOR13/$color13/g" \
-    -e "s/COLOR14/$color14/g" \
-    -e "s/COLOR15/$color15/g" \
-    -e "s/COLOR0/$color0/g" \
-    -e "s/COLOR1/$color1/g" \
-    -e "s/COLOR2/$color2/g" \
-    -e "s/COLOR3/$color3/g" \
-    -e "s/COLOR4/$color4/g" \
-    -e "s/COLOR5/$color5/g" \
-    -e "s/COLOR6/$color6/g" \
-    -e "s/COLOR7/$color7/g" \
-    -e "s/COLOR8/$color8/g" \
-    -e "s/COLOR9/$color9/g" \
-   /home/kevin/.config/templates/km-dmenu-template.rasi > /home/kevin/.config/rofi/themes/km-dmenu.rasi
+for index in (seq 0 15)
+    set -a theme_colors (yq ".colors.color$index" "$colors_file")
+end
 
-sed -e "s/BACKGROUND/$background/g" \
-    -e "s/FOREGROUND/$foreground/g" \
-    -e "s/COLOR10/$color10/g" \
-    -e "s/COLOR11/$color11/g" \
-    -e "s/COLOR12/$color12/g" \
-    -e "s/COLOR13/$color13/g" \
-    -e "s/COLOR14/$color14/g" \
-    -e "s/COLOR15/$color15/g" \
-    -e "s/COLOR0/$color0/g" \
-    -e "s/COLOR1/$color1/g" \
-    -e "s/COLOR2/$color2/g" \
-    -e "s/COLOR3/$color3/g" \
-    -e "s/COLOR4/$color4/g" \
-    -e "s/COLOR5/$color5/g" \
-    -e "s/COLOR6/$color6/g" \
-    -e "s/COLOR7/$color7/g" \
-    -e "s/COLOR8/$color8/g" \
-    -e "s/COLOR9/$color9/g" \
-    -e "s/CURSOR/$cursor/g" \
-   /home/kevin/.config/templates/alacritty-template.toml > /home/kevin/.config/alacritty/alacritty.toml
+render_template \
+    "$config_home/templates/xmonad-template.hs" \
+    "$config_home/xmonad/xmonad.hs" \
+    "$background" "$foreground" "$cursor"
+or exit 1
 
-killall conky
-conky -c $HOME/.config/conky/hybrid/hybrid.conf
-killall xmobar
-xmonad --recompile; xmonad --restart
+render_template \
+    "$config_home/templates/xmobarrc-template" \
+    "$config_home/xmobar/xmobarrc" \
+    "$background" "$foreground" "$cursor"
+or exit 1
+
+render_template \
+    "$config_home/templates/km-dmenu-template.rasi" \
+    "$config_home/rofi/themes/km-dmenu.rasi" \
+    "$background" "$foreground" "$cursor"
+or exit 1
+
+render_template \
+    "$config_home/templates/alacritty-template.toml" \
+    "$config_home/alacritty/alacritty.toml" \
+    "$background" "$foreground" "$cursor"
+or exit 1
+
+xmonad --recompile
+or begin
+    fail "XMonad no pudo recompilarse; no se reinició la sesión."
+    exit 1
+end
+
+pkill xmobar 2>/dev/null
+xmonad --restart
+
+echo "Tema aplicado usando "(path basename "$wallpaper")"."

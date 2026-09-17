@@ -40,8 +40,6 @@ disable_all_except() {
 restart_xmonad_stack() {
   sleep 1
 
-  ~/.config/scripts/xmonadWallAndTheme.fish || true
-
   pkill xmobar || true
 
   # Esto puede fallar si xmonad.hs tiene errores.
@@ -151,4 +149,4 @@ fi
 # 3. Sin externos
 apply_laptop_layout
 
-restart_xmonad_stackestart_xmonad_stack
+restart_xmonad_stack

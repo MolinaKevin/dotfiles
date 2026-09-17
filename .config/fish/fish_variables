@@ -1,9 +1,0 @@
-# This file contains fish universal variable definitions.
-# VERSION: 3.0
-SETUVAR --export ANDROID_SDK_ROOT:/opt/android\x2dsdk
-SETUVAR --export JAVA_HOME:/usr/lib/jvm/java\x2d17\x2dopenjdk
-SETUVAR __fish_initialized:4300
-SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:\x7e/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_list\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e\x7e/\x2econfig/fish/functions/nvm\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e\x7e/\x2econfig/fish/completions/nvm\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/nvm\x2efish
-SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR --export fish_user_paths:/home/kevin/\x2epub\x2dcache/bin\x1e/usr/lib/jvm/java\x2d17\x2dopenjdk/bin\x1e/home/kevin/\x2elocal/bin\x1e/home/kevin/\x2estack/programs/x86_64\x2dlinux/ghc\x2dtinfo6\x2d8\x2e10\x2e7/bin\x1e/home/kevin/\x2estack/compiler\x2dtools/x86_64\x2dlinux\x2dtinfo6/ghc\x2d8\x2e10\x2e7/bin\x1e/home/kevin/\x2estack/snapshots/x86_64\x2dlinux\x2dtinfo6/903b1a12725992232e8e43c3408e2cff2402a66387817c785cbc3a824eff9f32/8\x2e10\x2e7/bin\x1e/opt/android\x2dsdk/tools/\x1e/opt/android\x2dsdk/emulator\x1e/opt/android\x2dsdk/tools/bin/\x1e/opt/android\x2dsdk/platform\x2dtools/\x1e/home/kevin/\x2econfig/\x2eandroid/sdk/platform\x2dtools\x1e/home/kevin/\x2econfig/flutter/bin
