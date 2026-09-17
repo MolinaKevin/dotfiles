@@ -1,7 +1,6 @@
 /**
- * ROFI Color theme
- * User: Qball
- * Copyright: Dave Davenport
+ * ROFI Dinamyc Color theme
+ * Copyright: Molina Kevin 
  */
 
 * {
@@ -10,24 +9,24 @@
     padding:                0px;
     margin:                 0px;
     height:                 35px; 
-	back: 					"#151213";
-	fore: 					"#f6f4e0";
-	color0:					"#151213";
-	color1:					"#EEA137";
-	color2:					"#EBA058";
-	color3:					"#E9BB65";
-	color4:					"#786E8C";
-	color5:					"#D1AA93";
-	color6:					"#FBE29B";
-	color7:					"#f6f4e0";
-	color8:					"#acaa9c";
-	color9:					"#EEA137";
-	color10:				"#EBA058";
-	color11:				"#E9BB65";
-	color12:				"#786E8C";
-	color13:				"#D1AA93";
-	color14:				"#FBE29B";
-	color15:				"#f6f4e0";
+	back: 					"#0e0e0e";
+	fore: 					"#c5c4c3";
+	color0:					"#0e0e0e";
+	color1:					"#5EA06C";
+	color2:					"#FDA62E";
+	color3:					"#C7B963";
+	color4:					"#596699";
+	color5:					"#A46AA1";
+	color6:					"#55A3AB";
+	color7:					"#c5c4c3";
+	color8:					"#898988";
+	color9:					"#5EA06C";
+	color10:				"#FDA62E";
+	color11:				"#C7B963";
+	color12:				"#596699";
+	color13:				"#A46AA1";
+	color14:				"#55A3AB";
+	color15:				"#c5c4c3";
     background-color:       @back;
     border-color:           @back;
     text-color:             @fore;

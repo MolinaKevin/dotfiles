@@ -67,6 +67,8 @@ alias cat='bat'
 alias grep='rg'
 alias find='fd'
 alias ps='procs'
+alias top='btop'
+alias diff='difft'
 
 # Vim
 alias vi='vim'

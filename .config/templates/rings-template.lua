@@ -41,7 +41,7 @@ settings_table = {
     -- hwmon path /sys/bus/platform/devices/coretemp.0/hwmon/
     {
         name='platform',
-        arg='SENSOR_PATH temp 2',
+        arg='coretemp:2',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.5,
@@ -56,7 +56,7 @@ settings_table = {
     },
     {
         name='platform',
-        arg='SENSOR_PATH temp 3',
+        arg='coretemp:3',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.3,
@@ -71,7 +71,7 @@ settings_table = {
     },
     {
         name='platform',
-        arg='SENSOR_PATH temp 4',
+        arg='coretemp:4',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.5,
@@ -86,7 +86,7 @@ settings_table = {
     },
     {
         name='platform',
-        arg='SENSOR_PATH temp 5',
+        arg='coretemp:5',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.5,
@@ -101,7 +101,7 @@ settings_table = {
     },
     {
         name='platform',
-        arg='SENSOR_PATH temp 6',
+        arg='coretemp:6',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.3,
@@ -116,7 +116,7 @@ settings_table = {
     },
     {
         name='platform',
-        arg='SENSOR_PATH temp 7',
+        arg='coretemp:7',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.5,
@@ -149,7 +149,7 @@ settings_table = {
     -- cpu temp, gpu temp, battery % and swap
     {
         name='platform',
-        arg='SENSOR_PATH temp 1',
+        arg='coretemp:1',
         max=110,
         bg_colour=0xCOLOR7,
         bg_alpha=0.3,
@@ -487,15 +487,16 @@ settings_table = {
     }
 
 }
-
 require 'cairo'
-
+require 'cairo_xlib'
 
 -- global helper functions
 function rgb_to_r_g_b(colour, alpha)
-    return ((colour / 0x10000) % 0x100) / 255., ((colour / 0x100) % 0x100) / 255., (colour % 0x100) / 255., alpha
+    return ((colour / 0x10000) % 0x100) / 255.,
+           ((colour / 0x100) % 0x100) / 255.,
+           (colour % 0x100) / 255.,
+           alpha
 end
-
 
 function to_boolean(p_str)
     if p_str == "true" or p_str == "True" then
@@ -507,124 +508,171 @@ function to_boolean(p_str)
     end
 end
 
+-- -------------------------
+-- hwmon helpers
+-- -------------------------
+local hwmon_cache = {}
+
+local function trim(s)
+    if s == nil then return nil end
+    return (s:gsub("^%s+", ""):gsub("%s+$", ""))
+end
+
+local function read_first_line(path)
+    local f = io.open(path, "r")
+    if not f then return nil end
+    local line = f:read("*l")
+    f:close()
+    return trim(line)
+end
+
+local function find_hwmon_by_name(target_name)
+    if hwmon_cache[target_name] ~= nil then
+        return hwmon_cache[target_name]
+    end
+
+    local cmd = [[sh -c 'for h in /sys/class/hwmon/hwmon*; do
+        n=$(cat "$h/name" 2>/dev/null)
+        if [ "$n" = "]] .. target_name .. [[" ]; then
+            readlink -f "$h"
+            break
+        fi
+    done']]
+    local pipe = io.popen(cmd)
+    if not pipe then
+        hwmon_cache[target_name] = false
+        return nil
+    end
+
+    local path = trim(pipe:read("*a"))
+    pipe:close()
+
+    if path == nil or path == "" then
+        hwmon_cache[target_name] = false
+        return nil
+    end
+
+    hwmon_cache[target_name] = path
+    return path
+end
+
+local function read_hwmon_temp(sensor_name, temp_index)
+    local base = find_hwmon_by_name(sensor_name)
+    if not base then
+        return nil
+    end
+
+    local raw = read_first_line(string.format("%s/temp%d_input", base, temp_index))
+    if not raw then
+        return nil
+    end
+
+    local value = tonumber(raw)
+    if not value then
+        return nil
+    end
+
+    return math.floor((value / 1000) + 0.5)
+end
+
+local function read_platform_value(arg)
+    local sensor_name, temp_index = string.match(arg, "^([^:]+):(%d+)$")
+    if not sensor_name or not temp_index then
+        return nil
+    end
+    return read_hwmon_temp(sensor_name, tonumber(temp_index))
+end
 
 function conky_ring_stats(cr)
-    --[[
-    IMPORTANT NOTES:
-        regarding lua local function, it needs to be in sequence, caller needs to be at the bottom
-        otherwise we'll get an error like below example:
-            conky: llua_do_call: 
-            function conky_main execution failed: /home/dirn/.config/conky/hybrid/lua/hybrid-rings.lua:555: 
-            attempt to call a nil value (global 'setup_fs_text')
-    ]]
-
-
     local function write_circle_char(cr, display_char, tset, degrads, deg, ival)
         local interval = (degrads * (tset.s_angle + (deg * (ival - 1)))) + tset.l_position
         local interval2 = degrads * (tset.s_angle + (deg * (ival - 1)))
         local txs = 0 + tset.text_radius * (math.sin(interval))
         local tys = 0 - tset.text_radius * (math.cos(interval))
 
-        cairo_move_to (cr, txs + tset.x, tys + tset.y);
-        cairo_rotate (cr, interval2)
-        
-        cairo_show_text (cr, display_char)
-        cairo_rotate (cr, -interval2)
+        cairo_move_to(cr, txs + tset.x, tys + tset.y)
+        cairo_rotate(cr, interval2)
+
+        cairo_show_text(cr, display_char)
+        cairo_rotate(cr, -interval2)
     end
 
-
     local function setup_circle_text(cr, display_text, tset)
-        -- display_text = "hello world!"
-        -- radi, horiz, verti, tcolor, talpha, start, finish, var1 = 63, 140, 140, 0xffffff, 1, 0, 70, 0
-
-        local ival, has_celsius, sub_text = 1, false, display_text;
+        local ival, has_celsius, sub_text = 1, false, display_text
         local inum = string.len(display_text)
-        range = tset.e_angle
-        deg = (tset.e_angle - tset.s_angle) / (inum - 1)
-        degrads = 1 * (math.pi / 180)
+        local deg = (tset.e_angle - tset.s_angle) / (inum - 1)
+        local degrads = 1 * (math.pi / 180)
 
         if string.match(display_text, "°C") then
             has_celsius = true
             sub_text = string.gsub(display_text, "°C", "")
             inum = string.len(sub_text)
-            -- print(sub_text)
         end
 
         for s_char in string.gmatch(sub_text, "(.)") do
             write_circle_char(cr, s_char, tset, degrads, deg, ival)
             ival = ival + 1
-            -- print(ival, inum, s_char)
 
-            -- special handling for °C character
             if ival > inum and has_celsius then
                 write_circle_char(cr, "°C", tset, degrads, deg, ival)
             end
         end
     end
 
-
     local function setup_fs_text(cr, tset, value)
-        local str = string.format( "%s %s", tset.text, value ) .. '%'
-        
+        local str = string.format("%s %s", tset.text, value) .. '%'
         setup_circle_text(cr, str, tset)
     end
-
 
     local function setup_nvidia_text(cr, tset, value)
         local nvidia_used = to_boolean(conky_parse("${if_match \"${nvidia temp}\" != \"\"}true${else}false${endif}"))
         local str = ''
 
         if nvidia_used then
-            str = string.format( "%s %s", tset.text, value ) .. "°C"
+            str = string.format("%s %s", tset.text, value) .. "°C"
         else
             str = "N/A"
         end
 
-        cairo_move_to (cr, tset.x, tset.y)
-        cairo_show_text (cr, str)
+        cairo_move_to(cr, tset.x, tset.y)
+        cairo_show_text(cr, str)
     end
-
 
     local function setup_cpu_text(cr, tset, value)
         local str = ''
-        local thread_num = tonumber(tset.text)
 
-        str = string.format( "%02d", tset.text )
-        cairo_move_to (cr, tset.x, tset.y)
-        cairo_show_text (cr, str)
+        str = string.format("%02d", tset.text)
+        cairo_move_to(cr, tset.x, tset.y)
+        cairo_show_text(cr, str)
 
-        str = string.format( "%s", value ) .. '%'
-        cairo_move_to (cr, tset.x + 17, tset.y)
-        cairo_show_text (cr, str)
+        str = string.format("%s", value) .. '%'
+        cairo_move_to(cr, tset.x + 17, tset.y)
+        cairo_show_text(cr, str)
     end
-
 
     local function setup_other_text(cr, pt, tset, value)
         local str = ''
 
         if pt.name == 'platform' then
-            str = string.format( "%s %d", tset.text, value ) .. "°C"
+            str = string.format("%s %d", tset.text, value) .. "°C"
         elseif pt.name == 'time' then
-            str = string.format( "%02d", value )
+            str = string.format("%02d", value)
         else
-            str = string.format( "%s %d", tset.text, value ) .. "%"
+            str = string.format("%s %d", tset.text, value) .. "%"
         end
 
-        cairo_move_to (cr, tset.x, tset.y)
-        cairo_show_text (cr, str)
+        cairo_move_to(cr, tset.x, tset.y)
+        cairo_show_text(cr, str)
     end
-
 
     local function setup_text(cr, value, pt, tset)
         local font_name = 'NotoSans'
         local font_colour = g_main_colour
         local font_size = 11
-        local str = ''
-    
-        cairo_set_source_rgb(cr,rgb_to_r_g_b(font_colour))
-    
-        cairo_select_font_face (cr, font_name, CAIRO_FONT_SLANT_BOLD, CAIRO_FONT_WEIGHT_NORMAL)
-        cairo_set_font_size (cr, font_size)
+
+        cairo_set_source_rgb(cr, rgb_to_r_g_b(font_colour))
+        cairo_select_font_face(cr, font_name, CAIRO_FONT_SLANT_BOLD, CAIRO_FONT_WEIGHT_NORMAL)
+        cairo_set_font_size(cr, font_size)
 
         if pt.name == 'fs_used_perc' then
             setup_fs_text(cr, tset, value)
@@ -635,46 +683,41 @@ function conky_ring_stats(cr)
         else
             setup_other_text(cr, pt, tset, value)
         end
-    
-        cairo_fill_preserve (cr)
-        cairo_stroke (cr)
-        cairo_fill (cr)
+
+        cairo_fill_preserve(cr)
+        cairo_stroke(cr)
+        cairo_fill(cr)
     end
 
-
     local function draw_ring(cr, t, pt)
-        local w, h = conky_window.width, conky_window.height
-        
-        local xc, yc, ring_r, ring_w, sa, ea = pt.x, pt.y, pt.radius, pt.thickness, pt.start_angle, pt.end_angle
-        local bgc, bga, fgc, fga = pt.bg_colour, pt.bg_alpha, pt.fg_colour, pt.fg_alpha
-    
+        local xc, yc = pt.x, pt.y
+        local ring_r, ring_w = pt.radius, pt.thickness
+        local sa, ea = pt.start_angle, pt.end_angle
+        local bgc, bga = pt.bg_colour, pt.bg_alpha
+        local fgc, fga = pt.fg_colour, pt.fg_alpha
+
         local angle_0 = sa * (2 * math.pi / 360) - math.pi / 2
         local angle_f = ea * (2 * math.pi / 360) - math.pi / 2
         local t_arc = t * (angle_f - angle_0)
-    
-        -- Draw background ring
-    
+
         cairo_arc(cr, xc, yc, ring_r, angle_0, angle_f)
         cairo_set_source_rgba(cr, rgb_to_r_g_b(bgc, bga))
         cairo_set_line_width(cr, ring_w)
         cairo_stroke(cr)
-        
-        -- Draw indicator ring
-    
+
         cairo_arc(cr, xc, yc, ring_r, angle_0, angle_0 + t_arc)
         cairo_set_source_rgba(cr, rgb_to_r_g_b(fgc, fga))
-        cairo_stroke(cr)		
+        cairo_stroke(cr)
     end
-
 
     local function level_watch(level_pct, pt)
         local warn_level = 0
         local crit_level = 0
-        
+
         if pt.name == 'battery_percent' then
             warn_level = 30
             crit_level = 20
-    
+
             if level_pct > warn_level then
                 pt.fg_colour = normal
             elseif level_pct <= warn_level and level_pct > crit_level then
@@ -685,7 +728,7 @@ function conky_ring_stats(cr)
         elseif pt.name ~= 'time' then
             warn_level = 80
             crit_level = 92
-    
+
             if level_pct < warn_level then
                 pt.fg_colour = normal
             elseif level_pct >= warn_level and level_pct < crit_level then
@@ -696,29 +739,35 @@ function conky_ring_stats(cr)
         end
     end
 
-
     local function setup_rings(cr, pt)
-		local str = ''
-		local value = 0
+        local value = nil
+        local display_value = 0
 
-        str = string.format('${%s %s}', pt.name, pt.arg)
-        str = conky_parse(str)
-        
-        value = tonumber(str)
+        if pt.name == 'platform' then
+            value = read_platform_value(pt.arg)
+        else
+            local str = string.format('${%s %s}', pt.name, pt.arg)
+            str = conky_parse(str)
+            value = tonumber(str)
+        end
+
+        if value == nil then
+            return
+        end
+
         display_value = value
 
         if pt.name == 'time' and pt.arg == '%H' and value >= 12 then
             value = value - 12
+            display_value = value
         end
 
-		if value == nil then value = 0 end
         local pct = value / pt.max
         local level_watch_pct = pct * 100
 
-        -- level watch should check percentage, not value
         level_watch(level_watch_pct, pt)
         draw_ring(cr, pct, pt)
-        
+
         local tset = text_settings[pt.text_id]
         if tset == nil then return end
 
@@ -727,17 +776,15 @@ function conky_ring_stats(cr)
         end
     end
 
-
-    local updates=conky_parse('${updates}')
-    update_num = tonumber(updates)
+    local updates = conky_parse('${updates}')
+    local update_num = tonumber(updates) or 0
 
     if update_num > update_num_min then
         for i in pairs(settings_table) do
-	    setup_rings(cr, settings_table[i])
+            setup_rings(cr, settings_table[i])
         end
     end
 end
-
 
 -- array start from index 1
 text_settings = {
@@ -777,60 +824,49 @@ text_settings = {
     { text = '4', show = true, x = 125, y = 178 },
     { text = '5', show = true, x = 125, y = 194 },
     { text = '6', show = true, x = 125, y = 210 },
-    
+
     { text = '7', show = true, x = 125, y = 308 },
     { text = '8', show = true, x = 125, y = 324 },
     { text = '9', show = true, x = 125, y = 340 },
-    
+
     { text = '10', show = true, x = 125, y = 408 },
     { text = '11', show = true, x = 125, y = 424 },
     { text = '12', show = true, x = 125, y = 440 },
 }
-    
-
 
 text_indicator = {
-    { x1 = 75, y1 = 35, x2 = 115, y2 = 35, x3 = 128, y3 = 48, alpha = 0.9 },        -- c1
-    { x1 = 75, y1 = 51, x2 = 85, y2 = 51, x3 = 97, y3 = 64, alpha = 0.9 },          -- c2
-    { x1 = 204, y1 = 219, x2 = 216, y2 = 231, x3 = 226, y3 = 231, alpha = 0.9 },    -- c3
-    
-    { x1 = 75, y1 = 265, x2 = 115, y2 = 265, x3 = 128, y3 = 278, alpha = 0.9 },     -- c4
-    { x1 = 75, y1 = 281, x2 = 85, y2 = 281, x3 = 97, y3 = 294, alpha = 0.9 },       -- c5
-    { x1 = 204, y1 = 449, x2 = 216, y2 = 461, x3 = 226, y3 = 461, alpha = 0.9 },    -- c6
-    
-    { x1 = 80, y1 = 495, x2 = 115, y2 = 495, x3 = 128, y3 = 508, alpha = 0.9 },     -- ram
+    { x1 = 75, y1 = 35, x2 = 115, y2 = 35, x3 = 128, y3 = 48, alpha = 0.9 },
+    { x1 = 75, y1 = 51, x2 = 85, y2 = 51, x3 = 97, y3 = 64, alpha = 0.9 },
+    { x1 = 204, y1 = 219, x2 = 216, y2 = 231, x3 = 226, y3 = 231, alpha = 0.9 },
 
-    { x1 = 182, y1 = 239, x2 = 190, y2 = 247, x3 = 226, y3 = 247, alpha = 0.9 },    -- cpu
-    -- { x1 = 182, y1 = 469, x2 = 190, y2 = 477, x3 = 226, y3 = 477, alpha = 0.9 },    -- gpu
-    { x1 = 204, y1 = 679, x2 = 216, y2 = 691, x3 = 226, y3 = 691, alpha = 0.9 },    -- swap
-    { x1 = 182, y1 = 699, x2 = 190, y2 = 707, x3 = 226, y3 = 707, alpha = 0.9 }     -- bat
+    { x1 = 75, y1 = 265, x2 = 115, y2 = 265, x3 = 128, y3 = 278, alpha = 0.9 },
+    { x1 = 75, y1 = 281, x2 = 85, y2 = 281, x3 = 97, y3 = 294, alpha = 0.9 },
+    { x1 = 204, y1 = 449, x2 = 216, y2 = 461, x3 = 226, y3 = 461, alpha = 0.9 },
+
+    { x1 = 80, y1 = 495, x2 = 115, y2 = 495, x3 = 128, y3 = 508, alpha = 0.9 },
+
+    { x1 = 182, y1 = 239, x2 = 190, y2 = 247, x3 = 226, y3 = 247, alpha = 0.9 },
+    { x1 = 204, y1 = 679, x2 = 216, y2 = 691, x3 = 226, y3 = 691, alpha = 0.9 },
+    { x1 = 182, y1 = 699, x2 = 190, y2 = 707, x3 = 226, y3 = 707, alpha = 0.9 }
 }
 
-
 line_settings = {
-    -- vertical
     { x1 = 30, y1 = 0, x2 = 30, y2 = 750 },
     { x1 = 140, y1 = 0, x2 = 140, y2 = 750 },
     { x1 = 250, y1 = 0, x2 = 250, y2 = 750 },
     { x1 = 275, y1 = 0, x2 = 275, y2 = 750 },
 
-    -- horizontal
     { x1 = 0, y1 = 30, x2 = 470, y2 = 30 },
-    -- { x1 = 0, y1 = 140, x2 = 270, y2 = 140 },
     { x1 = 0, y1 = 250, x2 = 270, y2 = 250 },
     { x1 = 0, y1 = 260, x2 = 270, y2 = 260 },
-    -- { x1 = 0, y1 = 370, x2 = 270, y2 = 370 },
-    -- { x1 = 0, y1 = 480, x2 = 270, y2 = 480 },
     { x1 = 0, y1 = 490, x2 = 270, y2 = 490 },
     { x1 = 0, y1 = 600, x2 = 270, y2 = 600 },
     { x1 = 0, y1 = 710, x2 = 270, y2 = 710 },
 
-    -- diagonal
     { x1 = 0, y1 = 0, x2 = 290, y2 = 290 },
     { x1 = 0, y1 = 230, x2 = 290, y2 = 520 },
     { x1 = 0, y1 = 460, x2 = 290, y2 = 750 },
 }
-
 
 circle_settings = {
     { x = 230, y = 50, radius = 18.0, start_angle = 0.0, end_angle = 360.0 },
@@ -848,123 +884,120 @@ circle_settings = {
     { x = 140, y = 140, radius = 75.0, start_angle = 0.0, end_angle = 360.0 },
     { x = 140, y = 370, radius = 75.0, start_angle = 0.0, end_angle = 360.0 },
     { x = 140, y = 600, radius = 75.0, start_angle = 0.0, end_angle = 360.0 },
-
-    -- { x = 140, y = 140, radius = 25.0, start_angle = 0.0, end_angle = 360.0 },
-    -- { x = 140, y = 370, radius = 25.0, start_angle = 0.0, end_angle = 360.0 },
-    -- { x = 140, y = 600, radius = 11.0, start_angle = 0.0, end_angle = 360.0 },
 }
-
 
 function draw_elements(line_sketches_toggle)
     local function draw_text_indicator(cr)
         local line_colour, line_thick = g_main_colour, 0.5
-        
-        for x in pairs(text_settings) do
-            -- the usage of continue and ::continue:: is
-            -- not backward compatible with lua older version.
 
+        for x in pairs(text_settings) do
             local text_item = text_settings[x]
-            
+
             if text_item ~= nil and text_item.ind_id ~= nil then
                 local i_item = text_indicator[text_item.ind_id]
-    
+
                 if i_item ~= nil then
                     cairo_set_source_rgba(cr, rgb_to_r_g_b(line_colour, i_item.alpha))
                     cairo_set_line_width(cr, line_thick)
-            
-                    cairo_move_to (cr, i_item.x1, i_item.y1)
-                    cairo_line_to (cr, i_item.x2, i_item.y2)
-                    cairo_line_to (cr, i_item.x3, i_item.y3)
-                    cairo_stroke (cr)
+
+                    cairo_move_to(cr, i_item.x1, i_item.y1)
+                    cairo_line_to(cr, i_item.x2, i_item.y2)
+                    cairo_line_to(cr, i_item.x3, i_item.y3)
+                    cairo_stroke(cr)
                 end
             end
         end
     end
-    
-    
+
     local function draw_lines(cr)
         for x in pairs(line_settings) do
             local l_item = line_settings[x]
-            
-            cairo_move_to (cr, l_item.x1, l_item.y1)
-            cairo_line_to (cr, l_item.x2, l_item.y2)
-            cairo_stroke (cr)
+            cairo_move_to(cr, l_item.x1, l_item.y1)
+            cairo_line_to(cr, l_item.x2, l_item.y2)
+            cairo_stroke(cr)
         end
     end
-    
-    
+
     local function draw_circles(cr)
-        -- xc = 250.0
-        -- yc = 255.0
-        -- radius = 50.0
-        -- angle1 = 0.0  * (2 * math.pi / 360) - math.pi / 2
-        -- angle2 = 360.0 * (2 * math.pi / 360) - math.pi / 2
-    
         for x in pairs(circle_settings) do
             local c_item = circle_settings[x]
-            
+
             local angle_s = c_item.start_angle * (2 * math.pi / 360) - math.pi / 2
             local angle_e = c_item.end_angle * (2 * math.pi / 360) - math.pi / 2
-    
-            cairo_arc (cr, c_item.x, c_item.y, c_item.radius, angle_s, angle_e)
-            cairo_stroke (cr)
+
+            cairo_arc(cr, c_item.x, c_item.y, c_item.radius, angle_s, angle_e)
+            cairo_stroke(cr)
         end
     end
-    
-    
+
     local function draw_line_sketches(cr, line_sketches_toggle)
-        if to_boolean(line_sketches_toggle) == false then 
+        if to_boolean(line_sketches_toggle) == false then
             return
         end
-    
+
         local line_colour, line_alpha, line_thick = g_main_colour, 0.15, 1.0
-    
+
         cairo_set_source_rgba(cr, rgb_to_r_g_b(line_colour, line_alpha))
         cairo_set_line_width(cr, line_thick)
-        
+
         draw_lines(cr)
         draw_circles(cr)
     end
-    
-    
+
     local function draw_logo(cr)
-        local w, h = 0, 0
         local imagefile = home_dir .. "/.config/conky/hybrid/images/distro-3a.png"
-        local image = cairo_image_surface_create_from_png (imagefile)
-    
-        w = cairo_image_surface_get_width (image)
-        h = cairo_image_surface_get_height (image)
-    
-        cairo_translate (cr, 495.0, 32.0)
-        -- cairo_rotate (cr, 45* math.pi/180)
-        cairo_scale  (cr, 40.0/w, 40.0/h)
-        -- cairo_translate (cr, -0.5*w, -0.5*h)
-    
-        cairo_set_source_surface (cr, image, 0, 0)
-        cairo_paint (cr)
-        cairo_surface_destroy (image)
+        local image = cairo_image_surface_create_from_png(imagefile)
+
+        if image == nil then
+            return
+        end
+
+        local w = cairo_image_surface_get_width(image)
+        local h = cairo_image_surface_get_height(image)
+
+        cairo_translate(cr, 495.0, 32.0)
+        cairo_scale(cr, 40.0 / w, 40.0 / h)
+
+        cairo_set_source_surface(cr, image, 0, 0)
+        cairo_paint(cr)
+        cairo_surface_destroy(image)
     end
 
-
     if conky_window == nil then return end
+    if cairo_xlib_surface_create == nil then return end
+    if cairo_create == nil then return end
 
-    local cs = cairo_xlib_surface_create(conky_window.display,
+    local cs = cairo_xlib_surface_create(
+        conky_window.display,
         conky_window.drawable,
         conky_window.visual,
         conky_window.width,
-        conky_window.height)
+        conky_window.height
+    )
+
+    if cs == nil then return end
+
     local cr = cairo_create(cs)
+    if cr == nil then
+        cairo_surface_destroy(cs)
+        return
+    end
 
     draw_line_sketches(cr, line_sketches_toggle)
     draw_text_indicator(cr)
     conky_ring_stats(cr)
-    draw_logo(cr)           -- logo needs to be render last due to cairo_set_source_surface
+    draw_logo(cr)
 
     cairo_surface_destroy(cs)
     cairo_destroy(cr)
 end
 
-
 function conky_main(line_sketches_toggle)
-    draw_elements(line_sketches_toggle)
+    local ok, err = pcall(function()
+        draw_elements(line_sketches_toggle)
+    end)
+
+    if not ok then
+        print(err)
+    end
 end

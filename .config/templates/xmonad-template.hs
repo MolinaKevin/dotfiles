@@ -155,7 +155,7 @@ myTerminal :: String
 myTerminal = "alacritty"
 
 myBrowser :: String
-myBrowser = "qutebrowser"
+myBrowser = "thorium-browser"
 
 mySearchEngine :: String
 mySearchEngine = "https://search.brave.com"
@@ -194,12 +194,13 @@ myColorizer _ isFg = do
     randomIndex2 <- io $ randomRIO (0, length colorList - 1)
     let chosenColor = colorList !! randomIndex
     let chosenColor2 = colorList !! randomIndex2
-    if isFg 
-	    then return (chosenColor, background) -- Color activo
-	    else return (chosenColor2, background) -- Color inactivo
+    if isFg
+        then return (chosenColor, background) -- Color activo
+        else return (chosenColor2, background) -- Color inactivo
+
 
 myConfig toggleFadeSet xmproc = ewmh def
-    { manageHook                = myManageHook <+> manageDocks
+    { manageHook                = myManageHook
     , modMask                   = myModMask
     , terminal                  = myTerminal
     , startupHook               = myStartupHook
@@ -210,7 +211,6 @@ myConfig toggleFadeSet xmproc = ewmh def
     , focusedBorderColor        = color7
     , logHook                   = myFadeHook toggleFadeSet <+> myLogHook xmproc
     } `additionalKeysP` myKeys toggleFadeSet
-
 
 -------------------------------------------------
 -- Mis Helpers 
@@ -288,18 +288,19 @@ myGSConfig = (buildDefaultGSConfig myColorizer)
 spawnSelected' :: [(String,String)] -> X ()
 spawnSelected' lst = gridselect myGSConfig lst >>= flip whenJust spawn
 
-myAppGrid =     [ ("Qutebrowser", "qutebrowser")
-                , ("OBS", "obs")
+myAppGrid =     [ ("OBS", "obs")
                 , ("Keys", "$HOME/.config/scripts/xmonad-keys.sh")
                 , ("Aliases", "$HOME/.config/scripts/aliases.sh")
-                , ("Joplin", "joplin-desktop")
                 , ("Rambox", "rambox")
                 , ("Bitwarden", "bitwarden-desktop")
-                , ("Firefox", "firefox")
+                , ("Thorium", "thorium-browser")
+                , ("Dolphin", "dolphin")
+                , ("KDE Connect", "kdeconnect-app")
+                , ("Kanri", "kanri")
+                , ("Android Studio", "astd")
                 , ("HTop", myTerminal ++ " -t HTop -e htop")
                 , ("Steam", "steam")
                 ]
-
 
 -------------------------------------------------
 -- Mis Hooks
@@ -320,17 +321,17 @@ myManageHook = composeAll
     , className             =? "Yad"                        --> doCenterFloat 
     , className             =? "jetbrains-idea"          --> doCenterFloat 
     , className             =? "steam_app*"                 --> doCenterFloat 
-    , (className =? "firefox" <&&> resource =? "Dialog")    --> doFloat
-    , title                 =? "Mozilla Firefox"            --> doShift ( myWorkspaces !! 1 ) 
-    , className             =? "qutebrowser"                --> unfloat 
-    , className             =? "qutebrowser"                --> doShift ( myWorkspaces !! 1 ) 
-    , className             =? "Kodi"                       --> doShift ( myWorkspaces !! 3 ) 
+    , className             =? "thorium-browser"            --> doShift ( myWorkspaces !! 1 )
+    , className             =? "Thorium-browser"            --> doShift ( myWorkspaces !! 1 )
+    , className             =? "dolphin"                    --> doShift ( myWorkspaces !! 0 )
+    , className             =? "org.kde.dolphin"            --> doShift ( myWorkspaces !! 0 )
+    , className             =? "kdeconnect-app"             --> doShift ( myWorkspaces !! 4 )
+    , className             =? "org.kde.kdeconnect.app"     --> doShift ( myWorkspaces !! 4 )
     , className             =? "Rambox"                     --> doShift ( myWorkspaces !! 4 ) 
     , className             =? "Ramboxpro"                  --> doShift ( myWorkspaces !! 4 ) 
     , className             =? "mpv"                        --> doShift ( myWorkspaces !! 5 ) 
     , className             =? "Bitwarden"                  --> doShift ( myWorkspaces !! 6 ) 
-    , className             =? "Joplin"                     --> doShift ( myWorkspaces !! 7 ) 
-    , className             =? "Thunderbird"                --> doShift ( myWorkspaces !! 7 ) 
+    , className =? "org.mozilla.Thunderbird" --> doShift ( myWorkspaces !! 7 )
     , className             =? "obs"                        --> doShift ( myWorkspaces !! 8 ) 
     , className             =? "openshot-qt"                --> doShift ( myWorkspaces !! 8 ) 
     , isFullscreen                                          --> doFullFloat
@@ -508,12 +509,15 @@ myKeys toggleFadeSet =
     , ("M-S-a", spawn "$HOME/.config/xmonad/aliases.sh")                                   -- Mostrar Ayuda 
 
     -- KEY_GROUP Utils
-    , ("M-<Return>", spawn (myTerminal))                                            -- Abrir Terminal
-    , ("M-b", spawn (myBrowser))                                                    -- Abrir Browser
-    , ("M-M1-h", spawn (myTerminal ++ " -e htop"))                                  -- Abrir HTOP
-    , ("M-<F1>", spawn "~/.config/scripts/xmonadWallAndTheme.fish")                 -- Cambiar Wallpaper
-    , ("M-S-f", withFocused $ io . modifyIORef toggleFadeSet . toggleFadeOut)       -- Toggle transparencia
-    , ("<Print>", spawn "flameshot gui")                                            -- Screenshot
+    , ("M-<Return>", spawn (myTerminal))                                                            -- Abrir Terminal
+    , ("M-b", spawn (myBrowser))                                                                    -- Abrir Browser
+    , ("M-M1-h", spawn (myTerminal ++ " -e htop"))                                                  -- Abrir HTOP
+    , ("M-<F1>", spawn "~/.config/scripts/xmonadWallAndTheme.fish")                                 -- Cambiar Wallpaper
+    , ("M-<F5>", spawn "~/.config/scripts/apply-display-profile.sh")                                -- Reconfigurar monitores
+    , ("M-<F9>", spawn "~/.config/scripts/reset-usb-device.sh reset-keyboard")                      -- Resetear teclado USB
+    , ("M-S-f", withFocused $ io . modifyIORef toggleFadeSet . toggleFadeOut)                       -- Toggle transparencia
+    , ("<Print>", spawn "maim -s | xclip -selection clipboard -t image/png")                        -- Screenshot
+    , ("S-<Print>", spawn "mkdir -p $HOME/Pictures && maim -s $HOME/Pictures/last_screenshot.png")  -- Save Screenshot
 
 
     -- KEY_GROUP dmenu
@@ -548,6 +552,7 @@ myKeys toggleFadeSet =
     , ("C-s m", namedScratchpadAction myScratchPads "spt")                          -- Scratchpad Spotify
     , ("C-s h", namedScratchpadAction myScratchPads "telegram")                     -- Scratchpad Telegram
     , ("C-s n", namedScratchpadAction myScratchPads "htop")                         -- Scratchpad HTop 
+    , ("C-s b", spawn (myScriptPath ++ "bluetooth.sh"))
 
     -- KEY_GROUP Windows Navigation
     , ("M-m", windows W.focusMaster)                                                -- Focusear ventana Master
@@ -587,6 +592,7 @@ myKeys toggleFadeSet =
     , ("<XF86MonBrightnessUp>", spawn (myScriptPath ++ "volume-brightness.sh brightness_up"))                         -- Subir Brillo
     , ("<XF86MonBrightnessDown>", spawn (myScriptPath ++ "volume-brightness.sh brightness_down"))                       -- Bajar Brillo
     , ("<XF86Search>", spawn "rofi -show drun -config km-icons.rasi -display-drun Run: ")             -- Rofi buscador
+    , ("M-S-<F8>", spawn ("~/.config/scripts/apply-display-profile.sh"))                         -- Reconfigurar monitores
 
     -- KEY_GROUP Extras
     , ("M-<End>", spawn (myScriptPath ++ "volume-brightness.sh next_track"))             -- Cancion siguiente
@@ -601,4 +607,4 @@ myKeys toggleFadeSet =
 main = do
     xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"
     toggleFadeSet <- newIORef S.empty
-    xmonad $ myConfig toggleFadeSet xmproc
+    xmonad $ docks $ myConfig toggleFadeSet xmproc

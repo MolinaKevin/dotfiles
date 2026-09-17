@@ -69,6 +69,7 @@ set -gx GNUPGHOME "$XDG_DATA_HOME/gnupg"
 set -gx GTK2_RC_FILES "$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 set -gx STACK_ROOT "$XDG_DATA_HOME/stack"
 set -gx XINITRC "$XDG_CONFIG_HOME/X11/xinitrc"
+set -gx ERRFILE "$XDG_CACHE_HOME/X11/xsession-errors"
 
 ### END OF XDG ###
 
@@ -85,6 +86,15 @@ set -gx GVIMINIT 'let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source $MYGVIMRC
 set -gx VIMINFO "$XDG_STATE_HOME/vim/viminfo"
 
 ### END VIM ### 
+
+### SDK ANDROID ###
+
+set -gx ANDROID_HOME "$XDG_CONFIG_HOME/.android/sdk"
+#set -gx JAVA_HOME "/usr/lib/jvm/java-22-openjdk"
+set -gx JAVA_HOME "/usr/lib/jvm/java-23-openjdk"
+set -Ux fish_user_paths $fish_user_paths "$ANDROID_HOME/platform-tools"
+
+### END SDK ANDROID ###
 
 ### CONFIG INIT ###
 fish_vi_key_bindings

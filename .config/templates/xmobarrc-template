@@ -5,7 +5,8 @@ Config {
 				]
 	, bgColor 		= BACKGROUND
 	, fgColor 		= FOREGROUND
-	, position 		= Static { xpos = 0, ypos = 0, width = 1920, height = 35 } 
+	-- , position 		= Static { xpos = 0, ypos = 0, width = 1920, height = 35 } 
+    , position = TopSize L 100 35
 	, border 		= BottomB
 	, borderColor		= COLOR3
 
@@ -57,7 +58,7 @@ Config {
         -- volume status
         --, Run ComX "pamixer" [("--get-volume-human")] "N/A" "volume" 10  
 	--, Run Volume "default" "Master" [] 10 
-	, Run Com "/usr/bin/bash" ["-c", "~/.config/scripts/get-volume.sh"]  "myvolume" 1
+    , Run Com "/home/kevin/.config/scripts/get-volume.sh" [] "myvolume" 1
 
         -- memory usage monitor
 		, Run Memory         [ "--template" ,"<fn=2>\xf233 </fn> (<usedratio>%)"
@@ -92,6 +93,8 @@ Config {
 		-- keyboard layout indicator
 		, Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
 				     , ("us"         , "<fc=#8B0000>US</fc>")
+				     , ("de"         , "<fc=#8B0000>DE</fc>")
+				     , ("de(nodeadkeys)"         , "<fc=#8B0000>DE</fc>")
 				     ]
 		, Run UnsafeStdinReader
 		]	

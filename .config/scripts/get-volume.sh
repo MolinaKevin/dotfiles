@@ -1,9 +1,30 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
-vol=$(echo $vol | sed 's/Volume: //')
-# Convertir a porcentaje
-volumen_porcentaje=$(echo "$vol * 100" | bc | sed 's/.00//')
+status="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null)"
 
-# Formatear y mostrar el resultado
-printf "%d%%\n" "$volumen_porcentaje"
+if [ -z "$status" ]; then
+    echo "N/A"
+    exit 0
+fi
+
+if echo "$status" | grep -q "MUTED"; then
+    echo "<fc=#ff5555><fn=2>󰝟</fn> MUTED</fc>"
+    exit 0
+fi
+
+vol="$(echo "$status" | awk '/Volume:/ {printf "%d", $2 * 100}')"
+
+if [ -z "$vol" ]; then
+    echo "N/A"
+    exit 0
+fi
+
+if [ "$vol" -eq 0 ]; then
+    icon="󰕿"
+elif [ "$vol" -lt 35 ]; then
+    icon="󰖀"
+else
+    icon="󰕾"
+fi
+
+echo "<fn=2>$icon</fn> ${vol}%"

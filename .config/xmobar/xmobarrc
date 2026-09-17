@@ -3,16 +3,17 @@ Config {
 	font 			= "xft:Hack Nerd Font:pixelsize=14:antialias=true:hinting=true"
 	, additionalFonts 	= [ "xft:Font Awesome 5 Free Solid:pixelsize=16"
 				]
-	, bgColor 		= ""#151213""
-	, fgColor 		= ""#f6f4e0""
-	, position 		= Static { xpos = 0, ypos = 0, width = 1920, height = 35 } 
+	, bgColor 		= "#0e0e0e"
+	, fgColor 		= "#c5c4c3"
+	-- , position 		= Static { xpos = 0, ypos = 0, width = 1920, height = 35 } 
+    , position = TopSize L 100 35
 	, border 		= BottomB
-	, borderColor		= ""#E9BB65""
+	, borderColor		= "#C7B963"
 
 	-- layout
 	, sepChar =  "%"   -- delineator between plugin names and straight text
 	, alignSep = "}{"  -- separator between left-right alignment
-	, template = "%UnsafeStdinReader% }{ Vol: (%volume%) | %battery% | %cpu% | %coretemp% | %memory% | %dynnetwork% | %date% || %kbd% "
+	, template = "%UnsafeStdinReader% }{ Vol: (%myvolume%) | %battery% | %cpu% | %coretemp% | %memory% | %dynnetwork% | %date% || %kbd% "
 
 	   -- general behavior
 	   , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -55,7 +56,9 @@ Config {
 				     ] 50
         
         -- volume status
-        , Run ComX "pamixer" [("--get-volume-human")] "N/A" "volume" 10  
+        --, Run ComX "pamixer" [("--get-volume-human")] "N/A" "volume" 10  
+	--, Run Volume "default" "Master" [] 10 
+    , Run Com "/home/kevin/.config/scripts/get-volume.sh" [] "myvolume" 1
 
         -- memory usage monitor
 		, Run Memory         [ "--template" ,"<fn=2>\xf233 </fn> (<usedratio>%)"
@@ -90,6 +93,8 @@ Config {
 		-- keyboard layout indicator
 		, Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
 				     , ("us"         , "<fc=#8B0000>US</fc>")
+				     , ("de"         , "<fc=#8B0000>DE</fc>")
+				     , ("de(nodeadkeys)"         , "<fc=#8B0000>DE</fc>")
 				     ]
 		, Run UnsafeStdinReader
 		]	

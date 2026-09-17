@@ -12,7 +12,7 @@ show_music_in_volume_indicator=true
 function get_volume {
     vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -Po '(?<=Volume: )\d+\.\d+')
 
-    vol=$(echo "$vol * 100" | bc | sed 's/.00//')
+    vol=$(echo "$vol * 100" | bc | sed 's/\.00$//')
 
     if [[ "$vol" -eq 0 ]]; then
         echo 0
@@ -54,7 +54,7 @@ function get_brightness_icon {
 }
 
     function get_album_art {
-    url=$(playerctl -f "{{mpris:artUrl}}" metadata)
+    url=$(playerctl -f "{{mpris:artUrl}}" metadata 2>/dev/null)
     if [[ $url == "file://"* ]]; then
         album_art="${url/file:\/\//}"
     elif [[ $url == "http://"* ]] && [[ $download_album_art == "true" ]]; then
@@ -88,7 +88,7 @@ function show_volume_notif {
     get_volume_icon
 
     if [[ $show_music_in_volume_indicator == "true" ]]; then
-        current_song=$(playerctl -f "{{title}} - {{artist}}" metadata)
+        current_song=$(playerctl -f "{{title}} - {{artist}}" metadata 2>/dev/null)
 
         if [[ $show_album_art == "true" ]]; then
             get_album_art
@@ -105,9 +105,9 @@ function show_volume_notif {
 
 # Displays a music notification
 function show_music_notif {
-    song_title=$(playerctl -f "{{title}}" metadata)
-    song_artist=$(playerctl -f "{{artist}}" metadata)
-    song_album=$(playerctl -f "{{album}}" metadata)
+    song_title=$(playerctl -f "{{title}}" metadata 2>/dev/null)
+    song_artist=$(playerctl -f "{{artist}}" metadata 2>/dev/null)
+    song_album=$(playerctl -f "{{album}}" metadata 2>/dev/null)
 
     if [[ $show_album_art == "true" ]]; then
         get_album_art
