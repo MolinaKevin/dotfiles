@@ -27,7 +27,7 @@ function render_template --argument-names template output background foreground 
     # Reemplazar primero COLOR15..COLOR0 evita que COLOR1 altere COLOR10.
     for index in (seq 15 -1 0)
         set -l array_index (math $index + 1)
-        set content "$(string replace -a "COLOR$index" "$theme_colors[$array_index]" -- $content)"
+        set content "$(string replace -a "COLOR$index" "$render_colors[$array_index]" -- $content)"
     end
 
     set content "$(string replace -a BACKGROUND "$background" -- $content)"
@@ -42,7 +42,7 @@ function render_template --argument-names template output background foreground 
     and command mv -f "$temporary" "$output"
 end
 
-for dependency in wal yq xmonad xmobar mktemp
+for dependency in wal yq xmonad xmobar conky mktemp
     require_command $dependency
     or exit 1
 end
@@ -81,6 +81,8 @@ for index in (seq 0 15)
     set -a theme_colors (yq ".colors.color$index" "$colors_file")
 end
 
+set -g render_colors $theme_colors
+
 render_template \
     "$config_home/templates/xmonad-template.hs" \
     "$config_home/xmonad/xmonad.hs" \
@@ -105,13 +107,47 @@ render_template \
     "$background" "$foreground" "$cursor"
 or exit 1
 
+# Conky y su script Lua usan colores hexadecimales sin el prefijo '#'.
+set -g theme_colors_conky
+for color in $theme_colors
+    set -a theme_colors_conky (string replace -a '#' '' -- $color)
+end
+set render_colors $theme_colors_conky
+
+render_template \
+    "$config_home/templates/conky-template.conf" \
+    "$config_home/conky/hybrid/hybrid.conf" \
+    (string replace -a '#' '' -- $background) \
+    (string replace -a '#' '' -- $foreground) \
+    "$cursor"
+or exit 1
+
+render_template \
+    "$config_home/templates/rings-template.lua" \
+    "$config_home/conky/hybrid/lua/hybrid-rings.lua" \
+    (string replace -a '#' '' -- $background) \
+    (string replace -a '#' '' -- $foreground) \
+    "$cursor"
+or exit 1
+
+set render_colors $theme_colors
+
 xmonad --recompile
 or begin
     fail "XMonad no pudo recompilarse; no se reinició la sesión."
     exit 1
 end
 
-pkill xmobar 2>/dev/null
-xmonad --restart
+command pkill -x conky 2>/dev/null
+command sleep 1
+command conky -c "$config_home/conky/hybrid/hybrid.conf" >/dev/null 2>&1 &
+
+if contains -- --startup $argv
+    echo "Tema y Conky aplicados al iniciar XMonad."
+    exit 0
+end
+
+command pkill xmobar 2>/dev/null
+command xmonad --restart
 
 echo "Tema aplicado usando "(path basename "$wallpaper")"."

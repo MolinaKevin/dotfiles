@@ -88,58 +88,58 @@ import Control.Monad (liftM, join)
 -- Palenight
 
 background :: String
-background = "#23120f"
+background = "#090e06"
 
 foreground :: String
-foreground = "#c8c3c3"
+foreground = "#c1c2c0"
 
 color0 :: String
-color0 = "#23120f"
+color0 = "#090e06"
 
 color1 :: String
-color1 = "#2E518D"
+color1 = "#3B5242"
 
 color2 :: String
-color2 = "#5F699F"
+color2 = "#5B6951"
 
 color3 :: String
-color3 = "#A87394"
+color3 = "#6A8F5F"
 
 color4 :: String
-color4 = "#7486BB"
+color4 = "#8B9772"
 
 color5 :: String
-color5 = "#A791A6"
+color5 = "#7A9383"
 
 color6 :: String
-color6 = "#DEA7A8"
+color6 = "#9FAC99"
 
 color7 :: String
-color7 = "#c8c3c3"
+color7 = "#c1c2c0"
 
 color8 :: String
-color8 = "#74605e"
+color8 = "#5d6955"
 
 color9 :: String
-color9 = "#2E518D"
+color9 = "#3B5242"
 
 color10 :: String
-color10 = "#5F699F"
+color10 = "#5B6951"
 
 color11 :: String
-color11 = "#A87394"
+color11 = "#6A8F5F"
 
 color12 :: String
-color12 = "#7486BB"
+color12 = "#8B9772"
 
 color13 :: String
-color13 = "#A791A6"
+color13 = "#7A9383"
 
 color14 :: String
-color14 = "#DEA7A8"
+color14 = "#9FAC99"
 
 color15 :: String
-color15 = "#c8c3c3"
+color15 = "#c1c2c0"
 
 colorList :: [String]
 colorList = [color0, color1, color2, 
@@ -258,6 +258,7 @@ clickableColor ws = "<action=xdotool key \"Super+" ++ index ++ "\">" ++ getIconC
 
 myStartupHook :: X ()
 myStartupHook = do
+    spawn "$HOME/.config/scripts/xmonadWallAndTheme.fish --startup"
     spawnOnce "lxsession &"
     spawnOnce "picom &"
     spawnOnce "dunst &"

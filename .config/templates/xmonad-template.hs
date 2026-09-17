@@ -258,6 +258,7 @@ clickableColor ws = "<action=xdotool key \"Super+" ++ index ++ "\">" ++ getIconC
 
 myStartupHook :: X ()
 myStartupHook = do
+    spawn "$HOME/.config/scripts/xmonadWallAndTheme.fish --startup"
     spawnOnce "lxsession &"
     spawnOnce "picom &"
     spawnOnce "dunst &"
