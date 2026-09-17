@@ -40,6 +40,10 @@ las plantillas versionadas. Después recompila XMonad y solo lo reinicia cuando
 la compilación termina correctamente. Los archivos activos de Conky no se
 versionan porque se regeneran automáticamente.
 
+Al iniciar o reiniciar XMonad se restaura la última paleta guardada por pywal,
+sin escoger otro fondo ni volver a recompilar. Un fondo y una paleta nuevos
+solo se generan al ejecutar el script sin `--startup`, por ejemplo con `M-F1`.
+
 El autostart de Bitwarden usa el ejecutable disponible en `PATH`, de modo que
 no queda ligado a una versión concreta del paquete en `/nix/store`.
 

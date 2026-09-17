@@ -15,6 +15,18 @@ function require_command
     or fail "No se encuentra el comando '$argv[1]'."
 end
 
+function restart_conky --argument-names conky_config
+
+    if not test -f "$conky_config"
+        fail "No existe la configuración generada de Conky: $conky_config"
+        return 1
+    end
+
+    command pkill -x conky 2>/dev/null
+    command sleep 1
+    command conky -c "$conky_config" >/dev/null 2>&1 &
+end
+
 function render_template --argument-names template output background foreground cursor
     if not test -f "$template"
         fail "No existe la plantilla $template"
@@ -40,6 +52,30 @@ function render_template --argument-names template output background foreground 
 
     printf '%s\n' "$content" > "$temporary"
     and command mv -f "$temporary" "$output"
+end
+
+# Durante el arranque solo restauramos el último tema de pywal. Las
+# configuraciones activas y el binario de XMonad ya fueron generados por la
+# última ejecución interactiva; volver a elegir un fondo aquí desincronizaba
+# XMonad, Xmobar y el wallpaper después de cada reinicio.
+if contains -- --startup $argv
+    for dependency in wal conky
+        require_command $dependency
+        or exit 1
+    end
+
+    if test -f "$colors_file"
+        wal -R
+        or fail "pywal no pudo restaurar el último tema."
+    else
+        echo "WARN: No existe una paleta de pywal para restaurar en $colors_file" >&2
+    end
+
+    restart_conky "$config_home/conky/hybrid/hybrid.conf"
+    or exit 1
+
+    echo "Último tema de pywal y Conky restaurados."
+    exit 0
 end
 
 for dependency in wal yq xmonad xmobar conky mktemp
@@ -138,14 +174,8 @@ or begin
     exit 1
 end
 
-command pkill -x conky 2>/dev/null
-command sleep 1
-command conky -c "$config_home/conky/hybrid/hybrid.conf" >/dev/null 2>&1 &
-
-if contains -- --startup $argv
-    echo "Tema y Conky aplicados al iniciar XMonad."
-    exit 0
-end
+restart_conky "$config_home/conky/hybrid/hybrid.conf"
+or exit 1
 
 command pkill xmobar 2>/dev/null
 command xmonad --restart
